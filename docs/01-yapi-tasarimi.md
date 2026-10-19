@@ -2,6 +2,8 @@
 
 > Amaç: Uygulama yazılmadan önce kavramsal yapıyı, süreçleri, kuralları ve ölçümleri netleştirmek.
 > Sembol: ✅ sizin tarifinizden gelen, ➕ benim eklediğim, ❓ karar bekleyen (bkz. `03-acik-sorular-ve-kararlar.md`).
+>
+> **Güncelleme 19.10.2026 — alınan kararlar:** 100+ departman ölçeği; HRIS bağlantısı sonraya; davranışsal ölçek aynı 1–5; 360 var; seviye 5 için üst doğrulama; itirazda İK + üst yönetici; ücret/terfiden ayrık; web + mobil; eğitim kataloğu kapsam dışı; potansiyel bu sistemde ölçülecek; **tüm seviyelerde davranış göstergesi ve her puan kanıtla** (ayrıntı: `05-kanit-gosterge-ve-potansiyel-modeli.md`).
 
 ---
 
@@ -67,8 +69,9 @@ Yetkinlik Kütüphanesi
 | 5 | Yön Veren | Kurum çapında yön verir; yeni yaklaşımlar geliştirir; iç/dış referans uzmanıdır | Stratejik | Yeni / öncü | Kurum ve dışı |
 
 Kurallar:
+- ✅ Her yetkinlik × her seviye için **3–5 davranış göstergesi** yazılır; seviye bir sayı seçilerek değil, kanıtlanmış göstergelerden **hesaplanarak** belirlenir (bkz. `05`).
 - Her teknik beceri için 1–5 seviyelerinin **beceriye özgü davranışsal çıpası** yazılır (yukarıdaki genel tanım sadece rehberdir). Çıpa cümleleri "…yapar / …tasarlar / …öğretir" fiiliyle gözlenebilir olmalıdır.
-- ❓ S2: Davranışsal yetkinlikler aynı 1–5 sayısal ölçeği kullanır (ilişki analizi için şart), ama seviye **adları** farklı olabilir (örn. Gelişmekte / Uygular / Güçlü / Rol model / Kültür taşıyıcı).
+- ✅ (S2 kararı) Davranışsal yetkinlikler aynı 1–5 sayısal ölçeği kullanır; seviye adları: Gelişmekte / Uygular / Güçlü / Rol model / Kültür taşıyıcı.
 
 ### 2.3 Teknik beceri ↔ davranışsal yetkinlik bağı ✅➕ ("katalizör" modeli)
 
@@ -96,8 +99,10 @@ Sistemde dört yerde kullanılır:
 ## 3. Organizasyon ve rol yapısı
 
 ```
-Kurum → Departman → Servis (birim) → Rol (iş ailesi + kademe) → Pozisyon (kadro) → Kişi
+Kurum → [Direktörlük / GMY …] → Departman → Servis (birim) → Rol (iş ailesi + kademe) → Pozisyon (kadro) → Kişi
 ```
+
+➕ (100+ departman kararı) Organizasyon **serbest derinlikte ağaç** olarak modellenir (her birimin bir üst birimi ve türü vardır); "departman" ve "servis" tür etiketidir, katman sayısı sabit değildir (❓ S19). Organizasyon verisi şimdilik Excel/CSV ile yüklenir; HRIS bağlantısı sonraki fazda.
 
 - **Rol:** "Satınalma Uzmanı", "Bakım Mühendisi" gibi tekrarlayan iş tanımı. **Rol profili** burada tanımlanır.
 - **Pozisyon:** rolün belirli bir servisteki kadrosu (bir rol birden çok pozisyon olabilir). ➕ Pozisyon düzeyinde rol profiline **istisna** (ek beceri / farklı hedef) verilebilir.
@@ -124,7 +129,7 @@ Kurum → Departman → Servis (birim) → Rol (iş ailesi + kademe) → Pozisyo
 
 **Davranışsal:** İK ekibi aday sözlükten (bkz. `04-…`) 8–12 çekirdek + 5–7 liderlik yetkinliği seçer; seviye çıpalarını onaylar; üst yönetim onayı alınır.
 
-**Teknik:** Her servis için yönetici şablonu doldurur (bkz. şablon). Akış:
+**Teknik:** 100+ departman olduğu için toplama Excel ile değil, uygulamanın **ilk modülü olan Beceri Toplama Portalı** ile yapılır (❓ S23). Şablon dokümanı portalın form tasarımıdır. Portal: benzer beceri önerisi (mükerrer önleme), gösterge yazım yardımı, ➕ **departman küratörü** rolü (gösterge taslaklarını yazar, İK onaylar). Akış:
 
 ```
 Yönetici taslağı → İK standardizasyon (birleştirme, adlandırma, çıpa kalitesi) → Yönetici teyidi → Departman müdürü onayı → Kütüphane (v1.0, "Aktif")
@@ -140,30 +145,34 @@ Yöneticiyle birlikte her role hedef seviye ve ağırlık atanır. ➕ Sistem "a
 
 ### 4.3 Faz 3 — Değerlendirme döngüsü
 
-**Kaynaklar (❓ S3):**
+**Kaynaklar (S3 kararı):**
 
-| Kaynak | Varsayılan | Not |
+| Kaynak | Durum | Not |
 |---|---|---|
-| Öz-değerlendirme | Zorunlu | Kanıt alanı ile |
-| Yönetici değerlendirmesi | Zorunlu | Kanıt/gözlem notu zorunlu |
-| Akran / 360 | Opsiyonel, davranışsal için | Teknik için gürültülü olabilir |
-| Nesnel kanıt | Opsiyonel | Sertifika, sınav, iş örneği, proje çıktısı |
-| ➕ Doğrulama (üst yönetici / uzman) | Seviye 4–5 iddialarında | Üst seviye enflasyonunu engeller |
+| Öz-beyan | Zorunlu | Çalışan göstergeleri işaretler ve **kanıt** sunar ("yaptım" formu) |
+| Yönetici doğrulaması | Zorunlu | Her kanıtı kabul/red eder, gözlem notu ekler; seviye hesaplanır |
+| 360 | Var | Davranışsal: tam 360; teknik: gözlem teyidi (❓ S22). Gösterge bazlı "gözlemledim / gözlemlemedim" |
+| Nesnel kanıt | Zorunlu (göstergeye göre) | Sertifika, sınav, iş çıktısı, proje, ölçülebilir sonuç |
+| Üst doğrulama | Seviye 5 için zorunlu | N+2 veya İK'nın atadığı alan uzmanı onaylamadan 5 verilmez |
+| ➕ Potansiyel değerlendirmesi | Yıllık, döngü içinde | Kanıtlı potansiyel göstergeleri (bkz. `05` §6) |
+
+**Temel kural:** Mutabık seviye, kabul edilmiş kanıtla hesaplanan seviyeden yüksek olamaz.
 
 **Döngü takvimi:** Yıllık ana döngü + ➕ 6 aylık ara güncelleme (sadece gelişim planı kapsamındaki beceriler yeniden puanlanır). Yeni işe giren için işe başlangıçtan 90 gün sonra ilk değerlendirme.
 
 **Değerlendirme durum makinesi:**
 
 ```
-Açıldı → Öz-değerlendirme tamamlandı → Yönetici değerlendirmesi tamamlandı
-      → Mutabakat görüşmesi → [Mutabık | İtiraz] → (İtiraz: Üst değerlendirme / İK hakemliği) → Kesinleşti → Kilitli
+Açıldı → Öz-beyan ve kanıtlar sunuldu → 360 toplandı → Yönetici kanıt doğrulaması tamamlandı
+      → (Seviye 5 iddiası varsa) Üst doğrulama → Mutabakat görüşmesi → [Mutabık | İtiraz]
+      → (İtiraz: İK + üst yönetici ortak karar) → Potansiyel değerlendirmesi → Kesinleşti → Kilitli
 ```
 
 ➕ **Kalibrasyon oturumu:** Departman müdürü + İK, servisler arası dağılımı karşılaştırır (bir yönetici herkese 4 vermiş mi?). Sistem bunun için "yönetici cömertlik endeksi" ve dağılım grafiği üretir.
 
 ### 4.4 Mutabakat ✅
 
-Her beceri satırında: öz puan, yönetici puanı, **mutabık puan**, görüşme notu, kanıt, tarih, iki tarafın onay işareti. Fark ≥ 2 seviye ise görüşme zorunlu. İtirazda ❓ S4 nihai karar mercii belirlenmeli (önerim: üst yönetici kararı + İK gözlemci; komite sadece kritik rollerde).
+Her beceri satırında: öz-beyan seviyesi, kanıtlanmış seviye, **mutabık seviye**, gösterge bazında kabul/red listesi, görüşme notu, tarih, iki tarafın onay işareti. Fark ≥ 2 seviye veya reddedilmiş zorunlu kanıt varsa görüşme zorunlu. Görüşme sayı değil kanıt üzerinden yapılır: "bu gösterge için hangi kanıt eksik?". İtirazda (S4 kararı) **İK + üst yönetici** birlikte karar verir; karar gerekçesi ve hangi kanıtın nasıl değerlendirildiği yazılır.
 
 Kayıt altına alınanlar: kim, ne zaman, hangi puanı, hangi gerekçeyle verdi; mutabakat metni; itiraz gerekçesi; nihai karar. Tam denetim izi.
 
@@ -173,7 +182,7 @@ Kayıt altına alınanlar: kim, ne zaman, hangi puanı, hangi gerekçeyle verdi;
 
 **Öncelik puanı** = Açık × Rol içi ağırlık × Beceri kritikliği (1–3). Plan ilk 3–5 önceliğe odaklanır (kaynak dağılmasın).
 
-**Plan satırı:** beceri, mevcut → hedef seviye, eylem tipi (70-20-10), eylem, sorumlu, mentor, bitiş tarihi, başarı kanıtı, durum, ilerleme %. ➕ Katalizör önerisi otomatik eklenir. ➕ Eğitim kataloğu ile eşleme: her eğitim "hangi beceri, hangi seviyeye götürür" etiketiyle tanımlanır.
+**Plan satırı:** beceri, mevcut → hedef seviye, eylem tipi (70-20-10), eylem, sorumlu, mentor, bitiş tarihi, başarı kanıtı, durum, ilerleme %. ➕ Katalizör önerisi otomatik eklenir. ➕ **Eksik gösterge = eylem**: plan satırı, kanıtlanmamış göstergeleri doğrudan hedef olarak listeler ("Seviye 3 için 3.2 'aksiyon planı kurdu' kanıtı gerekiyor"). Eğitim kataloğu/LMS **kapsam dışı** (S9); eylem serbest metin + tür (iş başında / mentor / eğitim) olarak girilir, kurum eğitimi bağlanmaz.
 
 ➕ **Mentor eşleştirme:** Aynı beceride seviye ≥ 4 olanlar, seviye ≤ 2 olanlara mentor önerilir (yük dengesi: bir mentor ≤ 3 kişi).
 
@@ -227,7 +236,7 @@ Her kritik rol için aday havuzu. **Hazırlık seviyesi** otomatik önerilir, y�
 | 1–2 yıl | Zorunlu becerilerde açık ≤ 1; katalizör puanı yüksek |
 | 3+ yıl | Daha büyük açık ama potansiyel yüksek |
 
-➕ **Potansiyel** = katalizör yetkinlik ortalaması + liderlik yetkinlikleri (+ varsa performans verisi) → 9-kutu. ➕ **Kişi risk kaydı:** ayrılma riski, emeklilik tarihi, tek nokta bağımlılığı. ➕ **Yedek derinliği raporu:** her kritik rol için 0 / 1 / 2+ hazır yedek.
+✅ **Potansiyel** bu sistemde ölçülür (S11): uzmanlık ve liderlik potansiyeli ayrı, kanıtlı göstergelerle; performans verisi gelince 9-kutu ayrı modülde (bkz. `05` §6). ➕ **Kişi risk kaydı:** ayrılma riski, emeklilik tarihi, tek nokta bağımlılığı. ➕ **Yedek derinliği raporu:** her kritik rol için 0 / 1 / 2+ hazır yedek.
 
 ### 4.9 İşe alım bağlantısı ✅➕
 
@@ -250,6 +259,9 @@ Her kritik rol için aday havuzu. **Hazırlık seviyesi** otomatik önerilir, y�
 | İK admin | Yapı, roller, sürümler, ayarlar |
 | Üst yönetim | Kurum haritası, kritik risk, yedekleme panoları (salt okunur) |
 | ➕ Mentor | Mentisinin plan satırını ve ilerlemesini görür |
+| ➕ Departman küratörü | Departmanının teknik beceri ve gösterge taslaklarını yazar/düzenler, İK onayına sunar |
+| ➕ Üst doğrulayıcı / alan uzmanı | Seviye 5 kanıtlarını onaylar |
+| ➕ 360 değerlendirici | Atandığı kişiler için gösterge gözlem beyanı verir (anonim) |
 
 Gizlilik: kişi bazlı puanlar sadece hiyerarşi hattı + İK; akran/360 girdileri anonim; KVKK kapsamında saklama süresi ve açık rıza metni (❓ S10).
 
@@ -258,7 +270,7 @@ Gizlilik: kişi bazlı puanlar sadece hiyerarşi hattı + İK; akran/360 girdile
 ## 6. Yönetişim ve kalite kuralları
 
 - Kütüphane değişiklikleri onaysız yayınlanmaz; her değişiklik sürüm notu ile.
-- Değerlendirmede kanıt alanı zorunlu (seviye ≥ 4 için en az bir somut örnek).
+- Her gösterge için kanıt zorunlu; kanıtsız gösterge "kanıtlanmadı" sayılır. Seviye 5 üst doğrulama olmadan verilmez.
 - Kilitlenmiş döngü değiştirilemez; düzeltme yeni "düzeltme kaydı" ile.
 - ➕ Beceri "bayatlama": 18 ayda yeniden değerlendirilmeyen seviye "doğrulanmalı" işaretlenir.
 - ➕ Sertifika/lisans geçerlilik takibi (bitiş tarihi, hatırlatma).
@@ -268,15 +280,19 @@ Gizlilik: kişi bazlı puanlar sadece hiyerarşi hattı + İK; akran/360 girdile
 
 ## 7. Uygulama modülleri (ekran haritası)
 
-1. **Organizasyon** — departman/servis/rol/pozisyon/kişi; içe aktarma (Excel/HRIS).
-2. **Yetkinlik Kütüphanesi** — teknik ve davranışsal; seviye çıpaları; katalizör bağları; sürüm; onay akışı.
-3. **Rol Profilleri** — hedef seviyeler, ağırlıklar, kariyer yolları.
-4. **Değerlendirme Döngüleri** — açma, takvim, öz/yönetici/360, kanıt, mutabakat, itiraz, kalibrasyon.
-5. **Gelişim Planları** — açık, öncelik, eylem, mentor, eğitim kataloğu, ilerleme.
-6. **Analitik** — ısı haritası, metrik panoları, trend, envanter araması, katalizör doğrulama.
-7. **Kritik Rol & Yedekleme** — skorlama, aday havuzu, hazırlık, 9-kutu, risk kaydı, bilgi aktarım planı.
-8. **İşe Alım** — iş tanımı, mülakat kılavuzu, aday puan kartı, build/buy.
-9. **Yönetim** — kullanıcı/rol, bildirimler, ayarlar (eşikler, ağırlıklar), denetim günlüğü.
+1. **Organizasyon** — serbest derinlikte birim ağacı/rol/pozisyon/kişi; Excel/CSV içe aktarma (HRIS sonra).
+2. **Beceri Toplama Portalı** — yönetici/küratör formu, benzer beceri önerisi, gösterge yazım yardımı, İK standardizasyon kuyruğu, onay zinciri. **İlk teslim edilecek modül.**
+3. **Yetkinlik Kütüphanesi** — teknik ve davranışsal; seviye × gösterge × kanıt türü; katalizör bağları; sürüm; yaşam döngüsü.
+4. **Rol Profilleri** — hedef seviyeler, ağırlıklar, kariyer yolları.
+5. **Değerlendirme Döngüleri** — açma, takvim, öz-beyan + kanıt, 360, yönetici doğrulaması, seviye 5 üst doğrulama, mutabakat, itiraz, kalibrasyon, potansiyel.
+6. **Kanıt Kasası** — kişinin tüm kanıtları (dosya, bağlantı, gözlem), gösterge eşlemesi, geçerlilik; mobilden fotoğraf/dosya ile ekleme.
+7. **Gelişim Planları** — açık, eksik gösterge, öncelik, eylem, mentor, ilerleme (eğitim kataloğu yok).
+8. **Analitik** — ısı haritası, metrik panoları, trend, envanter araması, katalizör doğrulama, potansiyel dağılımı.
+9. **Kritik Rol & Yedekleme** — skorlama, aday havuzu, hazırlık, risk kaydı, bilgi aktarım planı (9-kutu performans gelince).
+10. **İşe Alım** — iş tanımı, mülakat kılavuzu, aday puan kartı, build/buy.
+11. **Yönetim** — kullanıcı/rol, bildirimler, ayarlar (eşikler, ağırlıklar, kanıt geçerlilik süresi), denetim günlüğü.
+
+**Mobil (S8):** Öncelik responsive web + PWA (ana ekrana ekleme, bildirim, çevrimdışı kanıt taslağı). Mobilde öne çıkan işler: kanıt ekleme (fotoğraf/dosya), 360 gözlem beyanı, onay/mutabakat imzası, bildirimler. Native uygulama ihtiyacı pilot sonrasında değerlendirilir.
 
 ---
 
@@ -285,17 +301,19 @@ Gizlilik: kişi bazlı puanlar sadece hiyerarşi hattı + İK; akran/360 girdile
 | Faz | İçerik | Çıktı |
 |---|---|---|
 | 0 | Yapı ve kararlar (bu dokümanlar) | Onaylı tasarım |
-| 1 | Davranışsal sözlük seçimi + teknik beceri toplama (şablon + 1 saatlik çalıştay/servis) | Kütüphane v1.0 |
+| 1 | **Uygulama v0: Organizasyon + Beceri Toplama Portalı + Kütüphane** (100+ departmandan toplama buradan yapılır) ve İK ekibinin davranışsal sözlük seçimi + gösterge yazımı | Kütüphane v1.0 (gösterge ve kanıt türleriyle) |
 | 2 | Rol profilleri | Hedef seviyeler |
-| 3 | Uygulama MVP: modül 1-2-3-4 (+ mutabakat) | Pilot 1–2 departman |
-| 4 | Gelişim planı + analitik | Kurum haritası v1 |
+| 3 | Uygulama v1: Değerlendirme döngüsü (öz-beyan + kanıt, 360, doğrulama, mutabakat, potansiyel) | Pilot 2–3 departman |
+| 4 | Gelişim planı + analitik + kanıt kasası mobil | Kurum haritası v1 |
 | 5 | Kritik rol / yedekleme / işe alım | Risk ve yedek panoları |
-| 6 | 2. döngü: katalizör doğrulama, ağırlık güncelleme | Kanıta dayalı model |
+| 6 | 2. döngü: katalizör ve potansiyel doğrulama, ağırlık güncelleme; HRIS bağlantısı; performans + 9-kutu | Kanıta dayalı model |
 
 **Riskler ve önlemler:**
 - Yöneticiler beceri listesini çok uzun/çok kısa verir → şablonda "servis başına 8–20 beceri" sınırı, İK standardizasyonu.
 - Çıpalar yargı sözcüğüyle yazılır → kalite kontrol listesi (şablonda).
-- Değerlendirme enflasyonu → kanıt zorunluluğu, kalibrasyon, seviye 4–5 doğrulaması, ilk yıl ücretle ayrık.
+- Değerlendirme enflasyonu → gösterge bazlı hesaplanan seviye, her gösterge için kanıt, seviye 5 üst doğrulama, kalibrasyon, ücretle ayrık.
+- 100+ departmanda gösterge yazım kalitesi düşer → departman küratörleri + İK onayı + kalite kontrol listesi + ortak havuz.
+- Kanıt toplama yük olarak algılanır → kanıt kasası yıl boyunca açık (döngüde değil, iş olurken eklenir), mobil hızlı ekleme, bir kanıt birden çok göstergeyi karşılar.
 - Sistem "form doldurma" olarak algılanır → gelişim planı ve mentor eşleşmesi ilk döngüde görünür fayda olarak sunulur; yöneticilere servis haritası hemen geri verilir.
 
 **Başarı ölçütleri (12 ay):** değerlendirme tamamlanma ≥ %90; mutabık kalınan satır oranı ≥ %85; her kritik rol için en az 1 adlandırılmış yedek; plan tamamlama ≥ %60; öz–yönetici farkı ≤ 0,5.

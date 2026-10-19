@@ -21,6 +21,8 @@ Müdür ve servis yöneticilerinden teknik becerileri **tutarlı** toplamak içi
 | Seviye 3 – Yetkin Uygulayıcı | | Kritik/stratejik tedarikçileri değerlendirir, sorunlu durumlarda aksiyon planı kurar, yeni çalışanı yönlendirir |
 | Seviye 4 – Yöneten | | Değerlendirme kriterlerini ve puan kartını tasarlar, süreci iyileştirir, ekibi geliştirir |
 | Seviye 5 – Yön Veren | | Kurum çapında tedarikçi yönetimi politikasını belirler, sektör pratiklerini içeri taşır |
+| Seviye N göstergeleri (her seviye için 3–5) | Geçmiş zaman, gözlenebilir, kanıtı tarif eden cümleler; zorunlu olanı işaretleyin | S3: "Kritik bir tedarikçinin tam değerlendirmesini bağımsız tamamladı (Z)", "Sorunlu tedarikçi için aksiyon planı kurdu ve izledi (Z)", "Yeni çalışana süreci öğretti" |
+| Kabul edilen kanıt türleri | Her gösterge için | Değerlendirme raporu, aksiyon planı, mentorluk kaydı |
 | Bu serviste hedef seviye (rol bazında) | Rol → hedef | Uzman: 3, Kıdemli Uzman: 4, Yönetici: 4 |
 | Kritiklik (1–3) | 1 Destekleyici · 2 Önemli · 3 Çekirdek | 3 |
 | Bu beceride seviye ≥ 3 kaç kişi var? | Tahmini; bus factor ön bilgisi | 2 |
@@ -30,6 +32,8 @@ Müdür ve servis yöneticilerinden teknik becerileri **tutarlı** toplamak içi
 | Katalizör davranışsal yetkinlik (varsa görüşünüz) | Hangi soft skill bu beceride yükselmeyi kolaylaştırır? | Analitik Düşünme, Süreç Odaklılık |
 | Başka serviste de kullanılıyor mu? | Ortak havuz adayı | Kalite (tedarikçi denetimi) |
 | Kanıt örnekleri | Seviyeyi gösteren somut çıktı | Denetim raporu, puan kartı revizyonu |
+
+**Not (19.10.2026 kararı):** 100+ departman için bu şablon, uygulamanın **Beceri Toplama Portalı** formu olarak hayata geçecek; Excel/CSV yalnızca portal hazır olana kadar geçici kanaldır. Portalda yönetici önce beceriyi tanımlar, sonra seviye başına 3–5 gösterge yazar; İK/küratör gösterge kalitesini kontrol listesiyle onaylar.
 
 ## 3. Çalıştay akışı (servis başına 60 dakika)
 
@@ -52,6 +56,9 @@ Müdür ve servis yöneticilerinden teknik becerileri **tutarlı** toplamak içi
 - [ ] Çok dar beceri birleştirilmeli mi?
 - [ ] Hedef seviyeler rol kademesiyle tutarlı mı? (Uzman 5 ve yönetici 3 olamaz)
 - [ ] Mevzuat/standart becerilerinde sürüm/yıl belirtilmiş mi? (ISO 9001:2015)
+- [ ] Her seviyede 3–5 gösterge var mı; her gösterge geçmiş zaman ve tek davranış mı? ("…hazırladı", "…kurdu ve izledi")
+- [ ] Her seviyede en az 1 zorunlu gösterge işaretli mi?
+- [ ] Her gösterge için kabul edilen kanıt türü yazılmış mı?
 
 ## 5. Onay zinciri
 

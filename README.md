@@ -10,5 +10,6 @@ Bu depo şu an **tasarım aşamasındadır**. Uygulama kodu yazılmadan önce t�
 | [docs/02-veri-modeli.md](docs/02-veri-modeli.md) | Varlıklar, alanlar, ilişkiler, durum makineleri, hesaplama formülleri |
 | [docs/03-acik-sorular-ve-kararlar.md](docs/03-acik-sorular-ve-kararlar.md) | Karar gerektiren konular, önerilen varsayılanlar, karar kaydı |
 | [docs/04-davranissal-yetkinlik-onerisi.md](docs/04-davranissal-yetkinlik-onerisi.md) | Ekibin seçeceği davranışsal yetkinlikler için aday sözlük ve seviye çıpaları |
+| [docs/05-kanit-gosterge-ve-potansiyel-modeli.md](docs/05-kanit-gosterge-ve-potansiyel-modeli.md) | Davranış göstergesi yapısı, kanıt modeli ("yaptım" ilkesi), seviye hesaplama, 360 tasarımı, potansiyel modeli |
 | [docs/sablonlar/teknik-beceri-toplama-sablonu.md](docs/sablonlar/teknik-beceri-toplama-sablonu.md) | Müdür ve yöneticilerden teknik beceri toplamak için şablon, çalıştay akışı ve kalite kriterleri |
 | [docs/sablonlar/teknik-beceri-toplama.csv](docs/sablonlar/teknik-beceri-toplama.csv) | Aynı şablonun Excel'e açılabilir CSV sürümü |
