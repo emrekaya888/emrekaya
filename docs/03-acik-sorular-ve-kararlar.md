@@ -21,13 +21,21 @@ Her soru için **önerilen varsayılan** yazıldı. Karar verilince "Karar" süt
 | S15 | Mentorluk | Mentor eşleştirme sistemde resmi bir süreç olsun mu? Mentor başına limit? | Evet; mentor başına en fazla 3 menti | |
 | S16 | Yetkinlik envanteri araması | Yöneticiler başka servislerdeki kişilerin beceri seviyelerini arayabilsin mi (proje kadrolama)? | Evet, sadece "seviye ≥ 3" bilgisiyle, puan detayı olmadan | |
 
-| S17 | Teknoloji yığını | Kurumda zorunlu bir teknoloji var mı (.NET, Java, belirli veritabanı)? Barındırma kurum içi mi bulut mu? | Zorunluluk yoksa: TypeScript (Next.js) + PostgreSQL; mobil için PWA, gerekirse sonra native | |
-| S18 | Çalışan ve kullanıcı sayısı | Toplam çalışan, yönetici ve İK kullanıcı sayısı? 360 için ortalama kaç değerlendirici? | Tasarım 10.000+ çalışan için ölçeklenir; 360'ta kişi başı 4–6 değerlendirici | |
+| S17 | Teknoloji yığını | Kurumda zorunlu bir teknoloji var mı (.NET, Java, belirli veritabanı)? Barındırma kurum içi mi bulut mu? | Zorunluluk yoksa: TypeScript (Next.js) + PostgreSQL; mobil için PWA, gerekirse sonra native | Kısıt yok → TypeScript (Next.js) + PostgreSQL, PWA (bkz. 07). |
+| S18 | Çalışan ve kullanıcı sayısı | Toplam çalışan, yönetici ve İK kullanıcı sayısı? 360 için ortalama kaç değerlendirici? | Tasarım 10.000+ çalışan için ölçeklenir; 360'ta kişi başı 4–6 değerlendirici | 6.400 çalışan, 600 yönetici. |
 | S19 | Organizasyon derinliği | Departman üstünde Direktörlük/Genel Müdür Yardımcılığı katmanı var mı? | Org yapısı serbest derinlikte ağaç olarak modellenir | |
-| S20 | Potansiyel türü | Potansiyel tek puan mı, yoksa Uzmanlık / Liderlik potansiyeli ayrı mı raporlansın? | İki ayrı tür + genel puan (bkz. 05 dokümanı) | |
-| S21 | Kanıt eşiği | Bir seviye "sahip" sayılmak için göstergelerin yüzde kaçı kanıtlı olmalı? Kanıt kaç ay geçerli? | %70 (zorunlu göstergeler %100); kanıt 24 ay geçerli | |
+| S20 | Potansiyel türü | Potansiyel tek puan mı, yoksa Uzmanlık / Liderlik potansiyeli ayrı mı raporlansın? | İki ayrı tür + genel puan (bkz. 05 dokümanı) | Uzmanlık ve liderlik potansiyeli ayrı. |
+| S21 | Kanıt eşiği | Bir seviye "sahip" sayılmak için göstergelerin yüzde kaçı kanıtlı olmalı? Kanıt kaç ay geçerli? | %70 (zorunlu göstergeler %100); kanıt 24 ay geçerli | %70 ve 24 ay kabul. |
 | S22 | 360 kapsamı | 360 sadece davranışsal yetkinlikler için mi, teknik beceriler için de mi? Değerlendirici seçimini kim yapar? | Davranışsal: herkes; teknik: sadece iç müşteri/akran gözlemi "gördüm/görmedim" düzeyinde; değerlendiriciyi yönetici seçer, çalışan 1–2 ekler | |
-| S23 | Beceri toplama kanalı | 100+ departman için Excel yerine uygulama içi "Beceri Toplama" modülü ilk teslim olsun mu? | Evet, uygulamanın ilk modülü toplama portalı olsun | |
+| S23 | Beceri toplama kanalı | 100+ departman için Excel yerine uygulama içi "Beceri Toplama" modülü ilk teslim olsun mu? | Evet, uygulamanın ilk modülü toplama portalı olsun | Tüm sistem birlikte geliştirilecek; portal modüllerden biri. |
+
+| S24 | Şube ağı büyüklüğü | Kaç bölge müdürlüğü ve kaç şube var? Şube sınıfları (büyük/orta/küçük) tanımlı mı? | Hedef seviyeler şube sınıfına göre istisna alır | |
+| S25 | Şube rol ve kademeleri | Portföy rollerinin resmi kademe adları (Yetkili / Yönetici / Kıdemli …)? Gişe ve MİY kademeleri? | 06 dokümanındaki örnek kademeler | |
+| S26 | Fonksiyonel hat ve İK iş ortağı | Portföy yöneticileri bölge segment yöneticilerine fonksiyonel bağlı mı? Her bölgede İK iş ortağı var mı? | Evet / bölge başına 1 İK iş ortağı | |
+| S27 | Sistem verisi erişimi | Satış/CRM KPI, kredi tahsis geri dönüşü, şikayet, teftiş bulgusu, lisans ve yetki limiti verileri CSV ile alınabilir mi? Hangi sıklıkta? | Aylık CSV; entegrasyon 2. faz | |
+| S28 | Mevcut davranışsal değerlendirme | Mevcut soft skill yetkinlik listesi ve son dönem sonuçları paylaşılabilir mi? Hangi ölçekte? Takvimi? | Yeni sözlüğe eşlenir, devralınan dönem olarak içe aktarılır | |
+| S29 | Şube becerileri için eşik sahibi | KPI göstergelerinin seviye eşiklerini segment GMY'leri mi belirler? | Evet, İK kolaylaştırır | |
+| S30 | Pilot kapsamı | Pilot: 2 bölge (~60 şube) + 3 GM departmanı uygun mu? | Evet | |
 
 ## Karar kaydı
 
@@ -41,4 +49,10 @@ Her soru için **önerilen varsayılan** yazıldı. Karar verilince "Karar" süt
 | 2026-10-19 | S8 | Web + mobil | Emre Kaya | Stack S17'de |
 | 2026-10-19 | S9 | Eğitim kapsam dışı | Emre Kaya | |
 | 2026-10-19 | S11 | Potansiyel ölçülecek; performans ve 9-kutu sonra | Emre Kaya | |
+| 2026-10-19 | S17 | Teknoloji kısıtı yok | Emre Kaya | TS/Next.js/PostgreSQL/PWA |
+| 2026-10-19 | S18 | 6.400 çalışan, 600 yönetici | Emre Kaya | |
+| 2026-10-19 | S20 | Uzmanlık ve liderlik potansiyeli ayrı | Emre Kaya | |
+| 2026-10-19 | S21 | %70 / 24 ay | Emre Kaya | |
+| 2026-10-19 | S23 | Tüm sistem | Emre Kaya | |
+| 2026-10-19 | – | Şube ağı (bölge → şube → portföy ekipleri) aynı yapıya dahil; ortak şube teknik beceri seti; mevcut davranışsal değerlendirme devralınır | Emre Kaya | 06 dokümanı yazıldı |
 | 2026-10-19 | – | Teknik ve davranışsal tüm seviyelerde davranış göstergesi; tüm puanlar kanıtla ("yaptım/bildim/sahibim") | Emre Kaya | 05 dokümanı yazıldı |

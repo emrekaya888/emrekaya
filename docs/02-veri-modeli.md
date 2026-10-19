@@ -49,8 +49,9 @@ erDiagram
 
 ### 2.1 Organizasyon
 
-**OrgBirimi (org_unit):** id, üst_birim_id (null = kurum), tür (Kurum | Direktörlük | Departman | Servis | Ekip…), ad, kod, yönetici_kisi_id, küratör_kisi_id, seviye_derinliği, aktif. Serbest derinlikte ağaç (S19). "Departman" ve "servis" tür etiketidir.
-**Rol (role):** id, ad, iş_ailesi, kademe (1..n), yönetici_rolü_mü (bool), açıklama, sonraki_rol_idler (kariyer yolu), aktif.
+**OrgBirimi (org_unit):** id, üst_birim_id (null = kurum), tür (Kurum | GMY | Direktörlük | Departman | Servis | Bölge | Şube | Portföy ekibi | Ekip…), ad, kod, yönetici_kisi_id, küratör_kisi_id, şube_sınıfı (Şube için: A/B/C veya büyük/orta/küçük), segment (Portföy ekibi için: Gişe | Bireysel | Bizbize | KOBİ | Ticari | Özel | Operasyon-MİY), seviye_derinliği, aktif. Serbest derinlikte ağaç (S19). "Departman" ve "servis" tür etiketidir.
+**Rol (role):** id, ad, iş_ailesi, kademe (1..n), yönetici_rolü_mü (bool), ağ (GM | Şube | Bölge), segment (şube rolleri için), açıklama, sonraki_rol_idler (kariyer yolu), aktif.
+**FonksiyonelHat (functional_line):** org_birim_id (portföy ekibi), segment, fonksiyonel_yönetici_kisi_id (bölge segment yöneticisi), başlangıç, bitiş — çift hat değerlendirme için.
 **Pozisyon (position):** id, rol_id, org_birim_id, kadro_kodu, kritik_mi, aktif.
 **Kişi (person):** id, sicil_no, ad_soyad, e_posta, işe_giriş_tarihi, doğum/emeklilik_tahmini_tarihi, ayrılma_riski (Düşük/Orta/Yüksek, İK girer), aktif, sistem_rolleri[].
 **Atama (assignment):** id, kisi_id, pozisyon_id, başlangıç, bitiş, birincil_mi.
@@ -60,7 +61,9 @@ erDiagram
 **Yetkinlik (competency):** id, kod, ad, tür (Teknik | Davranışsal), alt_tür (Davranışsal: Çekirdek | Liderlik; Teknik: kategori etiketi), tanım, gelecek_eğilimi (Yükselen | Stabil | Azalan), kritiklik_varsayılan (1–3), durum (Taslak | İncelemede | Aktif | Emekli), sürüm, önceki_sürüm_id, öneren_kisi_id, onaylayan_kisi_id, oluşturma/güncelleme.
 **YetkinlikBirim (competency_unit):** yetkinlik_id, org_birim_id, birincil_mi — bir teknik beceri birden çok birime bağlanabilir (ortak havuz).
 **SeviyeÇıpası (level_anchor):** yetkinlik_id, seviye (1–5), seviye_adı (ölçeğe göre), genel_çıpa_cümlesi, sürüm.
-**Gösterge (indicator):** id, seviye_çıpası_id, sıra, davranış_cümlesi (geçmiş zaman, gözlenebilir), zorunlu_mu, kabul_edilen_kanıt_türleri[], min_kanıt_sayısı (1), kanıt_geçerlilik_ay (24), potansiyel_göstergesi_mi (bool; potansiyel boyutuna da sayılır), potansiyel_boyutu (ops.), sürüm. Her seviyede 3–5 adet.
+**Gösterge (indicator):** id, seviye_çıpası_id, sıra, davranış_cümlesi (geçmiş zaman, gözlenebilir), zorunlu_mu, kabul_edilen_kanıt_türleri[], min_kanıt_sayısı (1), kanıt_geçerlilik_ay (24), potansiyel_göstergesi_mi (bool; potansiyel boyutuna da sayılır), potansiyel_boyutu (ops.), otomatik_kanıt_mı (bool), otomatik_kural (KPI_kodu + karşılaştırma + eşik + dönem sayısı | lisans_kodu | yetki_kodu + min_limit | denetim: bulgu_yok), ön_koşul_lisans_kodu (ops.), sürüm.
+**KPITanımı (kpi_definition):** kod, ad, birim, yön (yüksek iyi | düşük iyi), segment, kaynak sistemi. **KPIDeğeri (kpi_value):** kisi_id, kpi_kodu, dönem, değer, hedef, içe_aktarma_id.
+**Lisans (license):** kisi_id, lisans_kodu (SPK D1/D2/D3, Türev, SEGEM, BES…), alınma, bitiş, durum. **YetkiLimiti (authority_limit):** kisi_id, yetki_kodu, limit, başlangıç, bitiş. Her seviyede 3–5 adet.
 **BeceriToplamaTalebi (skill_submission):** id, org_birim_id, öneren_kisi_id, ad, kategori, tanım, kullanılan_işler, seviye_taslakları (1–5), gösterge_taslakları, hedef_seviye_öneri (rol→seviye), kritiklik, seviye3_kişi_tahmini, dış_kıtlık, edinim_ay, gelecek_eğilimi, katalizör_önerisi, başka_birim, benzer_yetkinlik_id (sistem önerisi), durum (Taslak | Gönderildi | İK incelemede | Yönetici teyidi | Müdür onayı | Kütüphaneye alındı | Birleştirildi | Red), İK_notu, birleştirildiği_yetkinlik_id.
 **KatalizörBağı (enabler_link):** teknik_yetkinlik_id, davranışsal_yetkinlik_id, ağırlık (0–1, toplam 1), eşik_seviye_hedef (örn. 4), eşik_min_katalizör (örn. 3), hipotez_mi (bool), gözlenen_korelasyon (hesaplanan), sürüm.
 **SeviyeTanımı (level_definition):** ölçek (Teknik | Davranışsal), seviye (0–5), ad, genel_tanım — global sözlük.
@@ -68,15 +71,18 @@ erDiagram
 ### 2.3 Rol profili
 
 **RolProfili (role_profile):** rol_id, yetkinlik_id, hedef_seviye (1–5), ağırlık (1–3), zorunlu_mu, sürüm.
+**ŞubeSınıfıİstisnası (branch_class_override):** rol_id, şube_sınıfı, yetkinlik_id, hedef_seviye — aynı rol farklı şube sınıfında farklı hedef.
 **PozisyonİstisnasI (position_override):** pozisyon_id, yetkinlik_id, hedef_seviye, ağırlık, ekle_mi/çıkar_mı, gerekçe.
 
 ### 2.4 Değerlendirme
 
 **Döngü (cycle):** id, ad ("2026 Ana"), tür (Ana | Ara | İşe giriş 90 gün), başlangıç, bitiş, aşama_tarihleri (öz, yönetici, mutabakat, kalibrasyon, kilit), kapsam (departman/servis listesi), kütüphane_sürümü, durum.
-**Değerlendirme (assessment):** id, döngü_id, kisi_id, pozisyon_id, yönetici_kisi_id, durum (Açıldı | ÖzBeyanTamam | 360Tamam | YöneticiDoğrulamaTamam | ÜstDoğrulamada | Mutabakatta | İtirazda | PotansiyelTamam | Kesinleşti | Kilitli), mutabakat_tarihi, çalışan_onay, yönetici_onay, genel_not.
+**Değerlendirme (assessment):** id, döngü_id, kisi_id, pozisyon_id, yönetici_kisi_id, fonksiyonel_değerlendirici_kisi_id (şube ağı; ops.), durum (Açıldı | ÖzBeyanTamam | 360Tamam | YöneticiDoğrulamaTamam | ÜstDoğrulamada | Mutabakatta | İtirazda | PotansiyelTamam | Kesinleşti | Kilitli), mutabakat_tarihi, çalışan_onay, yönetici_onay, genel_not.
 **DeğerlendirmeSatırı (assessment_line):** id, değerlendirme_id, yetkinlik_id, yetkinlik_sürüm, hedef_seviye (rol profilinden kopya), öz_beyan_seviyesi (hesaplanan), kanıtlanmış_seviye (hesaplanan), sonraki_seviye_ilerleme_yüzde, mutabık_seviye (≤ kanıtlanmış), açık (hesaplanan), üst_doğrulama_gerekli_mi (seviye 5 iddiası), üst_doğrulayan_id, üst_doğrulama_kararı, itiraz_mı, itiraz_gerekçesi, nihai_karar_İK_id, nihai_karar_üst_yönetici_id, nihai_karar_notu, tutarlılık_bayrağı (katalizör kontrolü), bayat_mı.
-**GöstergeDurumu (indicator_status):** satır_id, gösterge_id, öz_işaretledi_mi, yönetici_kararı (Kanıtlandı | Kanıtlanmadı | Ek bilgi), gözlem_360_oranı (hesaplanan), karar_notu.
-**Kanıt (evidence):** id, kisi_id, tür (İş çıktısı | Proje/görev | Gözlem notu | 360 teyidi | Sertifika/sınav | Paydaş geri bildirimi | Ölçülebilir sonuç), ne_yaptım, başlangıç_tarihi, bitiş_tarihi, sonuç, doğrulayıcı_kisi_veya_belge, dosya_url, oluşturan_id, durum (Taslak | Sunuldu | Kabul | Ek bilgi | Red), yönetici_kararı_notu, geçerlilik_bitiş (hesaplanan), oluşturma. Kanıt döngüden bağımsız **kanıt kasasında** yaşar; değerlendirmede göstergelere bağlanır.
+**GöstergeDurumu (indicator_status):** satır_id, gösterge_id, öz_işaretledi_mi, otomatik_karar (Kanıtlandı | Kanıtlanmadı | Yok), yönetici_kararı (Kanıtlandı | Kanıtlanmadı | Ek bilgi), fonksiyonel_kararı (Teyit | İtiraz | Yok), gözlem_360_oranı (hesaplanan), karar_notu.
+**KalibrasyonOturumu** kademe alanı: Şube | Bölge | Merkez | Departman; bayraklı kayıt listesi (KPI–seviye uyumsuzluğu, cömertlik, fonksiyonel itiraz).
+**DevralınanDeğerlendirme (legacy_assessment):** kisi_id, dönem, eski_yetkinlik_kodu, eski_puan, eski_ölçek, eşlenen_yetkinlik_id, dönüştürülmüş_seviye, kaynak_dosya.
+**Kanıt (evidence):** id, kisi_id, tür (İş çıktısı | Proje/görev | Gözlem notu | 360 teyidi | Sertifika/sınav | Paydaş geri bildirimi | Ölçülebilir sonuç | Sistem verisi | Lisans | Yetki limiti | Denetim bulgusu | Vaka sınavı | Gizli müşteri), otomatik_mı (bool; sistem ürettiyse), kaynak_kaydı_id (KPI/lisans/yetki), ne_yaptım, başlangıç_tarihi, bitiş_tarihi, sonuç, doğrulayıcı_kisi_veya_belge, dosya_url, oluşturan_id, durum (Taslak | Sunuldu | Kabul | Ek bilgi | Red), yönetici_kararı_notu, geçerlilik_bitiş (hesaplanan), oluşturma. Kanıt döngüden bağımsız **kanıt kasasında** yaşar; değerlendirmede göstergelere bağlanır.
 **GöstergeKanıt (indicator_evidence):** kanıt_id, gösterge_id, satır_id — bir kanıt birden çok göstergeyi karşılayabilir.
 **360Davet (feedback_invite):** değerlendirme_id, değerlendirici_kisi_id (anonim hash ile saklanır), ilişki (Ast | Akran | İç müşteri | Üst), seçen (Yönetici | Çalışan), durum, son_tarih.
 **360Gözlem (feedback_observation):** davet_id, gösterge_id, yanıt (Gözlemledim | Gözlemlemedim | Fikrim yok), örnek_metin. Davranışsal yetkinliklerde tüm göstergeler; teknikte sadece gözlem teyidi.
@@ -117,6 +123,9 @@ erDiagram
 | Kanıtlanmış seviye | En yüksek N: 1..N her seviyede zorunlu göstergelerin %100'ü ve toplam göstergelerin ≥ %70'i "Kanıtlandı" (geçerli kanıtla) |
 | Sonraki seviye ilerleme | `kanıtlanmış gösterge(N+1) / toplam gösterge(N+1)` |
 | Mutabık seviye kısıtı | `mutabık_seviye ≤ kanıtlanmış_seviye`; seviye 5 için üst doğrulama kararı = Onay |
+| Otomatik kanıt (KPI) | `son N dönemde değer karşılaştırma eşik` sağlanıyorsa gösterge = Kanıtlandı (kanıt kaydı otomatik üretilir) |
+| Lisans ön koşulu | Gösterge `ön_koşul_lisans_kodu` için geçerli lisans yoksa gösterge Kanıtlanmadı, seviye kilitlenir |
+| KPI–seviye uyumsuzluğu bayrağı | Mutabık seviye ≥ 4 ve ilgili KPI'lar son 2 dönemde hedefin < %80'i |
 | Kanıt geçerliliği | `bitiş_tarihi + kanıt_geçerlilik_ay ≥ bugün` |
 | 360 gözlem oranı | `Gözlemledim / (Gözlemledim + Gözlemlemedim)`; n < 3 ise gösterilmez |
 | Açık | `hedef_seviye − mutabık_seviye` (negatifse "fazlalık") |
@@ -139,7 +148,7 @@ erDiagram
 ## 4. Durum makineleri
 
 **Yetkinlik:** Taslak → İncelemede → Aktif → Emekli (Aktif iken değişiklik = yeni sürüm, eski Aktif → Emekli).
-**Değerlendirme:** Açıldı → ÖzBeyanTamam → 360Tamam → YöneticiDoğrulamaTamam → (ÜstDoğrulamada) → Mutabakatta → (İtirazda) → PotansiyelTamam → Kesinleşti → Kilitli.
+**Değerlendirme:** Açıldı → ÖzBeyanTamam → 360Tamam → YöneticiDoğrulamaTamam → (FonksiyonelTeyit) → (ÜstDoğrulamada) → Mutabakatta → (İtirazda) → PotansiyelTamam → Kesinleşti → Kilitli.
 **Kanıt:** Taslak → Sunuldu → (Kabul | Ek bilgi → Sunuldu | Red) → (Kabul: geçerlilik sonunda Bayat).
 **Beceri toplama talebi:** Taslak → Gönderildi → İK incelemede → (Birleştirildi | Red | Yönetici teyidi → Müdür onayı → Kütüphaneye alındı).
 **Plan eylemi:** Planlandı → Devam → (Tamamlandı → Yeniden değerlendirme bekliyor → Kapandı) | İptal.

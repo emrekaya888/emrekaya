@@ -3,7 +3,7 @@
 > Amaç: Uygulama yazılmadan önce kavramsal yapıyı, süreçleri, kuralları ve ölçümleri netleştirmek.
 > Sembol: ✅ sizin tarifinizden gelen, ➕ benim eklediğim, ❓ karar bekleyen (bkz. `03-acik-sorular-ve-kararlar.md`).
 >
-> **Güncelleme 19.10.2026 — alınan kararlar:** 100+ departman ölçeği; HRIS bağlantısı sonraya; davranışsal ölçek aynı 1–5; 360 var; seviye 5 için üst doğrulama; itirazda İK + üst yönetici; ücret/terfiden ayrık; web + mobil; eğitim kataloğu kapsam dışı; potansiyel bu sistemde ölçülecek; **tüm seviyelerde davranış göstergesi ve her puan kanıtla** (ayrıntı: `05-kanit-gosterge-ve-potansiyel-modeli.md`).
+> **Güncelleme 19.10.2026 — alınan kararlar:** 100+ departman ölçeği; HRIS bağlantısı sonraya; davranışsal ölçek aynı 1–5; 360 var; seviye 5 için üst doğrulama; itirazda İK + üst yönetici; ücret/terfiden ayrık; web + mobil; eğitim kataloğu kapsam dışı; potansiyel bu sistemde ölçülecek; **tüm seviyelerde davranış göstergesi ve her puan kanıtla** (ayrıntı: `05-kanit-gosterge-ve-potansiyel-modeli.md`). **Şube ağı** (bölge → şube → portföy ekipleri) aynı yapıya dahil edildi: `06-sube-agi-yapisi.md`. Teknoloji: kısıt yok, tüm sistem birlikte: `07-teknik-mimari.md`. Ölçek: 6.400 çalışan, 600 yönetici.
 
 ---
 
@@ -41,11 +41,14 @@ Seçilen çerçeveler ve neden:
 
 ```
 Yetkinlik Kütüphanesi
-├── Teknik Beceriler (hard skills)            ← departman/servis yöneticilerinden toplanır
-│   ├── Departman A
-│   │   ├── Servis A1 → beceri 1..n
-│   │   └── Servis A2 → beceri 1..n
-│   └── Ortak teknik beceriler (➕ birden fazla serviste geçen: Excel, SQL, ERP modülü vb.)
+├── Teknik Beceriler (hard skills)
+│   ├── Genel Müdürlük                       ← departman/servis yöneticilerinden toplanır
+│   │   ├── Departman A → Servis A1 → beceri 1..n
+│   │   └── Ortak teknik beceriler (➕ birden fazla serviste geçen: Excel, SQL, ERP modülü vb.)
+│   └── Şube Ağı                             ← rol başına merkezi tasarım (bkz. 06)
+│       ├── Ortak şube çekirdeği · Satış/portföy çekirdeği
+│       ├── Segmente özgü (bireysel, bizbize, KOBİ, ticari, özel bankacılık)
+│       └── Gişe/operasyon · Şube ve bölge yönetimi
 └── Davranışsal Yetkinlikler (soft skills)     ← İK ekibi seçer
     ├── Çekirdek (➕ herkes için zorunlu, 8-12 adet)
     └── Liderlik (➕ sadece yönetici rolleri, 5-7 adet)
@@ -102,6 +105,8 @@ Sistemde dört yerde kullanılır:
 Kurum → [Direktörlük / GMY …] → Departman → Servis (birim) → Rol (iş ailesi + kademe) → Pozisyon (kadro) → Kişi
 ```
 
+Şube ağı: `Kurum → Şube Bankacılığı GMY → Bölge Müdürlüğü (~30 şube) → Şube → Portföy ekibi → Rol → Pozisyon → Kişi` (bkz. `06`).
+
 ➕ (100+ departman kararı) Organizasyon **serbest derinlikte ağaç** olarak modellenir (her birimin bir üst birimi ve türü vardır); "departman" ve "servis" tür etiketidir, katman sayısı sabit değildir (❓ S19). Organizasyon verisi şimdilik Excel/CSV ile yüklenir; HRIS bağlantısı sonraki fazda.
 
 - **Rol:** "Satınalma Uzmanı", "Bakım Mühendisi" gibi tekrarlayan iş tanımı. **Rol profili** burada tanımlanır.
@@ -156,6 +161,9 @@ Yöneticiyle birlikte her role hedef seviye ve ağırlık atanır. ➕ Sistem "a
 | Üst doğrulama | Seviye 5 için zorunlu | N+2 veya İK'nın atadığı alan uzmanı onaylamadan 5 verilmez |
 | ➕ Potansiyel değerlendirmesi | Yıllık, döngü içinde | Kanıtlı potansiyel göstergeleri (bkz. `05` §6) |
 
+| ➕ Fonksiyonel teyit (şube ağı) | Teknik becerilerde | Bölge segment yöneticisi idari doğrulamayı teyit eder/itiraz eder (çift hat) |
+| ➕ Sistem verisi (otomatik kanıt) | Şube ağında ağırlıklı | KPI, lisans, yetki limiti, denetim bulgusu CSV ile kanıt kasasına akar |
+
 **Temel kural:** Mutabık seviye, kabul edilmiş kanıtla hesaplanan seviyeden yüksek olamaz.
 
 **Döngü takvimi:** Yıllık ana döngü + ➕ 6 aylık ara güncelleme (sadece gelişim planı kapsamındaki beceriler yeniden puanlanır). Yeni işe giren için işe başlangıçtan 90 gün sonra ilk değerlendirme.
@@ -168,7 +176,7 @@ Açıldı → Öz-beyan ve kanıtlar sunuldu → 360 toplandı → Yönetici kan
       → (İtiraz: İK + üst yönetici ortak karar) → Potansiyel değerlendirmesi → Kesinleşti → Kilitli
 ```
 
-➕ **Kalibrasyon oturumu:** Departman müdürü + İK, servisler arası dağılımı karşılaştırır (bir yönetici herkese 4 vermiş mi?). Sistem bunun için "yönetici cömertlik endeksi" ve dağılım grafiği üretir.
+➕ **Kalibrasyon oturumu:** GM'de departman müdürü + İK; şube ağında üç kademe (şube → bölge → segment GMY, bkz. `06` §5.4). Servisler/şubeler arası dağılımı karşılaştırır (bir yönetici herkese 4 vermiş mi?). Sistem bunun için "yönetici cömertlik endeksi" ve dağılım grafiği üretir.
 
 ### 4.4 Mutabakat ✅
 
@@ -301,9 +309,9 @@ Gizlilik: kişi bazlı puanlar sadece hiyerarşi hattı + İK; akran/360 girdile
 | Faz | İçerik | Çıktı |
 |---|---|---|
 | 0 | Yapı ve kararlar (bu dokümanlar) | Onaylı tasarım |
-| 1 | **Uygulama v0: Organizasyon + Beceri Toplama Portalı + Kütüphane** (100+ departmandan toplama buradan yapılır) ve İK ekibinin davranışsal sözlük seçimi + gösterge yazımı | Kütüphane v1.0 (gösterge ve kanıt türleriyle) |
+| 1 | **Uygulama v0: Organizasyon + Beceri Toplama Portalı + Kütüphane**; şube ağı için rol başına tasarım çalıştayları (≈10) ve mevcut davranışsal değerlendirmenin eşlenmesi (100+ departmandan toplama buradan yapılır) ve İK ekibinin davranışsal sözlük seçimi + gösterge yazımı | Kütüphane v1.0 (gösterge ve kanıt türleriyle) |
 | 2 | Rol profilleri | Hedef seviyeler |
-| 3 | Uygulama v1: Değerlendirme döngüsü (öz-beyan + kanıt, 360, doğrulama, mutabakat, potansiyel) | Pilot 2–3 departman |
+| 3 | Uygulama v1: Değerlendirme döngüsü (öz-beyan + kanıt, 360, doğrulama, fonksiyonel teyit, mutabakat, potansiyel) | Pilot: 2 bölge (~60 şube) + 3 GM departmanı |
 | 4 | Gelişim planı + analitik + kanıt kasası mobil | Kurum haritası v1 |
 | 5 | Kritik rol / yedekleme / işe alım | Risk ve yedek panoları |
 | 6 | 2. döngü: katalizör ve potansiyel doğrulama, ağırlık güncelleme; HRIS bağlantısı; performans + 9-kutu | Kanıta dayalı model |
@@ -313,6 +321,7 @@ Gizlilik: kişi bazlı puanlar sadece hiyerarşi hattı + İK; akran/360 girdile
 - Çıpalar yargı sözcüğüyle yazılır → kalite kontrol listesi (şablonda).
 - Değerlendirme enflasyonu → gösterge bazlı hesaplanan seviye, her gösterge için kanıt, seviye 5 üst doğrulama, kalibrasyon, ücretle ayrık.
 - 100+ departmanda gösterge yazım kalitesi düşer → departman küratörleri + İK onayı + kalite kontrol listesi + ortak havuz.
+- 600 yöneticiye döngü başına ~1.000 gösterge kararı düşer → sistem verisiyle otomatik kanıt, toplu doğrulama ekranı, yalnızca hedef seviyeye kadar gösterge, bölgeleri dalgalar halinde açma (bkz. `06` §6).
 - Kanıt toplama yük olarak algılanır → kanıt kasası yıl boyunca açık (döngüde değil, iş olurken eklenir), mobil hızlı ekleme, bir kanıt birden çok göstergeyi karşılar.
 - Sistem "form doldurma" olarak algılanır → gelişim planı ve mentor eşleşmesi ilk döngüde görünür fayda olarak sunulur; yöneticilere servis haritası hemen geri verilir.
 
