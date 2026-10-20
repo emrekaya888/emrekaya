@@ -29,13 +29,20 @@ Her soru için **önerilen varsayılan** yazıldı. Karar verilince "Karar" süt
 | S22 | 360 kapsamı | 360 sadece davranışsal yetkinlikler için mi, teknik beceriler için de mi? Değerlendirici seçimini kim yapar? | Davranışsal: herkes; teknik: sadece iç müşteri/akran gözlemi "gördüm/görmedim" düzeyinde; değerlendiriciyi yönetici seçer, çalışan 1–2 ekler | |
 | S23 | Beceri toplama kanalı | 100+ departman için Excel yerine uygulama içi "Beceri Toplama" modülü ilk teslim olsun mu? | Evet, uygulamanın ilk modülü toplama portalı olsun | Tüm sistem birlikte geliştirilecek; portal modüllerden biri. |
 
-| S24 | Şube ağı büyüklüğü | Kaç bölge müdürlüğü ve kaç şube var? Şube sınıfları (büyük/orta/küçük) tanımlı mı? | Hedef seviyeler şube sınıfına göre istisna alır | |
-| S25 | Şube rol ve kademeleri | Portföy rollerinin resmi kademe adları (Yetkili / Yönetici / Kıdemli …)? Gişe ve MİY kademeleri? | 06 dokümanındaki örnek kademeler | |
-| S26 | Fonksiyonel hat ve İK iş ortağı | Portföy yöneticileri bölge segment yöneticilerine fonksiyonel bağlı mı? Her bölgede İK iş ortağı var mı? | Evet / bölge başına 1 İK iş ortağı | |
-| S27 | Sistem verisi erişimi | Satış/CRM KPI, kredi tahsis geri dönüşü, şikayet, teftiş bulgusu, lisans ve yetki limiti verileri CSV ile alınabilir mi? Hangi sıklıkta? | Aylık CSV; entegrasyon 2. faz | |
-| S28 | Mevcut davranışsal değerlendirme | Mevcut soft skill yetkinlik listesi ve son dönem sonuçları paylaşılabilir mi? Hangi ölçekte? Takvimi? | Yeni sözlüğe eşlenir, devralınan dönem olarak içe aktarılır | |
-| S29 | Şube becerileri için eşik sahibi | KPI göstergelerinin seviye eşiklerini segment GMY'leri mi belirler? | Evet, İK kolaylaştırır | |
-| S30 | Pilot kapsamı | Pilot: 2 bölge (~60 şube) + 3 GM departmanı uygun mu? | Evet | |
+| S24 | Şube ağı büyüklüğü | Kaç bölge müdürlüğü ve kaç şube var? Şube sınıfları (büyük/orta/küçük) tanımlı mı? | Hedef seviyeler şube sınıfına göre istisna alır | 15 bölge, 450 şube. Şube sınıfları segment bazlı: Özel Bankacılık, KOBİ, Ticari, Kurumsal. |
+| S25 | Şube rol ve kademeleri | Portföy rollerinin resmi kademe adları (Yetkili / Yönetici / Kıdemli …)? Gişe ve MİY kademeleri? | 06 dokümanındaki örnek kademeler | Gişe = Bireysel Satış Temsilcisi; MİY = Müşteri İlişkileri; portföyler = Bireysel Satış, KOBİ Satış, Ticari Satış, Kurumsal Satış. Kademe adları S25b. |
+| S26 | Fonksiyonel hat ve İK iş ortağı | Portföy yöneticileri bölge segment yöneticilerine fonksiyonel bağlı mı? Her bölgede İK iş ortağı var mı? | Evet / bölge başına 1 İK iş ortağı | Şube müdürleri bölge müdürüne bağlı; portföyler fonksiyonel bağlı değil. Her bölgenin merkezden bir İK iş ortağı var. |
+| S27 | Sistem verisi erişimi | Satış/CRM KPI, kredi tahsis geri dönüşü, şikayet, teftiş bulgusu, lisans ve yetki limiti verileri CSV ile alınabilir mi? Hangi sıklıkta? | Aylık CSV; entegrasyon 2. faz | Alınabilir. |
+| S28 | Mevcut davranışsal değerlendirme | Mevcut soft skill yetkinlik listesi ve son dönem sonuçları paylaşılabilir mi? Hangi ölçekte? Takvimi? | Yeni sözlüğe eşlenir, devralınan dönem olarak içe aktarılır | 3'lü ölçek: iyi olabilirsin / iyisin / çok iyisin. Eşleme S34. |
+| S29 | Şube becerileri için eşik sahibi | KPI göstergelerinin seviye eşiklerini segment GMY'leri mi belirler? | Evet, İK kolaylaştırır | Evet. |
+| S30 | Pilot kapsamı | Pilot: 2 bölge (~60 şube) + 3 GM departmanı uygun mu? | Evet | Pilot yok; tümü birlikte (prova döngüsü + dalgalı açılış). |
+
+| S25b | Kademe adları | Rol aileleri içindeki kademe adları (Yetkili / Yönetici / Kıdemli; Temsilci / Kıdemli Temsilci)? | 06 §2 tablosundaki öneri | |
+| S31 | Özel bankacılık ve bizbize | Özel bankacılık portföyünün resmi rol adı nedir? Bizbize bankacılık Bireysel Satış içinde mi ayrı rol mü? | Özel bankacılık: "Özel Bankacılık Satış"; bizbize: Bireysel Satış alt türü | |
+| S32 | Kurumsal şube ekipleri | Kurumsal şubelerde hangi ekipler var (sadece Kurumsal Satış + Müşteri İlişkileri mi)? | Kurumsal Satış + Müşteri İlişkileri + BST | |
+| S33 | Açılış takvimi | İlk döngü hangi ay açılacak? Mevcut davranışsal değerlendirme takvimiyle çakışıyor mu? | Mevcut takvimle hizalanır; 3 dalga, 2'şer hafta | |
+| S34 | 3'lü ölçek eşlemesi | İyi olabilirsin → 2, İyisin → 3, Çok iyisin → 4 eşlemesi uygun mu? Devralınan seviyenin "taban olmadığı" çalışana duyurulacak mı? | Evet / Evet | |
+| S35 | Alan uzmanları | Seviye 5 teknik doğrulaması için segment GM departmanları (Bireysel, KOBİ, Ticari, Kurumsal, Özel) uzman atayabilir mi? | Segment başına 2–3 uzman | |
 
 ## Karar kaydı
 
@@ -55,4 +62,11 @@ Her soru için **önerilen varsayılan** yazıldı. Karar verilince "Karar" süt
 | 2026-10-19 | S21 | %70 / 24 ay | Emre Kaya | |
 | 2026-10-19 | S23 | Tüm sistem | Emre Kaya | |
 | 2026-10-19 | – | Şube ağı (bölge → şube → portföy ekipleri) aynı yapıya dahil; ortak şube teknik beceri seti; mevcut davranışsal değerlendirme devralınır | Emre Kaya | 06 dokümanı yazıldı |
+| 2026-10-20 | S24 | 15 bölge, 450 şube; sınıflar Özel/KOBİ/Ticari/Kurumsal | Emre Kaya | |
+| 2026-10-20 | S25 | Resmi rol adları alındı | Emre Kaya | Kademe adları bekliyor |
+| 2026-10-20 | S26 | Tek hat (şube müdürü); bölge İK iş ortağı var | Emre Kaya | Fonksiyonel hat kaldırıldı |
+| 2026-10-20 | S27 | Sistem verisi CSV ile alınabilir | Emre Kaya | |
+| 2026-10-20 | S28 | Mevcut davranışsal 3'lü ölçek | Emre Kaya | Eşleme önerisi S34 |
+| 2026-10-20 | S29 | KPI eşiklerini segment GMY belirler | Emre Kaya | |
+| 2026-10-20 | S30 | Pilot yok, tek seferde | Emre Kaya | Prova döngüsü + 3 dalga |
 | 2026-10-19 | – | Teknik ve davranışsal tüm seviyelerde davranış göstergesi; tüm puanlar kanıtla ("yaptım/bildim/sahibim") | Emre Kaya | 05 dokümanı yazıldı |

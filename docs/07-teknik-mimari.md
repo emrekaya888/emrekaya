@@ -30,19 +30,20 @@ packages/ui              Ortak bileşenler
 
 ## 3. Yetkilendirme modeli
 
-- Rol (Çalışan, Yönetici, Küratör, Fonksiyonel değerlendirici, Üst doğrulayıcı, 360 değerlendirici, İK iş ortağı, İK admin, Üst yönetim) × **kapsam** (org birimi alt ağacı).
-- Örnek: Bölge segment yöneticisi = "Fonksiyonel değerlendirici" rolü, kapsam = bölge ağacı, beceri filtresi = segment becerileri.
+- Rol (Çalışan, Yönetici, Küratör, Alan uzmanı, Üst doğrulayıcı, 360 değerlendirici, İK iş ortağı, İK admin, Üst yönetim) × **kapsam** (org birimi alt ağacı).
+- Örnek: Bölge İK iş ortağı = "İK iş ortağı" rolü, kapsam = bölge ağacı; Alan uzmanı = kapsam tüm ağ, beceri filtresi = segment becerileri, yalnızca seviye 5 kayıtları.
 - Her sorgu kapsam filtresiyle çalışır (satır düzeyi güvenlik).
 
 ## 4. Veri içe aktarma (HRIS öncesi)
 
 | Dosya | Alanlar | Sıklık |
 |---|---|---|
-| Organizasyon | birim kodu, üst birim kodu, tür, ad, yönetici sicil, şube sınıfı | Başlangıç + aylık |
+| Organizasyon | birim kodu, üst birim kodu, tür, ad, yönetici sicil, şube sınıfı (Özel/KOBİ/Ticari/Kurumsal), segment | Başlangıç + aylık |
+| İK iş ortağı / alan uzmanı | bölge kodu, sicil; segment, sicil | Başlangıç + değişince |
 | Kişi/atama | sicil, ad, e-posta, pozisyon kodu, rol kodu, başlangıç | Aylık |
 | KPI | sicil, dönem, KPI kodu, değer, hedef | Aylık |
 | Lisans/yetki | sicil, lisans kodu, bitiş; yetki kodu, limit | Aylık |
-| Devralınan davranışsal sonuçlar | sicil, dönem, yetkinlik kodu, puan | Bir kez |
+| Devralınan davranışsal sonuçlar | sicil, dönem, eski yetkinlik kodu, puan (İyi olabilirsin / İyisin / Çok iyisin) | Bir kez; eşleme tablosuyla 2/3/4'e dönüştürülür |
 
 Her içe aktarma doğrulama raporu üretir (eşleşmeyen kod, eksik üst birim, mükerrer sicil); hatalı satırlar işlenmez.
 
@@ -61,9 +62,9 @@ Her içe aktarma doğrulama raporu üretir (eşleşmeyen kod, eksik üst birim, 
 | 2 | Yetkinlik kütüphanesi: beceri, seviye, gösterge, kanıt türü, katalizör, sürüm; Beceri Toplama Portalı |
 | 3 | Rol profilleri, hedef matrisi, şube sınıfı istisnaları, kariyer yolları |
 | 4 | Kanıt kasası (web + mobil), KPI/lisans otomatik kanıt |
-| 5 | Değerlendirme döngüsü: öz-beyan, 360, doğrulama, fonksiyonel teyit, seviye 5, mutabakat, itiraz, potansiyel |
+| 5 | Değerlendirme döngüsü: öz-beyan, 360, doğrulama, seviye 5 uzman onayı, mutabakat, itiraz, potansiyel |
 | 6 | Kalibrasyon panoları (şube/bölge/merkez), analitik ve ısı haritaları |
 | 7 | Gelişim planı, mentor eşleştirme |
 | 8 | Kritik rol/beceri, yedekleme, bilgi aktarım planı |
 | 9 | İşe alım modülü |
-| 10 | Pilot (2 bölge + 3 GM departmanı), düzeltmeler, tüm ağa açılış |
+| 10 | Prova döngüsü (test ortamında 2 bölge gerçek verisi, uçtan uca), yönetici ve İK iş ortağı eğitimi, düzeltmeler, tüm ağa açılış (3 dalga, tek döngü) |

@@ -3,7 +3,7 @@
 > Amaç: Uygulama yazılmadan önce kavramsal yapıyı, süreçleri, kuralları ve ölçümleri netleştirmek.
 > Sembol: ✅ sizin tarifinizden gelen, ➕ benim eklediğim, ❓ karar bekleyen (bkz. `03-acik-sorular-ve-kararlar.md`).
 >
-> **Güncelleme 19.10.2026 — alınan kararlar:** 100+ departman ölçeği; HRIS bağlantısı sonraya; davranışsal ölçek aynı 1–5; 360 var; seviye 5 için üst doğrulama; itirazda İK + üst yönetici; ücret/terfiden ayrık; web + mobil; eğitim kataloğu kapsam dışı; potansiyel bu sistemde ölçülecek; **tüm seviyelerde davranış göstergesi ve her puan kanıtla** (ayrıntı: `05-kanit-gosterge-ve-potansiyel-modeli.md`). **Şube ağı** (bölge → şube → portföy ekipleri) aynı yapıya dahil edildi: `06-sube-agi-yapisi.md`. Teknoloji: kısıt yok, tüm sistem birlikte: `07-teknik-mimari.md`. Ölçek: 6.400 çalışan, 600 yönetici.
+> **Güncelleme 19.10.2026 — alınan kararlar:** 100+ departman ölçeği; HRIS bağlantısı sonraya; davranışsal ölçek aynı 1–5; 360 var; seviye 5 için üst doğrulama; itirazda İK + üst yönetici; ücret/terfiden ayrık; web + mobil; eğitim kataloğu kapsam dışı; potansiyel bu sistemde ölçülecek; **tüm seviyelerde davranış göstergesi ve her puan kanıtla** (ayrıntı: `05-kanit-gosterge-ve-potansiyel-modeli.md`). **Şube ağı** (bölge → şube → portföy ekipleri) aynı yapıya dahil edildi: `06-sube-agi-yapisi.md`. Teknoloji: kısıt yok, tüm sistem birlikte: `07-teknik-mimari.md`. Ölçek: 6.400 çalışan, 600 yönetici, 15 bölge, 450 şube. Pilot yok; prova döngüsü + tek seferde açılış.
 
 ---
 
@@ -161,7 +161,7 @@ Yöneticiyle birlikte her role hedef seviye ve ağırlık atanır. ➕ Sistem "a
 | Üst doğrulama | Seviye 5 için zorunlu | N+2 veya İK'nın atadığı alan uzmanı onaylamadan 5 verilmez |
 | ➕ Potansiyel değerlendirmesi | Yıllık, döngü içinde | Kanıtlı potansiyel göstergeleri (bkz. `05` §6) |
 
-| ➕ Fonksiyonel teyit (şube ağı) | Teknik becerilerde | Bölge segment yöneticisi idari doğrulamayı teyit eder/itiraz eder (çift hat) |
+| ➕ Alan uzmanı doğrulaması (şube ağı) | Seviye 5 | Segment GM departmanından atanmış uzman, bölge müdürüyle birlikte onaylar (portföyler bölgeye fonksiyonel bağlı olmadığı için tek hat + uzman) |
 | ➕ Sistem verisi (otomatik kanıt) | Şube ağında ağırlıklı | KPI, lisans, yetki limiti, denetim bulgusu CSV ile kanıt kasasına akar |
 
 **Temel kural:** Mutabık seviye, kabul edilmiş kanıtla hesaplanan seviyeden yüksek olamaz.
@@ -311,7 +311,7 @@ Gizlilik: kişi bazlı puanlar sadece hiyerarşi hattı + İK; akran/360 girdile
 | 0 | Yapı ve kararlar (bu dokümanlar) | Onaylı tasarım |
 | 1 | **Uygulama v0: Organizasyon + Beceri Toplama Portalı + Kütüphane**; şube ağı için rol başına tasarım çalıştayları (≈10) ve mevcut davranışsal değerlendirmenin eşlenmesi (100+ departmandan toplama buradan yapılır) ve İK ekibinin davranışsal sözlük seçimi + gösterge yazımı | Kütüphane v1.0 (gösterge ve kanıt türleriyle) |
 | 2 | Rol profilleri | Hedef seviyeler |
-| 3 | Uygulama v1: Değerlendirme döngüsü (öz-beyan + kanıt, 360, doğrulama, fonksiyonel teyit, mutabakat, potansiyel) | Pilot: 2 bölge (~60 şube) + 3 GM departmanı |
+| 3 | Uygulama v1: Değerlendirme döngüsü (öz-beyan + kanıt, 360, doğrulama, seviye 5 uzman onayı, mutabakat, potansiyel) | Prova döngüsü (test ortamı, gerçek veri), ardından tüm ağ |
 | 4 | Gelişim planı + analitik + kanıt kasası mobil | Kurum haritası v1 |
 | 5 | Kritik rol / yedekleme / işe alım | Risk ve yedek panoları |
 | 6 | 2. döngü: katalizör ve potansiyel doğrulama, ağırlık güncelleme; HRIS bağlantısı; performans + 9-kutu | Kanıta dayalı model |

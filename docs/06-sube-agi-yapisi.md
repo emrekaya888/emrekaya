@@ -1,6 +1,6 @@
 # 06 · Şube Ağı Yapısı — Bölge, Şube ve Portföy Ekipleri
 
-Karar (19.10.2026): Genel Müdürlük departmanları için kurulan yapının aynısı **şube ağı** için de kurulacak. Şubelerde gişe, bireysel, KOBİ, ticari, özel bankacılık, bizbize bankacılık (bireysel + müşteriye bakan), operasyondaki müşteri ilişkileri ekipleri ve şube müdürü var. Ortalama 30 şube bir bölge müdürlüğüne bağlı. Bölgelerle birlikte davranışsal (soft skill) değerlendirmesi zaten yapılıyor; teknik beceri değerlendirmesi eklenecek. Tüm portföyler için **ortak teknik beceri seti** ve portföye özgü beceriler tanımlanacak; seçim, ölçüm, kanıt, veri kaydı, değerlendirme ve kalibrasyon süreçleri işletilecek.
+Karar (19–20.10.2026): Genel Müdürlük departmanları için kurulan yapının aynısı **şube ağı** için de kurulacak. **15 bölge müdürlüğü, 450 şube** (ortalama 30 şube/bölge). Şube sınıfları segment bazlıdır: **Özel Bankacılık, KOBİ, Ticari, Kurumsal** şubeler. Resmi rol adları: Gişe = **Bireysel Satış Temsilcisi**, MİY = **Müşteri İlişkileri**, portföyler = **Bireysel Satış, KOBİ Satış, Ticari Satış, Kurumsal Satış**. Şube müdürleri bölge müdürüne bağlı; portföyler bölgeye fonksiyonel bağlı **değil**. Her bölgenin merkezden atanmış bir İK iş ortağı var. Sistem verileri CSV ile alınabilir. Mevcut davranışsal değerlendirme 3'lü ölçekte. Pilot yapılmayacak, tüm ağ birlikte açılacak. Bölgelerle birlikte davranışsal (soft skill) değerlendirmesi zaten yapılıyor; teknik beceri değerlendirmesi eklenecek. Tüm portföyler için **ortak teknik beceri seti** ve portföye özgü beceriler tanımlanacak; seçim, ölçüm, kanıt, veri kaydı, değerlendirme ve kalibrasyon süreçleri işletilecek.
 
 ---
 
@@ -11,11 +11,11 @@ Karar (19.10.2026): Genel Müdürlük departmanları için kurulan yapının ayn
 | Çeşitlilik | 100+ farklı iş, her servis kendine özgü beceri | **Az sayıda rol, çok sayıda tekrar** (aynı 8–10 rol yüzlerce şubede) |
 | Toplama yöntemi | Her servisten ayrı toplama | Rol başına **bir kez** merkezi tasarım (segment GM yardımcılıkları + bölgeler + İK), tüm şubelere uygulanır |
 | Kanıt | Çoğunlukla iş çıktısı ve gözlem | **Sistem verisi** çok güçlü: satış, portföy, kredi kalitesi, denetim bulguları, lisanslar, şikayet, NPS |
-| Değerlendirici | Tek hat (servis yöneticisi) | **Çift hat**: şube müdürü (idari) + bölge segment yöneticisi (fonksiyonel) |
-| Kalibrasyon | Departman içi | **Üç kademe**: şube → bölge (30 şube) → segment GMY |
+| Değerlendirici | Servis yöneticisi | **Şube müdürü** (tek hat; portföyler bölgeye fonksiyonel bağlı değil). Teknik derinlik için seviye 5'te segment GM departmanından alan uzmanı |
+| Kalibrasyon | Departman içi | **Üç kademe**: şube → bölge (bölge müdürü + merkezden İK iş ortağı) → segment GMY |
 | Mevcut durum | Yok | Davranışsal değerlendirme bölgelerle zaten yapılıyor → **devralınacak**, sıfırdan kurulmayacak |
 
-Sonuç: şube ağı için beceri *toplama* değil, beceri *tasarımı ve standartlaştırma* yapılır. Asıl zorluk tutarlılık ve ölçektir: 600 yönetici, 6.400 çalışan.
+Sonuç: şube ağı için beceri *toplama* değil, beceri *tasarımı ve standartlaştırma* yapılır. Asıl zorluk tutarlılık ve ölçektir: 450 şube, 600 yönetici, 6.400 çalışan, tek seferde açılış.
 
 ---
 
@@ -25,34 +25,34 @@ Sonuç: şube ağı için beceri *toplama* değil, beceri *tasarımı ve standar
 Kurum
 ├── Genel Müdürlük → Direktörlük/GMY → Departman (100+) → Servis          [bkz. 01]
 └── Şube Ağı (GMY / Şube Bankacılığı)
-    └── Bölge Müdürlüğü (~30 şube)
-        ├── Bölge segment yöneticileri (Bireysel, KOBİ, Ticari, Özel, Operasyon …)  ← fonksiyonel hat
-        └── Şube
-            ├── Şube Müdürü
-            ├── Gişe ekibi
-            ├── Bireysel portföy
-            ├── KOBİ portföy
-            ├── Ticari portföy
-            ├── Özel bankacılık portföy
-            ├── Bizbize bankacılık portföy (bireysel + müşteriye bakan)
-            └── Operasyon / Müşteri İlişkileri ekibi
+    └── Bölge Müdürlüğü ×15 (~30 şube; merkezden atanmış İK iş ortağı)
+        └── Şube ×450 — sınıfı: Özel Bankacılık | KOBİ | Ticari | Kurumsal
+            ├── Şube Müdürü                      ← bölge müdürüne bağlı
+            ├── Bireysel Satış Temsilcisi ekibi  (gişe)
+            ├── Bireysel Satış portföyü          (bizbize bankacılık dahil ❓ S31)
+            ├── KOBİ Satış portföyü
+            ├── Ticari Satış portföyü
+            ├── Kurumsal Satış portföyü          (kurumsal şubelerde)
+            ├── Özel Bankacılık portföyü         (özel bankacılık şubelerinde ❓ S31)
+            └── Müşteri İlişkileri ekibi         (operasyon)
 ```
 
-Veri modelinde: `OrgBirimi.tür` = Bölge | Şube | Portföy ekibi; **şube tipi/segmenti** (büyük, orta, küçük; ticari ağırlıklı, bireysel ağırlıklı) `OrgBirimi.şube_sınıfı` alanında tutulur, çünkü hedef seviye şube sınıfına göre değişebilir (büyük şube ticari portföyü ≥ 4, küçük şubede 3).
+Veri modelinde: `OrgBirimi.tür` = Bölge | Şube | Portföy ekibi; `OrgBirimi.şube_sınıfı` = Özel Bankacılık | KOBİ | Ticari | Kurumsal. **Şube sınıfı iki şeyi belirler:** (1) şubede hangi portföy ekipleri bulunur, (2) aynı rolün hedef seviyesi (ticari şubede Ticari Satış için mali analiz hedefi 4, KOBİ şubesindeki ticari satışçı için 3).
 
-**Rol ailesi (öneri; kademe adlarını siz netleştirirsiniz ❓ S25):**
+**Roller ve kademeler (resmi adlar; kademe adları ❓ S25 ile netleşecek):**
 
-| Rol ailesi | Kademeler (örnek) | Yönetici mi |
-|---|---|---|
-| Şube Müdürü | Şube Müdürü (şube sınıfına göre A/B/C) | Evet |
-| Gişe | Gişe Yetkilisi → Kıdemli Gişe Yetkilisi → Gişe Yöneticisi/Operasyon Yöneticisi | Son kademe |
-| Bireysel Portföy | Portföy Yetkilisi → Portföy Yöneticisi → Kıdemli Portföy Yöneticisi | Hayır |
-| Bizbize Portföy | aynı | Hayır |
-| KOBİ Portföy | aynı | Hayır |
-| Ticari Portföy | aynı | Hayır |
-| Özel Bankacılık Portföy | Özel Bankacılık Yöneticisi → Kıdemli | Hayır |
-| Müşteri İlişkileri (Operasyon) | MİY Yetkilisi → MİY Yöneticisi | Son kademe |
-| Bölge | Bölge Müdürü, Bölge Segment Yöneticisi, Bölge Operasyon Yöneticisi | Evet |
+| Rol ailesi | Resmi ad | Kademe önerisi | Yönetici mi |
+|---|---|---|---|
+| Şube Müdürü | Şube Müdürü | Şube sınıfına göre | Evet |
+| Gişe | **Bireysel Satış Temsilcisi** | Temsilci → Kıdemli Temsilci | Hayır |
+| Operasyon | **Müşteri İlişkileri** | Yetkili → Yönetici | Son kademe |
+| Bireysel portföy | **Bireysel Satış** | Yetkili → Yönetici → Kıdemli | Hayır |
+| KOBİ portföy | **KOBİ Satış** | Yetkili → Yönetici → Kıdemli | Hayır |
+| Ticari portföy | **Ticari Satış** | Yetkili → Yönetici → Kıdemli | Hayır |
+| Kurumsal portföy | **Kurumsal Satış** | Yetkili → Yönetici → Kıdemli | Hayır |
+| Özel bankacılık | (resmi ad ❓ S31) | Yönetici → Kıdemli | Hayır |
+| Bölge | Bölge Müdürü | – | Evet |
+| Bölge (merkez) | İK İş Ortağı | – | İK rolü |
 
 ---
 
@@ -96,9 +96,10 @@ Veri modelinde: `OrgBirimi.tür` = Bölge | Şube | Portföy ekibi; **şube tipi
 
 | Segment | Beceriler |
 |---|---|
-| Bireysel / Bizbize | Bireysel kredi değerlendirme ve skorlama; bireysel varlık ürünleri (BES, fon, mevduat yapılandırma); maaş/şirket anlaşmaları; bizbize için "iç müşteri/çalışan bankacılığı süreçleri" |
+| Bireysel Satış (bizbize dahil) | Bireysel kredi değerlendirme ve skorlama; bireysel varlık ürünleri (BES, fon, mevduat yapılandırma); maaş/şirket anlaşmaları; bizbize bankacılığı süreçleri |
 | KOBİ | Mali tablo analizi (KOBİ düzeyi); nakit akışı ve teminat yapılandırma; KGF ve destekli krediler; POS/üye işyeri ve nakit yönetimi ürünleri |
 | Ticari | İleri mali analiz ve derecelendirme; dış ticaret işlemleri (akreditif, garanti, ihracat kredileri); proje/yapılandırılmış finansman temel; hazine ürünleri (döviz, türev temel); kredi izleme ve erken uyarı |
+| Kurumsal Satış | Büyük ölçekli firma mali analizi ve grup/konsolide değerlendirme; sendikasyon ve yapılandırılmış finansman; nakit yönetimi ve tahsilat/ödeme sistemleri; hazine ve türev ürünler (kur/faiz riski yönetimi); uluslararası ticaret finansmanı; kurumsal müşteri ilişki ve paydaş yönetimi (CFO düzeyi) |
 | Özel Bankacılık | Varlık yönetimi ve yatırım danışmanlığı (SPK Düzey 3 / Türev); portföy yapılandırma ve risk profili; sermaye piyasası ürünleri; vergi ve miras temel; yüksek gelirli müşteri ilişki yönetimi |
 
 ### 3.4 D — Gişe / Operasyon
@@ -111,20 +112,21 @@ Nakit ve kasa yönetimi; havale/EFT/swift ve ödeme işlemleri; çek-senet ve k�
 
 ### 3.6 Hedef seviye matrisi (örnek, karar sonrası doldurulacak)
 
-| Beceri | Gişe Yetk. | Bireysel PY | KOBİ PY | Ticari PY | Özel PY | MİY | Şube Md. | Bölge Seg. Yön. |
+| Beceri | BST (gişe) | Bireysel Satış | KOBİ Satış | Ticari Satış | Kurumsal Satış | Özel Bank. | Müşteri İlişkileri | Şube Md. |
 |---|---|---|---|---|---|---|---|---|
-| A1 Mevzuat/uyum | 2 | 2 | 3 | 3 | 3 | 3 | 4 | 4 |
-| A2 MASAK/KYC | 3 | 2 | 3 | 3 | 3 | 3 | 4 | 4 |
-| A5 Ürün bilgisi | 2 | 3 | 3 | 3 | 3 | 2 | 4 | 4 |
-| B1 Portföy derinleştirme | – | 3 | 3 | 3 | 4 | – | 4 | 5 |
-| B4 Kredi ön değerlendirme | – | 2 | 3 | 4 | 2 | – | 4 | 4 |
-| C Mali tablo analizi | – | 1 | 3 | 4 | 2 | – | 3 | 4 |
-| C Dış ticaret | – | – | 2 | 4 | 1 | 2 | 3 | 4 |
-| C Varlık yönetimi | – | 1 | – | – | 4 | – | 2 | – |
-| D Nakit/kasa | 3 | 1 | – | – | – | 2 | 2 | – |
-| E Şube kârlılık | – | – | – | – | – | – | 4 | 5 |
+| A1 Mevzuat/uyum | 2 | 2 | 3 | 3 | 3 | 3 | 3 | 4 |
+| A2 MASAK/KYC | 3 | 2 | 3 | 3 | 3 | 3 | 3 | 4 |
+| A5 Ürün bilgisi | 2 | 3 | 3 | 3 | 3 | 3 | 2 | 4 |
+| B1 Portföy derinleştirme | 1 | 3 | 3 | 3 | 4 | 4 | – | 4 |
+| B4 Kredi ön değerlendirme | – | 2 | 3 | 4 | 4 | 2 | – | 4 |
+| C Mali tablo analizi | – | 1 | 3 | 4 | 5 | 2 | – | 3 |
+| C Dış ticaret | – | – | 2 | 4 | 4 | 1 | 2 | 3 |
+| C Nakit yönetimi ürünleri | – | – | 2 | 3 | 4 | – | 1 | 3 |
+| C Varlık yönetimi | – | 1 | – | – | – | 4 | – | 2 |
+| D Nakit/kasa | 3 | 1 | – | – | – | – | 2 | 2 |
+| E Şube kârlılık | – | – | – | – | – | – | – | 4 |
 
-Hedefler **şube sınıfına** göre istisna alabilir (büyük şube ticari PY: mali analiz 4, küçük şube: 3).
+Hedefler **şube sınıfına** göre istisna alır: aynı rol kurumsal şubede +1 (KOBİ şubesindeki Ticari Satış: mali analiz 3; ticari şubede 4; kurumsal şubede Kurumsal Satış 5). Şube müdürü hedefleri de şube sınıfına göre değişir (kurumsal şube müdürü: mali analiz 4, dış ticaret 4).
 
 **Kademe ilişkisi:** aynı rol ailesinde kademe yükseldikçe hedef +1 (Yetkili 2 → Yöneticisi 3 → Kıdemli 4). Terfi için "zorunlu beceri eşiği" karar S5 gereği ilk döngülerde uygulanmaz, raporlanır.
 
@@ -158,36 +160,49 @@ Kural: **Kanıt kasası sistem verisini otomatik doldurur** (CSV içe aktarma, s
 
 ### 5.2 Ölçüm ve kanıt
 - Yıl boyunca **sistem verisi otomatik** akar; çalışan kanıt kasasında eksik göstergeleri görür.
-- Bölge segment yöneticisi saha ziyaretlerinde gözlem notunu mobilden girer (fonksiyonel kanıt).
+- Şube müdürü ortak müşteri görüşmesi ve iş başı gözlem notunu mobilden girer; bölge müdürü şube ziyaretlerinde şube müdürü için gözlem notu girer.
 - Lisans ve yetki limiti değişince ilgili gösterge otomatik güncellenir.
 
-### 5.3 Değerlendirme (çift hat)
+### 5.3 Değerlendirme (tek hat: şube müdürü)
+
+Portföyler bölgeye fonksiyonel bağlı olmadığı için (S26) tek değerlendirici **şube müdürü**dür. Teknik derinliği şube müdürünün tek başına yargılamasının riski, iki mekanizmayla dengelenir: **sistem verisi otomatik kanıt** (yargı yerine ölçüm) ve **seviye 5'te segment GM departmanından alan uzmanı doğrulaması**.
 
 | Adım | Kim |
 |---|---|
-| Öz-beyan + kanıt | Çalışan |
-| 360 (davranışsal) | Şube içi akran, MİY/gişe (iç müşteri), şube müdürü; portföy yöneticileri için bölge segment yöneticisi |
-| Kanıt doğrulama (idari) | Şube müdürü |
-| Fonksiyonel teyit | Bölge segment yöneticisi: teknik becerilerde (B, C) idari doğrulamayı teyit eder veya itiraz eder |
-| Seviye 5 üst doğrulama | Bölge müdürü veya segment GMY temsilcisi |
-| Mutabakat | Şube müdürü + çalışan (fonksiyonel görüş ekte) |
-| İtiraz | İK iş ortağı + bölge müdürü (S4 kuralının şube karşılığı) |
-| Şube müdürü değerlendirmesi | Bölge müdürü idari; segment yöneticileri fonksiyonel girdi |
+| Öz-beyan + kanıt | Çalışan (sistem verisi otomatik dolar) |
+| 360 (davranışsal) | Şube içi akran, Müşteri İlişkileri/BST (iç müşteri), şube müdürü; şube müdürü için bölge müdürü + şube ekibi (ast) |
+| Kanıt doğrulama | Şube müdürü |
+| Seviye 5 üst doğrulama | Bölge müdürü + ilgili segment GM departmanının atadığı alan uzmanı (teknik) |
+| Mutabakat | Şube müdürü + çalışan |
+| İtiraz | Bölge İK iş ortağı + bölge müdürü (S4 kuralının şube karşılığı) |
+| Şube müdürü değerlendirmesi | Bölge müdürü; itirazda İK iş ortağı + Şube Bankacılığı GMY |
+| Bölge müdürü değerlendirmesi | Şube Bankacılığı GMY; itirazda İK direktörü |
 
 ### 5.4 Kalibrasyon (üç kademe)
 
 | Kademe | Kapsam | Kimler | Ne bakılır |
 |---|---|---|---|
-| Şube | Şube içi ekipler | Şube müdürü | Portföyler arası tutarlılık |
-| Bölge | ~30 şube, rol bazında | Bölge müdürü + segment yöneticileri + İK iş ortağı | Şubeler arası dağılım, cömertlik endeksi, sistem verisi ile mutabık seviye uyumu ("KPI düşük ama seviye 4" bayrağı) |
-| Merkez | Segment bazında tüm bölgeler | Segment GMY + İK | Bölgeler arası dağılım, eşik revizyonu |
+| Şube | Şube içi ekipler | Şube müdürü | Portföyler arası tutarlılık (sistem bayrakları) |
+| Bölge | ~30 şube, rol bazında | Bölge müdürü + bölge İK iş ortağı (+ gerektiğinde segment GM temsilcisi) | Şubeler arası dağılım, şube müdürü cömertlik endeksi, sistem verisi ile mutabık seviye uyumu ("KPI düşük ama seviye 4" bayrağı), şube sınıfına göre kıyas |
+| Merkez | Segment bazında 15 bölge | Segment GMY'leri + Şube Bankacılığı GMY + İK | Bölgeler arası dağılım, KPI eşik revizyonu, İK iş ortakları arası tutarlılık |
 
 Sistem her kademe için hazır pano üretir: dağılım, bayraklı kayıtlar, önerilen düzeltmeler. Kalibrasyon kararları gerekçeli ve denetim izinde.
 
-### 5.5 Mevcut davranışsal değerlendirmenin devralınması
-- Mevcut soft skill yetkinlik listesi yeni sözlüğe **eşlenir** (birebir, birleştirme, emekli).
-- Son 1–2 dönem sonuçları "devralınan dönem" olarak içe aktarılır; gösterge bazlı değil puan bazlı olduğu için `kanıtlanmış_seviye = null, mutabık_seviye = devralınan` işaretiyle saklanır; ilk yeni döngüde gösterge bazlı yeniden kanıtlanır.
-- Bölgelerin alıştığı takvim ve roller korunur; yeni olan teknik beceri satırları ve kanıt kasasıdır.
+### 5.5 Mevcut davranışsal değerlendirmenin devralınması (3'lü ölçek)
+
+Mevcut ölçek: **iyi olabilirsin / iyisin / çok iyisin**. Yeni ölçek 1–5. Eşleme önerisi (❓ S34):
+
+| Eski | Yeni (dönüştürülmüş) | Gerekçe |
+|---|---|---|
+| İyi olabilirsin | 2 (Uygular) — gelişim alanı işaretli | "Henüz beklenen düzeyde değil"; 1 değil, çünkü eski ölçek alt ucu yoktu |
+| İyisin | 3 (Güçlü) | Beklenen düzey |
+| Çok iyisin | 4 (Rol model) | 5 verilmez: 5 üst doğrulama ister, devralınan veride kanıt yok |
+
+Kurallar:
+- Devralınan kayıtlar `kanıtlanmış_seviye = null`, `mutabık_seviye = dönüştürülmüş`, `kaynak = Devralınan` ile saklanır; raporlarda ayrı renkle gösterilir.
+- İlk yeni döngüde herkes gösterge bazlı yeniden kanıtlar; devralınan seviye **başlangıç referansı**dır, taban değildir (kanıt yoksa düşebilir — çalışana önceden duyurulur, adalet algısı için).
+- 3'lü ölçekle 5'li ölçeğin dağılımı ilk döngü sonunda karşılaştırılır (devralınan "çok iyisin"lerin yüzde kaçı 4 kanıtlayabildi?) → kalibrasyon ve iletişim girdisi.
+- Mevcut yetkinlik listesi yeni sözlüğe eşlenir (birebir, birleştirme, emekli); bölgelerin alıştığı takvim korunur.
 
 ---
 
@@ -195,7 +210,7 @@ Sistem her kademe için hazır pano üretir: dağılım, bayraklı kayıtlar, ö
 
 | Büyüklük | Değer | Not |
 |---|---|---|
-| Ortalama ekip | ~10,7 kişi / yönetici | Şubede şube müdürü 8–20 kişi değerlendirebilir |
+| Ortalama ekip | ~10,7 kişi / yönetici | 450 şube; şube müdürü 8–20 kişi değerlendirir, bölge müdürü ~30 şube müdürü |
 | Değerlendirme satırı / kişi | 12–18 beceri + 10–12 davranışsal ≈ 25–30 | Rol profili bu sınırı aşmamalı |
 | Gösterge kararı / kişi | ≈ 25 satır × ~4 gösterge (hedef seviyeye kadar) ≈ 100 | Sistem verisiyle otomatik dolanlar hariç |
 | Yönetici başına karar / döngü | ≈ 1.000 | **Riskli**; aşağıdaki önlemler şart |
@@ -205,8 +220,9 @@ Sistem her kademe için hazır pano üretir: dağılım, bayraklı kayıtlar, ö
 - **Otomatik kanıt**: şube becerilerinin yarısından fazlası sistem verisi/lisans/yetki ile dolsun → yönetici sadece istisnaları karara bağlar.
 - **Toplu doğrulama ekranı**: yönetici, ekibin aynı göstergesini tek ekranda görür ve karar verir.
 - **Yalnızca hedef seviyeye kadar** göstergeler sorulur; üstü isteğe bağlı.
-- **Döngü kademelendirme**: bölgeler 2–3 dalgada açılır; sistem yükü ve İK destek kapasitesi dengelenir.
-- **İK iş ortağı başına bölge**: bölge başına 1 İK iş ortağı kalibrasyon ve itirazları taşır (❓ S26).
+- **Pilot yok, tek seferde açılış (karar):** pilot yerine (a) gerçek verilerle **prova döngüsü** (test ortamında 2 bölge verisiyle uçtan uca akış, sonuçlar silinir), (b) 600 yöneticiye kısa rol bazlı eğitim ve 15 İK iş ortağına derin eğitim, (c) açılış ayında İK yardım masası, (d) ilk döngünün "kalibrasyon yılı" ilan edilmesi: sonuçlar ücret/terfiye bağlı değil (S5), eşikler ve göstergeler ilk döngü sonunda revize edilir.
+- **Tek döngü, dalgalı açılış:** aynı döngü içinde bölgeler 3 dalgada (5+5+5) 2'şer hafta arayla açılır; takvim tek, yük dağıtılmış.
+- **İK iş ortağı başına bölge:** 15 bölge × 1 İK iş ortağı kalibrasyon ve itirazları taşır; iş ortağı başına ~30 şube, ~430 çalışan.
 
 ---
 
@@ -216,6 +232,7 @@ Sistem her kademe için hazır pano üretir: dağılım, bayraklı kayıtlar, ö
 - **Segment haritası**: tüm ağda KOBİ portföy yöneticilerinin mali analiz dağılımı.
 - **Lisans/yetki uyum raporu**: lisansı olmadan ürün satan/yetki üstü işlem yapan kişi listesi (uyum riski).
 - **Kritik şube rolleri**: tek ticari portföy yöneticisi olan şubeler (bus factor = 1), yedeği olmayan şube müdürlükleri.
-- **Şube müdürü yedek havuzu**: bölge bazında hazır / 1-2 yıl / 3+ yıl; portföyler arası geçiş (KOBİ PY → ticari PY) kariyer yolları.
+- **Şube müdürü yedek havuzu**: 450 şube için bölge bazında hazır / 1-2 yıl / 3+ yıl; şube sınıfına göre (kurumsal şube müdürü yedekliği ayrı); portföyler arası geçiş (KOBİ Satış → Ticari Satış → Kurumsal Satış) kariyer yolları.
+- **Bölge müdürü yedek havuzu**: 15 pozisyon için şube müdürlerinden aday.
 - **KPI–seviye uyumu**: sistem verisi ile mutabık seviye arasındaki tutarsızlıklar (kalibrasyon girdisi).
 - **Devralınan davranışsal trend**: eski dönemlerle karşılaştırma.
