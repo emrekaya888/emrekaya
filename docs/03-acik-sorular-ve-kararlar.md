@@ -40,7 +40,7 @@ Her soru için **önerilen varsayılan** yazıldı. Karar verilince "Karar" süt
 | S25b | Kademe adları | Rol aileleri içindeki kademe adları (Yetkili / Yönetici / Kıdemli; Temsilci / Kıdemli Temsilci)? | 06 §2 tablosundaki öneri | |
 | S31 | Özel bankacılık ve bizbize | Özel bankacılık portföyünün resmi rol adı nedir? Bizbize bankacılık Bireysel Satış içinde mi ayrı rol mü? | Özel bankacılık: "Özel Bankacılık Satış"; bizbize: Bireysel Satış alt türü | |
 | S32 | Kurumsal şube ekipleri | Kurumsal şubelerde hangi ekipler var (sadece Kurumsal Satış + Müşteri İlişkileri mi)? | Kurumsal Satış + Müşteri İlişkileri + BST | |
-| S33 | Açılış takvimi | İlk döngü hangi ay açılacak? Mevcut davranışsal değerlendirme takvimiyle çakışıyor mu? | Mevcut takvimle hizalanır; 3 dalga, 2'şer hafta | |
+| S33 | Açılış takvimi | İlk döngü hangi ay açılacak? Mevcut davranışsal değerlendirme takvimiyle çakışıyor mu? | Mevcut takvimle hizalanır; 3 dalga, 2'şer hafta | Ocak 2027. Akış: 08 dokümanı |
 | S34 | 3'lü ölçek eşlemesi | İyi olabilirsin → 2, İyisin → 3, Çok iyisin → 4 eşlemesi uygun mu? Devralınan seviyenin "taban olmadığı" çalışana duyurulacak mı? | Evet / Evet | |
 | S35 | Alan uzmanları | Seviye 5 teknik doğrulaması için segment GM departmanları (Bireysel, KOBİ, Ticari, Kurumsal, Özel) uzman atayabilir mi? | Segment başına 2–3 uzman | |
 
@@ -69,4 +69,6 @@ Her soru için **önerilen varsayılan** yazıldı. Karar verilince "Karar" süt
 | 2026-10-20 | S28 | Mevcut davranışsal 3'lü ölçek | Emre Kaya | Eşleme önerisi S34 |
 | 2026-10-20 | S29 | KPI eşiklerini segment GMY belirler | Emre Kaya | |
 | 2026-10-20 | S30 | Pilot yok, tek seferde | Emre Kaya | Prova döngüsü + 3 dalga |
+| 2026-10-20 | S33 | Açılış Ocak 2027 | Emre Kaya | 08 uygulama akışı yazıldı |
+| 2026-10-20 | S25b, S31, S32 | Rol kademeleri şimdilik detaylandırılmayacak; varsayılanlar kullanılır | Emre Kaya | |
 | 2026-10-19 | – | Teknik ve davranışsal tüm seviyelerde davranış göstergesi; tüm puanlar kanıtla ("yaptım/bildim/sahibim") | Emre Kaya | 05 dokümanı yazıldı |
