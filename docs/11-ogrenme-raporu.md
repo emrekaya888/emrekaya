@@ -1,6 +1,6 @@
 # Yetkinlik Yönetimi — Öğrenme Raporu
 
-> Bu rapor, tasarım dokümanlarının (01–10) **arkasındaki bilgiyi** anlatır: yetkinlik yönetimi nedir, hangi kuram ve araştırmalara dayanır, dünyada nasıl uygulanıyor, nerede başarısız oluyor ve bizim tasarımımız bu bilgiye nasıl oturuyor. Amaç, sistemi "kullanan" değil "anlayan ve savunabilen" bir İK ekibi yetiştirmek.
+> Bu rapor, tasarım dokümanlarının (01–10) **arkasındaki bilgiyi** anlatır (Bölüm 12–13 güncel sektör raporları ve ek yöntemlerle genişletilmiştir): yetkinlik yönetimi nedir, hangi kuram ve araştırmalara dayanır, dünyada nasıl uygulanıyor, nerede başarısız oluyor ve bizim tasarımımız bu bilgiye nasıl oturuyor. Amaç, sistemi "kullanan" değil "anlayan ve savunabilen" bir İK ekibi yetiştirmek.
 >
 > Dürüstlük notu: Verilen kaynak ve vakalar yaygın bilinen, doğrulanabilir olanlardır. Kesin olmayan sayılar "yaklaşık" diye işaretlenmiştir; rakam uydurulmamıştır. Güncel kıyas verisi gerektiğinde ilgili kaynağa gidilmelidir.
 
@@ -310,6 +310,89 @@ Kotter'ın sekiz adımı (aciliyet, koalisyon, vizyon, iletişim, engelleri kald
 | Yapılandırılmış mülakat, STAR | Rol profilinden mülakat kılavuzu, işe alım kalitesi ölçümü | 09 P17 |
 | Analitik olgunluk, model doğrulama | Katalizör ve potansiyel korelasyon testleri | 02 §3, 10 §7 |
 | Skills-based organization | Envanter araması, build/buy, yedek havuzu aynı veriden | 01 §4.6, 09 P16–17 |
+| WEF: beceri yarı ömrü kısalıyor | Gelecek eğilimi etiketi, 18 ay bayatlama, yıllık revizyon | 01 §2.1, §6 |
+| Gartner/Gallup: yönetici yükü ve bağlılık | Otomatik kanıt, toplu doğrulama, çerçeve eğitimi, görüşme kılavuzu | 06 §6, 10 §4.7, §6 |
+| 360 meta-analizi: etki küçük, koşula bağlı | 360 teyit rolünde, gelişim planına bağlı | 05 §5, 09 P13 |
+| Öğrenme çevikliği: kanıt karışık | Kanıtlı ölçüm, yedeklemede tek başına kullanılmaz, 2. döngüde doğrulama | 05 §6, 10 §7 |
+| Delphi | KPI eşiği ve kritiklik puanlaması | 09 P3, P15 |
+
+---
+
+## Bölüm 12 · Güncel sektör raporları ne söylüyor, bize ne diyor?
+
+Akademik kaynaklar "neden"i, sektör raporları "şimdi ne oluyor"u anlatır. Aşağıdaki özetler Ekim 2026'da erişilen ikincil kaynaklardan derlendi; rakamlar **yaklaşık** olarak verilmiştir ve bir sunumda kullanılmadan önce birincil rapordan doğrulanmalıdır. Her raporun yanına "bize ne diyor" notu eklendi; raporların asıl değeri budur.
+
+| Rapor | Öne çıkan bulgu (yaklaşık) | Bize ne diyor |
+|---|---|---|
+| **WEF — Future of Jobs Report 2025** (1.000+ işveren) | 2030'a kadar mevcut becerilerin yaklaşık %40'ının değişmesi bekleniyor (2023 tahmini %44'ten düşmüş); her 100 çalışandan ~59'unun yeniden beceri kazanması gerekiyor, ~11'inin bunu alması olası görülmüyor; beceri açığı, iş dönüşümünün önündeki en büyük engel olarak gösteriliyor; **analitik düşünme** işverenlerin en çok aradığı çekirdek beceri (10 şirketten ~7'si "temel" diyor); en hızlı büyüyen beceriler yapay zekâ ve büyük veri, siber güvenlik, teknoloji okuryazarlığı; dayanıklılık/esneklik ve yaratıcılık da listede | Kütüphanedeki "gelecek eğilimi" etiketi (Yükselen/Stabil/Azalan) bir süs değil, planlama aracıdır. Davranışsal sözlükte **Analitik Düşünme, Değişime Uyum, Dijital Yetkinlik** ve **Sürekli Öğrenme** için güçlü bir dış gerekçe var. Beceri yarı ömrü kısaldıkça 18 aylık "bayatlama" kuralı ve yıllık kütüphane revizyonu zorunlu hale geliyor |
+| **Deloitte — Global Human Capital Trends 2025** (~10.000 lider, 93 ülke) | Çalışanların yaklaşık %60'ı kurumlarının beceri ve potansiyel yerine deneyim ve diplomaya değer verdiğini düşünüyor; yönetici ve üst düzeylerin ~%66'sı son işe alınanların "tam hazır" olmadığını söylüyor; beceri temelli modeller, iş unvanının ötesine geçip dinamik yetenek havuzlarına ulaşmanın yolu olarak sunuluyor | "Yaptım" kanıt ilkesi tam da diploma/kıdem yerine **gösterilmiş beceriyi** öne çıkarır. İşe alım kalitesi geri beslemesi (mülakat puanı ↔ 90. gün kanıtlanmış seviye) "hazır değil" sorununu ölçülebilir kılar |
+| **LinkedIn — Workplace Learning Report 2025** | Kurumların yalnızca ~%36'sı "kariyer gelişimi şampiyonu" (güçlü program + iş sonucu); çalışanların öğrenme motivasyonunda **kariyer ilerlemesi** birinci sırada; güçlü kariyer programı olan kurumlar yapay zekâ benimsemede de önde (yaklaşık %51'e %36) | Gelişim planının **kariyer hedefi rolüne** bağlanması (sonraki rol profiline göre açık) motivasyonun ana kaynağına dokunur. Plan oranı ≥ %80 hedefi lüks değil, bağlılık yatırımıdır |
+| **Gartner — Top 5 Priorities for HR Leaders 2025** | Lider ve yönetici gelişimi üçüncü yıl üst üste 1. öncelik; İK liderlerinin ~%75'i yöneticilerin genişleyen sorumluluklar altında bunaldığını, ~%73'ü çalışanların değişim yorgunu olduğunu söylüyor; geleneksel seminer tipi liderlik eğitimi yerine tekrarlayan akran bağlantıları öneriliyor | 600 yöneticiye döngü başına ~1.000 gösterge kararı düşmesi gerçek bir risk; **otomatik kanıt, toplu doğrulama ekranı ve yıl boyu kanıt kasası** bu yüzden "olsa iyi olur" değil zorunluluk. Çerçeve eğitimi vaka ve akran tartışmasıyla kurgulandı, ders anlatımıyla değil. Değişim yorgunluğu için: tek döngü, dalgalı açılış, ilk yılın "kalibrasyon yılı" ilan edilmesi |
+| **Gallup — State of the Global Workplace 2025** | Küresel çalışan bağlılığı yaklaşık %21; ekip bağlılığındaki farkın yaklaşık %70'i yöneticiye atfediliyor; yönetici bağlılığı 30'dan 27'ye düşmüş ve küresel düşüşün ana nedeni olarak gösteriliyor; düşük bağlılığın maliyeti trilyon dolar ölçeğinde tahmin ediliyor | Sistemin en kritik kullanıcısı yöneticidir. Yönetici tutarlılığı (cömertlik endeksi, kanıt kalitesi) bir liderlik yetkinliği göstergesi olarak ölçülmeli (Bölüm 10 önerisi). Mutabakat görüşmesi kılavuzu, yöneticinin en etkili bağlılık aracı olan birebir görüşmeyi yapılandırır |
+| **Mercer — Global Talent Trends 2024–25 ve Skills Snapshot** (14.400+ katılımcı; 2025 nabız: ~1.900 İK lideri) | İK liderlerinin en üst öncelikleri: **yönetici becerilerini geliştirmek** ve **yetenek süreçlerini beceri etrafında tasarlamak**; beceri veritabanı olan şirket oranı yaklaşık %30'dan %38'e çıkmış, becerilerin işlere doğrudan eşlenebildiği oran ~%47'den %55'e; tanımlı beceri gereksinimi olan iş oranı ~%69'dan %72'ye | Bizim yaptığımız şey (beceri kütüphanesi + rol profili + kanıt) piyasada henüz azınlığın tamamladığı bir altyapı; erken kuran kurum avantaj elde eder. Mercer'in "iş mimarisi + beceri taksonomisi" vurgusu, rol profili sürecinin (P5) neden kütüphaneden hemen sonra geldiğini açıklar |
+| **Josh Bersin Company — Dynamic Organization (2024, Gloat ile; 772 şirket)** | Şirketlerin yalnızca ~%7'si "dinamik organizasyon" ölçütlerini karşılıyor; bu kurumların finansal hedef, bağlılık ve inovasyonda belirgin biçimde daha iyi sonuç verdiği raporlanıyor (çarpanlar kaynaklara göre değişiyor, dikkatle kullanın); dar iş tanımlarının hızla eskidiği, beceri temelli ve yapay zekâ destekli altyapının ayırt edici olduğu vurgulanıyor | Sponsorlu araştırma olduğu için rakamlar "yönlendirici" sayılmalı; ama mesaj tutarlı: beceri envanteri araması, build/buy, yedek havuzu ve kadrolama aynı veriden beslenince kurum "dinamik" olur |
+| **McKinsey — beceri açığı anketleri** (2020 ve sonrası) | Yöneticilerin yaklaşık 10'da 9'u kurumlarında beceri açığı olduğunu ya da 5 yıl içinde oluşacağını söylüyor; açığı kapatmada en yaygın taktik işe alım (~%66), ikincisi beceri geliştirme (~%56); şirketlerin yaklaşık yarısı adayların yetkinliğini **doğrulamakta** zorlanıyor | "Build / Buy / Borrow" kararı veriyle verilmeli; sistemin işe alım modülü (yetkinlik bazlı mülakat, aynı 1–5 ölçek, kanıt isteyen STAR) tam olarak "aday yetkinliğini doğrulama" sorununa cevaptır |
+| **CIPD — Competence and Competency Frameworks factsheet** | İyi kurulmuş çerçeveler performans beklentilerini netleştirir ve bireysel performansı kurum hedefine bağlar; **fazla katı ya da dışlayıcı** çerçeveler ters teper | Kişi başı ≤ 30 satır, gösterge dili, pozisyon istisnaları ve sürüm yönetimi "katılık" riskine karşı tasarlandı |
+
+**Ortak örüntü:** Raporların tamamı üç şeyi söylüyor: (1) beceriler hızla değişiyor ve kurumlar beceri verisine sahip değil, (2) yönetici en kritik ve en yorgun halka, (3) iş unvanı ve diploma yerine gösterilmiş beceri öne çıkıyor. Tasarımın üç omurgası (kütüphane + kanıt, yönetici yükünü azaltan otomasyon, beceri temelli kararlar) bu üç bulguya karşılık gelir.
+
+---
+
+## Bölüm 13 · Ek yöntemler ve araştırma kanıtı
+
+Bu bölüm, tasarımda kullanılan ya da ileride kullanılabilecek yöntemlerin **araştırma kanıtını** ve sınırlarını verir; "yöntem iyi midir" sorusuna "ne kadar, hangi koşulda" cevabı aranır.
+
+### 13.1 Değerlendirme merkezi (assessment center)
+
+Simülasyon, vaka ve rol oyunlarıyla gözlemciler tarafından yapılan yapılandırılmış değerlendirme. Gaugler, Rosenthal, Thornton ve Bentson'ın (1987) 50 çalışmayı kapsayan meta-analizi düzeltilmiş ortalama geçerliliği yaklaşık .37 olarak bildirir; 1985–2005 çalışmalarını kapsayan daha sonraki bir güncelleme (Hermelin ve ark.) amir performans puanı ölçütüyle yaklaşık .28 bulur. Yani öngörü gücü var ama "mucize" değil; gözlemci eğitimi, egzersiz tasarımı ve amaç (terfi mi potansiyel mi) sonucu belirliyor. **Bize ne diyor:** Kritik rol yedekleri (şube müdürü, bölge müdürü havuzu) için iç değerlendirme merkezi ikinci fazda mantıklıdır; ama kanıt kasasındaki gerçek iş çıktıları, simülasyondan daha doğrudan kanıttır ve önce o olgunlaştırılmalıdır.
+
+### 13.2 360 derece geri bildirim: ne kadar işe yarıyor?
+
+Smither, London ve Reilly'nin (2005, *Personnel Psychology*) 24 boylamsal çalışmayı kapsayan meta-analizi, çoklu kaynak geri bildirimi sonrası puanlardaki iyileşmenin **genellikle küçük** olduğunu bulur; yazarlar geniş çaplı performans artışı beklenmemesi gerektiğini söyler. İyileşme; geri bildirimin değişim gereğini açıkça göstermesine, kişinin geri bildirime açıklığına, hedef koymasına ve eylem almasına bağlıdır. **Bize ne diyor:** 360'ı tek başına bir "ölçüm" değil, gelişim planına bağlanan bir **teyit** olarak kullanmak doğru karardır. Gösterge bazlı "gözlemledim/gözlemlemedim + örnek" biçimi, sayısal puandan daha eyleme dönük geri bildirim üretir; mutabakat görüşmesi ve gelişim planı, meta-analizin "hedef koyma ve eylem" koşulunu sağlar.
+
+### 13.3 Öğrenme çevikliği: güçlü iddia, karışık kanıt
+
+De Meuse'ün (2019) 20 saha çalışmasını kapsayan meta-analizi öğrenme çevikliği ile lider performansı ve potansiyeli arasında çok yüksek ilişkiler (yaklaşık .74–.75) bildirir; yazar bunu IQ, duygusal zekâ ve deneyimden güçlü bir yordayıcı olarak sunar. Ancak çalışmaların çoğu eşzamanlı ölçümdür (öngörü değil ilişki), yazar aynı zamanda kavramın ticari savunucusudur ve bağımsız incelemeler piyasa ilgisinin ampirik tabanı aştığını not eder. **Bize ne diyor:** Öğrenme çevikliğini potansiyelin çekirdeğine koymak makul; ama (a) anketle değil **kanıtla** ölçmek, (b) ilk döngüde yedekleme kararını yalnız bu puana dayandırmamak, (c) 2. döngüden itibaren puanın gerçek seviye artışını öngörüp öngörmediğini test etmek şart. Tasarım tam olarak bunu yapıyor (05 §6, 10 §7).
+
+### 13.4 Uzman uzlaşısı için Delphi tekniği
+
+KPI eşikleri ve kritiklik puanları gibi "doğru cevabı olmayan" kararlarda, uzmanların birkaç turda anonim puanlayıp gerekçe görerek yakınsadığı **Delphi** yöntemi, tek toplantıda en yüksek sesin kazanmasını önler. **Uygulama:** Segment GMY'si, 2 bölge müdürü ve 2 şube müdürü, KPI eşiklerini anonim puanlar; sistem dağılımı ve gerekçeleri gösterir; ikinci turda yakınsama sağlanır. P3 adım 5 ve P15 adım 2 için önerilir.
+
+### 13.5 Organizasyonel ağ analizi (ONA)
+
+Kimin kime danıştığı (e-posta/toplantı meta verisi ya da kısa anket: "teknik sorularınızı kime sorarsınız?") ağ haritasına dökülür; **gizli uzmanlar** ve bilgi darboğazları ortaya çıkar. **Bize ne diyor:** Seviye 4–5 iddialarını ve mentor adaylarını doğrulamak için güçlü bir ikinci kaynaktır: "ağda herkesin danıştığı kişi" kanıt kasasında seviye 2 görünüyorsa kanıt eksik demektir. KVKK nedeniyle anket tabanlı sürümü önerilir.
+
+### 13.6 Beceri komşuluğu (skill adjacency) ve kariyer yolları
+
+Beceri temelli organizasyon literatürünün temel aracı: iki rolün beceri profilleri arasındaki örtüşme hesaplanır; yüksek örtüşme = kısa geçiş yolu. **Uygulama:** KOBİ Satış → Ticari Satış → Kurumsal Satış yolunda hangi becerilerde kaç seviye açık olduğu otomatik görünür; "beklenmedik" geçişler (Müşteri İlişkileri → Bireysel Satış) de veriyle keşfedilir. Sistemde rol profilleri olduğu için bu hesap ek veri gerektirmez.
+
+### 13.7 Bilgi göstergeleri için Bloom taksonomisi
+
+Teknik becerilerin "bilgi" boyutunu seviyelendirirken Bloom'un bilişsel düzeyleri (hatırlama → anlama → uygulama → analiz → değerlendirme → yaratma) gösterge yazımına yardım eder: Seviye 1–2 "uygular", 3 "analiz eder", 4 "değerlendirir/standart koyar", 5 "yeni yaklaşım üretir". Vaka sınavları bu düzeylere göre tasarlanır.
+
+### 13.8 Ölçüm kalitesi: güvenilirlik göstergeleri
+
+- **Değerlendiriciler arası uyum:** aynı kanıtı farklı yöneticiler aynı göstergeye bağlıyor mu? Basit uyum yüzdesi (hedef ≥ %80) ya da Cohen'in kappa'sı.
+- **İç tutarlılık:** aynı yetkinliğin göstergeleri birlikte hareket ediyor mu? Gösterge bazında "kanıtlandı" oranları ve madde-toplam korelasyonu.
+- **Ayırt edicilik:** %95'in üstünde ya da %5'in altında kanıtlanan gösterge bilgi taşımaz; revize edilir.
+- **Yakınsak geçerlilik:** sistem verisi (KPI) ile mutabık seviye aynı yönde mi? Uyumsuzluk bayrağı bunun pratiğidir.
+Bu göstergeler döngü sonu raporunda (10 §7) yer alır; psikometrik dille söylersek sistem her döngüde kendi **güvenilirlik ve geçerlilik** kanıtını üretir.
+
+### 13.9 Türkiye bağlamı: lisanslar ve mevzuat kanıtı
+
+Sermaye piyasası faaliyetleri için **SPK Lisanslama ve Sicil Tutma Tebliği (VII-128.7)** Düzey 1, Düzey 2, Düzey 3 ve Türev Araçlar gibi lisansları tanımlar; zorunluluk unvana ve Kurul düzenlemesine bağlıdır (Düzey 1 temel müşteri ilişkileri ve emir iletimi, Düzey 2 sınırlı analiz ve danışmanlık, Düzey 3 portföy yönetimi ve yatırım danışmanlığı için gereklidir; Düzey 1 için 2 yıllık, diğerleri için 4 yıllık yükseköğretim şartı vardır). Sigorta ve BES tarafında SEGEM sınav ve sicil sistemi benzer bir rol oynar. **Bize ne diyor:** Lisans verisi hem **ön koşul** (lisanssız seviye kilidi) hem **uyum göstergesi** olarak sisteme girer; hangi unvanın hangi lisansı gerektirdiği Uyum birimiyle birlikte rol profiline yazılmalıdır (P3 adım 6). Bu, yetkinlik sistemini düzenleyici denetimde de savunulabilir kılar.
+
+### 13.10 Yöntem seçimi özeti
+
+| İhtiyaç | Birincil yöntem | Destekleyici | Kanıt gücü |
+|---|---|---|---|
+| Davranışsal yetkinlik seçimi | Kritik olay + kart sıralama + doğrulama anketi | Strateji eşlemesi | Orta–yüksek (üçgenleme) |
+| Teknik beceri tespiti | Görev envanteri / BEI | Doküman madenciliği, taksonomiler | Yüksek |
+| Seviye belirleme | Gösterge + kanıt | Sistem verisi, 360 teyidi | Yüksek (kanıt), orta (360) |
+| Eşik ve kritiklik | Delphi + geçmiş veri simülasyonu | Segment GMY onayı | Orta |
+| Potansiyel | Kanıtlı öğrenme çevikliği + istek | Değerlendirme merkezi (2. faz), ONA | Orta; doğrulanmalı |
+| Yedekleme | Rol profili açığı + potansiyel | Beceri komşuluğu, değerlendirme merkezi | Orta–yüksek |
+| İşe alım | Yapılandırılmış mülakat (STAR) + iş örneği | Vaka sınavı | Yüksek |
 
 ---
 
@@ -321,6 +404,10 @@ Kotter'ın sekiz adımı (aciliyet, koalisyon, vizyon, iletişim, engelleri kald
 | BEI | Davranışsal olay görüşmesi; geçmiş olaylardan davranış çıkarma |
 | Bus factor | Bir beceriyi/işi taşıyan kişi sayısı; 1 ise tek kişiye bağımlılık |
 | Build / Buy / Borrow | Beceri açığını yetiştirerek / işe alarak / geçici temin ederek kapatma |
+| Delphi | Uzmanların anonim, çok turlu puanlamayla uzlaştığı yöntem |
+| Değerlendirme merkezi | Simülasyon ve vaka ile gözlemci değerlendirmesi (assessment center) |
+| Beceri komşuluğu | İki rolün beceri profili örtüşmesi; kariyer yolu kısalığı |
+| ONA | Organizasyonel ağ analizi; kimin kime danıştığının haritası |
 | Çerçeve eğitimi | Değerlendiricilerin aynı örneklere aynı kararı vermesi için ortak referans eğitimi |
 | Dreyfus modeli | Acemi → uzman beş aşamalı beceri edinme modeli |
 | Gösterge | Bir seviyede beklenen tek, gözlenebilir davranış cümlesi |
@@ -364,6 +451,22 @@ Kotter'ın sekiz adımı (aciliyet, koalisyon, vizyon, iletişim, engelleri kald
 - Deloitte Insights / Josh Bersin Company. "Skills-based organization" raporları (güncel sürümleri web'den).
 - MYK Ulusal Meslek Standartları ve Yeterlilikleri (myk.gov.tr) — bankacılık meslekleri.
 
+**Sektör raporları ve ek araştırmalar (Bölüm 12–13; erişim Ekim 2026, ikincil kaynaklardan; birincil raporu doğrulayın):**
+- World Economic Forum (2025). *The Future of Jobs Report 2025* — weforum.org/publications/the-future-of-jobs-report-2025
+- Deloitte (2025). *2025 Global Human Capital Trends* — deloitte.com
+- LinkedIn Learning (2025). *Workplace Learning Report 2025* — learning.linkedin.com/resources/workplace-learning-report
+- Gartner (2024). *Top 5 Priorities for HR Leaders in 2025* — gartner.com
+- Gallup (2025). *State of the Global Workplace 2025* — gallup.com/workplace/349484
+- Mercer (2024–25). *Global Talent Trends* ve *Skills Snapshot* — mercer.com
+- The Josh Bersin Company & Gloat (2024). *The Dynamic Organization* (sponsorlu araştırma).
+- McKinsey (2020). *Beyond hiring: How companies are reskilling to address talent gaps* — mckinsey.com
+- CIPD. *Competence and competency frameworks* factsheet — cipd.org/uk/knowledge/factsheets/competency-factsheet
+- Gaugler, B., Rosenthal, D., Thornton, G. & Bentson, C. (1987). *Meta-analysis of assessment center validity.* Journal of Applied Psychology, 72(3).
+- Hermelin, E., Lievens, F. & Robertson, I. (2007). *The validity of assessment centres for the prediction of supervisory performance ratings: A meta-analysis.* International Journal of Selection and Assessment.
+- Smither, J., London, M. & Reilly, R. (2005). *Does performance improve following multisource feedback? A theoretical model, meta-analysis, and review of empirical findings.* Personnel Psychology, 58.
+- De Meuse, K. (2019). *A meta-analysis of the relationship between learning agility and leader success.* Journal of Organizational Psychology.
+- SPK (2014). *Sermaye Piyasasında Faaliyette Bulunanlar İçin Lisanslama ve Sicil Tutmaya İlişkin Esaslar Hakkında Tebliğ (VII-128.7)* — spk.gov.tr
+
 ## Ek 3 · Öğrenmeyi sınayan sorular
 
 1. Beceri ile yetkinlik arasındaki fark nedir; bizim sistemde hangisi hangi yöntemle ölçülüyor?
@@ -376,3 +479,6 @@ Kotter'ın sekiz adımı (aciliyet, koalisyon, vizyon, iletişim, engelleri kald
 8. Bir şubede tek Ticari Satış yöneticisi olması hangi metrikte görünür ve hangi süreç tetiklenir?
 9. 70-20-10 kuralının güçlü ve zayıf yanı nedir?
 10. Sistem ücretle erken bağlanırsa veri nasıl bozulur; bunu hangi metrikten fark edersiniz?
+11. WEF ve Gartner bulguları tasarımdaki hangi iki kararı doğrudan gerekçelendiriyor?
+12. Smither ve arkadaşlarının 360 meta-analizi ışığında 360'ı neden "teyit" olarak konumlandırdık?
+13. Öğrenme çevikliği literatüründeki uyarı, potansiyel modelimizde hangi üç önlemle karşılanıyor?
