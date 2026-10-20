@@ -8,7 +8,8 @@ Bu depo şu an **tasarım aşamasındadır**. Uygulama kodu yazılmadan önce t�
 
 | Doküman | İçerik |
 |---|---|
-| [docs/YYS-Tasarim-Dokumani.pdf](docs/YYS-Tasarim-Dokumani.pdf) | **Tüm dokümanların tek PDF sürümü** (kapak, içindekiler, 00–10 ve Ek A; 87 sayfa) |
+| [docs/YYS-Tasarim-Dokumani.pdf](docs/YYS-Tasarim-Dokumani.pdf) | **Tüm dokümanların tek PDF sürümü** (kapak, içindekiler, 00–11 ve Ek A; 101 sayfa) |
+| [docs/Yetkinlik-Yonetimi-Ogrenme-Raporu.pdf](docs/Yetkinlik-Yonetimi-Ogrenme-Raporu.pdf) | **Öğrenme raporunun ayrı PDF sürümü** (18 sayfa) |
 | [docs/01-yapi-tasarimi.md](docs/01-yapi-tasarimi.md) | Kavramsal çerçeve, modüller, seviye ölçeği, süreç akışları, metrikler, kritik rol/yedekleme, işe alım bağlantısı, yol haritası |
 | [docs/02-veri-modeli.md](docs/02-veri-modeli.md) | Varlıklar, alanlar, ilişkiler, durum makineleri, hesaplama formülleri |
 | [docs/03-acik-sorular-ve-kararlar.md](docs/03-acik-sorular-ve-kararlar.md) | Karar gerektiren konular, önerilen varsayılanlar, karar kaydı |
@@ -17,6 +18,7 @@ Bu depo şu an **tasarım aşamasındadır**. Uygulama kodu yazılmadan önce t�
 | [docs/06-sube-agi-yapisi.md](docs/06-sube-agi-yapisi.md) | Bölge → şube → portföy ekipleri; ortak şube teknik beceri seti, segment becerileri, hedef matrisi, bankacılık kanıt türleri, çift hat değerlendirme, üç kademeli kalibrasyon, ölçek hesabı |
 | [docs/07-teknik-mimari.md](docs/07-teknik-mimari.md) | Teknoloji yığını, kod yapısı, yetkilendirme, içe aktarma, güvenlik, teslim planı |
 | [docs/09-surecler.md](docs/09-surecler.md) | Süreç kitabı: 19 süreç; her biri için tetikleyici, adımlar (kim ne yapar), kurallar, dikkat noktaları, çıktı ve ölçüt |
+| [docs/11-ogrenme-raporu.md](docs/11-ogrenme-raporu.md) | Öğrenme raporu: yetkinlik yönetiminin kuramı, araştırma dayanakları, dünya örnekleri, tuzaklar ve tasarımın ilkelere eşlemesi; sözlük, kaynakça, sınama soruları |
 | [docs/10-yontem-kilavuzu.md](docs/10-yontem-kilavuzu.md) | Danışman yöntem kılavuzu: yetkinlik seçim yöntemi, teknik beceri tespit yöntemi, BARS gösterge geliştirme, anket ve form tasarımları (örnek maddelerle), veri toplama planı, KPI eşik yöntemi, değerlendirici hataları ve eğitimi, psikometrik kontroller, iletişim, KVKK |
 | [docs/08-uygulama-akisi.md](docs/08-uygulama-akisi.md) | Ocak 2027 açılışına giden adım adım uygulama akışı: her adımda yapılacaklar, dikkat edilecekler, çıktı ve çıkış kriteri; sprint takvimi; döngü işletimi |
 | [docs/sablonlar/teknik-beceri-toplama-sablonu.md](docs/sablonlar/teknik-beceri-toplama-sablonu.md) | Müdür ve yöneticilerden teknik beceri toplamak için şablon, çalıştay akışı ve kalite kriterleri |
