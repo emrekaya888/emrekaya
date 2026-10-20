@@ -8,6 +8,7 @@ Bu depo şu an **tasarım aşamasındadır**. Uygulama kodu yazılmadan önce t�
 
 | Doküman | İçerik |
 |---|---|
+| [docs/YYS-Tasarim-Dokumani.pdf](docs/YYS-Tasarim-Dokumani.pdf) | **Tüm dokümanların tek PDF sürümü** (kapak, içindekiler, 00–10 ve Ek A; 87 sayfa) |
 | [docs/01-yapi-tasarimi.md](docs/01-yapi-tasarimi.md) | Kavramsal çerçeve, modüller, seviye ölçeği, süreç akışları, metrikler, kritik rol/yedekleme, işe alım bağlantısı, yol haritası |
 | [docs/02-veri-modeli.md](docs/02-veri-modeli.md) | Varlıklar, alanlar, ilişkiler, durum makineleri, hesaplama formülleri |
 | [docs/03-acik-sorular-ve-kararlar.md](docs/03-acik-sorular-ve-kararlar.md) | Karar gerektiren konular, önerilen varsayılanlar, karar kaydı |
