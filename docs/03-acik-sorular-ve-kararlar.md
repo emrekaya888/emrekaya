@@ -44,6 +44,10 @@ Her soru için **önerilen varsayılan** yazıldı. Karar verilince "Karar" süt
 | S34 | 3'lü ölçek eşlemesi | İyi olabilirsin → 2, İyisin → 3, Çok iyisin → 4 eşlemesi uygun mu? Devralınan seviyenin "taban olmadığı" çalışana duyurulacak mı? | Evet / Evet | |
 | S35 | Alan uzmanları | Seviye 5 teknik doğrulaması için segment GM departmanları (Bireysel, KOBİ, Ticari, Kurumsal, Özel) uzman atayabilir mi? | Segment başına 2–3 uzman | |
 
+| S36 | v1.1 eklemeleri | 01 §9'daki on ekleme (E1–E10) ve faz atamaları uygun mu? Özellikle Faz 2 olanlar (gelişim görevleri pazarı, değerlendirme merkezi, stratejik beceri planı) | Ocak eklemeleri kabul; Faz 2 eklemeleri ilk döngü sonunda karar | |
+| S37 | Danışma sorusu | 360 formundaki "kime sorarsınız" sorusu (E3) KVKK aydınlatma metnine eklenecek; sonuç kişiye puan olarak yansımayacak. Uygun mu? | Evet | |
+| S38 | Yönetici tutarlılık göstergesi | Yönetici tutarlılığının L7 liderlik göstergesi olarak otomatik puanlanması (E5) yöneticilere önceden duyurulacak. Uygun mu? | Evet, ilk döngüde "bilgilendirme amaçlı", 2. döngüde gösterge | |
+
 ## Karar kaydı
 
 | Tarih | # | Karar | Veren | Not |
@@ -71,4 +75,5 @@ Her soru için **önerilen varsayılan** yazıldı. Karar verilince "Karar" süt
 | 2026-10-20 | S30 | Pilot yok, tek seferde | Emre Kaya | Prova döngüsü + 3 dalga |
 | 2026-10-20 | S33 | Açılış Ocak 2027 | Emre Kaya | 08 uygulama akışı yazıldı |
 | 2026-10-20 | S25b, S31, S32 | Rol kademeleri şimdilik detaylandırılmayacak; varsayılanlar kullanılır | Emre Kaya | |
+| 2026-10-20 | – | Araştırma kaynaklı v1.1 eklemeleri (E1–E10) tasarıma işlendi; onay S36–S38 | Claude (öneri) | 01 §9 |
 | 2026-10-19 | – | Teknik ve davranışsal tüm seviyelerde davranış göstergesi; tüm puanlar kanıtla ("yaptım/bildim/sahibim") | Emre Kaya | 05 dokümanı yazıldı |

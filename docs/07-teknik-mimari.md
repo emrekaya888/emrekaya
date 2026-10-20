@@ -60,11 +60,12 @@ Her içe aktarma doğrulama raporu üretir (eşleşmeyen kod, eksik üst birim, 
 |---|---|
 | 1 | Organizasyon ağacı, kişi, roller/yetki, içe aktarma, SSO |
 | 2 | Yetkinlik kütüphanesi: beceri, seviye, gösterge, kanıt türü, katalizör, sürüm; Beceri Toplama Portalı |
-| 3 | Rol profilleri, hedef matrisi, şube sınıfı istisnaları, kariyer yolları |
+| 3 | Rol profilleri, hedef matrisi, şube sınıfı istisnaları, kariyer yolları, rol–lisans matrisi (E8), Delphi uzlaşı aracı (E2) |
 | 4 | Kanıt kasası (web + mobil), KPI/lisans otomatik kanıt |
-| 5 | Değerlendirme döngüsü: öz-beyan, 360, doğrulama, seviye 5 uzman onayı, mutabakat, itiraz, potansiyel |
-| 6 | Kalibrasyon panoları (şube/bölge/merkez), analitik ve ısı haritaları |
-| 7 | Gelişim planı, mentor eşleştirme |
+| 5 | Değerlendirme döngüsü: öz-beyan, 360 (+ danışma sorusu, E3), doğrulama, seviye 5 uzman onayı, mutabakat, itiraz, potansiyel |
+| 6 | Kalibrasyon panoları (şube/bölge/merkez), analitik ve ısı haritaları, ölçüm kalitesi panosu (E10), yönetici yük panosu (E4) |
+| 7 | Gelişim planı, mentor eşleştirme, beceri komşuluğu ve "en yakın roller" (E1) |
 | 8 | Kritik rol/beceri, yedekleme, bilgi aktarım planı |
 | 9 | İşe alım modülü |
+| Faz 2 | Gelişim görevleri pazarı (E7), stratejik beceri planı görünümü (E6), değerlendirme merkezi kanıt türü (E9), tam ölçüm kalitesi panosu |
 | 10 | Prova döngüsü (test ortamında 2 bölge gerçek verisi, uçtan uca), yönetici ve İK iş ortağı eğitimi, düzeltmeler, tüm ağa açılış (3 dalga, tek döngü) |

@@ -115,6 +115,7 @@ Mutabık seviye kanıtlanmış seviyeden **yüksek olamaz**; yönetici "hak ediy
 | Anonimlik | Ast ve akran anonim; en az 3 yanıt yoksa gösterilmez |
 | Ağırlık | 360 beyanı tek başına kanıt sayılmaz; yöneticinin gözlem notu veya iş çıktısıyla birleşince göstergeyi doğrular ("en az bir birincil kanıt + 360 teyidi") |
 | Kalibrasyon | Yönetici kabul oranı ile 360 gözlem oranı arasındaki fark raporlanır |
+| ➕ Danışma sorusu (E3) | Formun sonunda tek soru: "Teknik sorularınızı en çok kime sorarsınız? (en fazla 3 kişi)". Danışılma sayısı gizli uzman bayrağı ve mentor aday listesi üretir; kişiye puan olarak yansımaz |
 
 ---
 

@@ -73,6 +73,7 @@ erDiagram
 ### 2.3 Rol profili
 
 **RolProfili (role_profile):** rol_id, yetkinlik_id, hedef_seviye (1–5), ağırlık (1–3), zorunlu_mu, sürüm.
+**RolLisansZorunluluğu (role_license_requirement):** rol_id, lisans_kodu, zorunlu_mu, uyum_onay_kisi_id, onay_tarihi — E8.
 **ŞubeSınıfıİstisnası (branch_class_override):** rol_id, şube_sınıfı, yetkinlik_id, hedef_seviye — aynı rol farklı şube sınıfında farklı hedef.
 **PozisyonİstisnasI (position_override):** pozisyon_id, yetkinlik_id, hedef_seviye, ağırlık, ekle_mi/çıkar_mı, gerekçe.
 
@@ -84,9 +85,10 @@ erDiagram
 **GöstergeDurumu (indicator_status):** satır_id, gösterge_id, öz_işaretledi_mi, otomatik_karar (Kanıtlandı | Kanıtlanmadı | Yok), yönetici_kararı (Kanıtlandı | Kanıtlanmadı | Ek bilgi), alan_uzmanı_kararı (Onay | Red | Yok; seviye 5), gözlem_360_oranı (hesaplanan), karar_notu.
 **KalibrasyonOturumu** kademe alanı: Şube | Bölge | Merkez | Departman; bayraklı kayıt listesi (KPI–seviye uyumsuzluğu, cömertlik, alan uzmanı reddi, devralınan seviyeden sapma).
 **DevralınanDeğerlendirme (legacy_assessment):** kisi_id, dönem, eski_yetkinlik_kodu, eski_puan (İyi olabilirsin | İyisin | Çok iyisin), eşlenen_yetkinlik_id, dönüştürülmüş_seviye (2 | 3 | 4), kaynak_dosya. **YetkinlikEşleme (competency_mapping):** eski_kod, eski_ad, yeni_yetkinlik_id, eşleme_türü (Birebir | Birleştirme | Emekli), not.
-**Kanıt (evidence):** id, kisi_id, tür (İş çıktısı | Proje/görev | Gözlem notu | 360 teyidi | Sertifika/sınav | Paydaş geri bildirimi | Ölçülebilir sonuç | Sistem verisi | Lisans | Yetki limiti | Denetim bulgusu | Vaka sınavı | Gizli müşteri), otomatik_mı (bool; sistem ürettiyse), kaynak_kaydı_id (KPI/lisans/yetki), ne_yaptım, başlangıç_tarihi, bitiş_tarihi, sonuç, doğrulayıcı_kisi_veya_belge, dosya_url, oluşturan_id, durum (Taslak | Sunuldu | Kabul | Ek bilgi | Red), yönetici_kararı_notu, geçerlilik_bitiş (hesaplanan), oluşturma. Kanıt döngüden bağımsız **kanıt kasasında** yaşar; değerlendirmede göstergelere bağlanır.
+**Kanıt (evidence):** id, kisi_id, tür (İş çıktısı | Proje/görev | Gözlem notu | 360 teyidi | Sertifika/sınav | Paydaş geri bildirimi | Ölçülebilir sonuç | Sistem verisi | Lisans | Yetki limiti | Denetim bulgusu | Vaka sınavı | Gizli müşteri | Simülasyon/değerlendirme merkezi | Gelişim görevi), otomatik_mı (bool; sistem ürettiyse), kaynak_kaydı_id (KPI/lisans/yetki), ne_yaptım, başlangıç_tarihi, bitiş_tarihi, sonuç, doğrulayıcı_kisi_veya_belge, dosya_url, oluşturan_id, durum (Taslak | Sunuldu | Kabul | Ek bilgi | Red), yönetici_kararı_notu, geçerlilik_bitiş (hesaplanan), oluşturma. Kanıt döngüden bağımsız **kanıt kasasında** yaşar; değerlendirmede göstergelere bağlanır.
 **GöstergeKanıt (indicator_evidence):** kanıt_id, gösterge_id, satır_id — bir kanıt birden çok göstergeyi karşılayabilir.
 **360Davet (feedback_invite):** değerlendirme_id, değerlendirici_kisi_id (anonim hash ile saklanır), ilişki (Ast | Akran | İç müşteri | Üst), seçen (Yönetici | Çalışan), durum, son_tarih.
+**DanışmaBeyanı (advice_nomination):** davet_id (360), beyan_eden_hash, danışılan_kisi_id, konu (Teknik | Davranışsal), dönem — E3; kişi başına en fazla 3 aday. Hesaplanan: `danışılma_sayısı`, `gizli_uzman_bayrağı` (danışılma ≥ birim medyanının 2 katı ve kanıtlanmış seviye ≤ 2).
 **360Gözlem (feedback_observation):** davet_id, gösterge_id, yanıt (Gözlemledim | Gözlemlemedim | Fikrim yok), örnek_metin. Davranışsal yetkinliklerde tüm göstergeler; teknikte sadece gözlem teyidi.
 **KalibrasyonOturumu (calibration_session):** döngü_id, departman_id, tarih, katılımcılar, kararlar (satır_id → eski/yeni seviye, gerekçe).
 
@@ -94,6 +96,7 @@ erDiagram
 
 **GelişimPlanı (development_plan):** id, kisi_id, döngü_id, durum (Taslak | Onaylı | Devam | Tamamlandı | İptal), onaylayan_id, hedef_rol_id (kariyer hedefi, opsiyonel).
 **PlanEylemi (plan_action):** id, plan_id, yetkinlik_id, mevcut_seviye, hedef_seviye, öncelik_puanı (hesaplanan), eylem_tipi (İşBaşında70 | İlişki20 | Eğitim10), eylem_açıklaması, eğitim_id (ops.), mentor_kisi_id (ops.), sorumlu_id, bitiş_tarihi, başarı_kanıtı, durum, ilerleme_yüzde, katalizör_önerisi_mi, kapanış_yeniden_değerlendirme_satır_id.
+**GelişimGörevi (stretch_assignment):** id, ad, açıklama, org_birim_id, sahip_kisi_id, hedef_yetkinlik_idler, hedef_seviye, süre, başlangıç, durum (İlan | Dolu | Tamamlandı), kontenjan — E7. **GörevBaşvurusu (assignment_application):** görev_id, kisi_id, gerekçe, durum, sonuç_kanıt_id (tamamlanınca kanıt kasasına "Gelişim görevi" türünde yazılır; potansiyel stretch göstergesine sayılır).
 **Eğitim (learning_item):** id, ad, tür (Sınıf | e-Öğrenme | Sertifika | Gölgeleme | Rotasyon), sağlayıcı, süre, maliyet, aktif.
 **EğitimYetkinlik (learning_competency):** eğitim_id, yetkinlik_id, başlangıç_seviye, hedef_seviye.
 **Mentorluk (mentoring):** mentor_id, menti_id, yetkinlik_id, başlangıç, bitiş, durum.
@@ -114,9 +117,13 @@ erDiagram
 **MülakatKılavuzu (interview_guide):** talep_id, yetkinlik_id, hedef_seviye, sorular[], çıpa_referansı.
 **AdayDeğerlendirme (candidate_assessment):** talep_id, aday_ad, mülakatçı_id, yetkinlik_id, seviye, gerekçe; sonuç (açık raporu), işe_alındı_mı, kisi_id (alınınca bağlanır; 90. gün karşılaştırması için).
 
-### 2.8 Sistem
+### 2.8 Uzman uzlaşısı (Delphi) — E2
 
-**Kullanıcı/Rol/Yetki**, **Bildirim** (şablon, kanal, tetik), **Ayar** (eşikler: kritiklik eşiği, hazırlık kuralları, bayatlama süresi, fark ≥ 2 kuralı), **DenetimGünlüğü** (varlık, id, işlem, önce/sonra JSON, kullanıcı, zaman), **Anlık Görüntü (snapshot)** — her döngü kilitlendiğinde harita metrikleri tablo olarak dondurulur.
+**DelphiTuru (delphi_round):** id, konu (KPI eşiği | Kritik beceri | Kritik rol), hedef_id (gösterge/yetkinlik/rol), tur_no (1–2), katılımcı_kisi_idler, durum, son_tarih. **DelphiPuan (delphi_score):** tur_id, katılımcı_hash, değer, gerekçe. Hesaplanan: medyan, çeyrekler arası aralık; 2. tur sonunda IQR ≤ eşik ise "uzlaşıldı", aksi halde kolaylaştırıcı (İK) karar toplantısı.
+
+### 2.9 Sistem
+
+**Kullanıcı/Rol/Yetki**, **Bildirim** (şablon, kanal, tetik), **Ayar** (eşikler: kritiklik eşiği, hazırlık kuralları, bayatlama süresi, fark ≥ 2 kuralı), **DenetimGünlüğü** (varlık, id, işlem, önce/sonra JSON, kullanıcı, zaman), **Anlık Görüntü (snapshot)** — her döngü kilitlendiğinde harita metrikleri tablo olarak dondurulur; E10 ölçüm kalitesi metrikleri (kappa, gösterge ayırt ediciliği, KPI–seviye yakınsama, 360 yanıt oranı, yönetici yük istatistikleri) dahildir.
 
 ## 3. Hesaplama kuralları
 
@@ -145,6 +152,11 @@ erDiagram
 | Hazırlık (öneri) | Hazır: zorunlu açık = 0 ve Σaçık ≤ 2; 1-2 yıl: zorunlu açık ≤ 1 ve potansiyel ≥ 3; aksi 3+ yıl |
 | Gelişim hızı | `Σ(seviye artışı) / kişi / yıl` |
 | Yönetici cömertlik endeksi | `ort(yönetici puanı) − ort(departman yönetici puanı)` |
+| Beceri komşuluğu (E1) | Rol A→B benzerliği = `1 − Σ max(hedefB − hedefA, 0) × ağırlıkB / Σ hedefB × ağırlıkB`; kişi için "en yakın 3 rol" = mevcut mutabık seviyelerle hesaplanan açığı en küçük roller |
+| Yönetici yükü (E4) | `bekleyen gösterge kararı × 0,5 dk + bekleyen kanıt × 2 dk`; eşik: 8 saat/döngü aşımında İK iş ortağına uyarı |
+| Yönetici tutarlılık göstergesi (E5) | Kanıtlandı ⇔ `|cömertlik endeksi| ≤ 0,5 AND red gerekçesi doluluk = %100 AND mutabakat süresinde ≥ %90` |
+| Gizli uzman bayrağı (E3) | `danışılma ≥ 2 × birim medyanı AND kanıtlanmış seviye ≤ 2` |
+| Değerlendiriciler arası uyum (E10) | Çerçeve eğitimi vakalarında ve kalibrasyonda yeniden puanlanan örneklerde Cohen kappa; hedef ≥ 0,6 |
 | Katalizör korelasyonu | Pearson(katalizör puanı dönem t, seviye artışı t→t+1); n ≥ 30'da raporlanır |
 
 ## 4. Durum makineleri

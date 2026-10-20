@@ -35,7 +35,7 @@ Her yetkinlik için 1–5 seviye çıpası yazılmıştır (kısaltılmış; se�
 | L4 | **Etki ve İkna** | Hiyerarşi olmadan taraf toplar, paydaş yönetir |
 | L5 | **Değişim Liderliği** | Dönüşümü tasarlar, direnci yönetir, sürdürür |
 | L6 | **Psikolojik Güvenlik Yaratma** | Hata ve fikrin konuşulabildiği ortam kurar |
-| L7 | **Performans Yönetimi** | Hedef koyar, izler, sonuç alır, adil değerlendirir |
+| L7 | **Performans Yönetimi** | Hedef koyar, izler, sonuç alır, adil değerlendirir. ➕ v1.1: Seviye 3 göstergesi sistem verisiyle otomatik dolar — "Değerlendirme döngüsünde cömertlik endeksi ±0,5 içinde kaldı, tüm red gerekçelerini yazdı, mutabakatları süresinde tamamladı" (E5) |
 
 ## C. Örnek tam çıpa — Sürekli Öğrenme
 

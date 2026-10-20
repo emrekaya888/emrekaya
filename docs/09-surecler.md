@@ -120,7 +120,7 @@ sequenceDiagram
 | 2 | Çalıştay | Ortak çekirdek (A) ve satış çekirdeği (B) tek seferde, tüm roller için | Aynı beceri her rolde aynı tanım; sadece hedef seviye değişir |
 | 3 | Çalıştay | Segmente özgü (C), gişe/operasyon (D), yönetim (E) becerileri | Rol başına toplam 12–18 |
 | 4 | Çalıştay | Her beceri × seviye için göstergeler (P4) | |
-| 5 | GMY | Her otomatik kanıt göstergesi için KPI eşiği: KPI kodu, karşılaştırma, eşik, dönem sayısı | Geçen yıl verisiyle simülasyon: eşik, kişilerin kaçını hangi seviyeye koyuyor? |
+| 5 | GMY + Delphi paneli | Her otomatik kanıt göstergesi için KPI eşiği: KPI kodu, karşılaştırma, eşik, dönem sayısı; ➕ E2: eşik, 5 kişilik panelin (GMY, 2 bölge müdürü, 2 şube müdürü) anonim iki turlu Delphi puanlamasıyla belirlenir | Geçen yıl verisiyle simülasyon: eşik, kişilerin kaçını hangi seviyeye koyuyor? |
 | 6 | İK + Uyum | Lisans ön koşulları ve yetki limiti eşlemeleri | Lisans yoksa seviye kilidi: uyum riski aynı zamanda |
 | 7 | GMY | Şube sınıfına göre hedef istisnaları | Kurumsal şube +1 kuralı |
 | 8 | İK | Katalizör bağları ve ağırlıkları | |
@@ -214,6 +214,7 @@ sequenceDiagram
 | 4 | Y | Gözlem notu ekler (ortak müşteri görüşmesi, iş başı gözlem, proje) | Tarihli ve somut; "iyi çalışıyor" kanıt değildir |
 | 5 | Y | İsterse kanıtı hemen inceler (Kabul / Ek bilgi / Red); yoksa döngüde toplu inceler | Erken inceleme döngü yükünü dağıtır |
 | 6 | S | Kişiye "hedef seviyeye kadar eksik göstergeler" panosu; bayatlayacak kanıtlar için 60 gün önce uyarı | |
+| 7 | S | ➕ E3: 360 danışma beyanlarından "gizli uzman" bayrağı → yöneticiye "kanıt eksik olabilir" uyarısı; ➕ E7 (Faz 2): gelişim görevi tamamlanınca otomatik kanıt | |
 
 **Kurallar:** Kanıt geçerliliği 24 ay. Red edilen kanıt gerekçesiyle saklanır. Seviye 5 göstergesine bağlanan kanıt üst doğrulama kuyruğuna düşer.
 **Dikkat:** Kanıt "övgü yazısı" değil, çıktıdır. Çalışanlar başta çok sayıda zayıf kanıt yükler; yöneticiye "kanıt kalitesi" kılavuzu verilmeli. Gizli/kişisel veri içeren dosyalar (müşteri bilgisi) maskelenmeli.
@@ -260,7 +261,7 @@ stateDiagram-v2
 | 9 Kalibrasyon | ÜY + İK | P11; düzeltmeler gerekçeli | | |
 | 10 Kilit | İK | Anlık görüntü; sonraki değişiklik "düzeltme kaydı" ile | | |
 
-**Dikkat (genel):** Aşama tamamlanma oranı birim bazında izlenir; < %70 olan birime İK iş ortağı müdahalesi. Yönetici cömertlik endeksi aşama 3 bitince hesaplanır ve kalibrasyona taşınır.
+**Dikkat (genel):** Aşama tamamlanma oranı birim bazında izlenir; < %70 olan birime İK iş ortağı müdahalesi. ➕ E4: yönetici yük panosu; tahmini bekleyen iş 8 saati aşan yöneticiye İK iş ortağı desteği ve "öncelikli satırlar" görünümü. Yönetici cömertlik endeksi aşama 3 bitince hesaplanır ve kalibrasyona taşınır.
 **Çıktı:** Kişi × yetkinlik mutabık seviye, kanıt izi, açık, bayraklar.
 **Ölçüt:** Tamamlanma ≥ %90; öz-beyan ile kanıtlanmış seviye farkı ortalama ≤ 0,5; itiraz oranı ≤ %10.
 
@@ -362,7 +363,7 @@ stateDiagram-v2
 |---|---|---|---|
 | 1 | S | Açık ve öncelik puanı (açık × ağırlık × kritiklik); kanıtlanmamış göstergeler listelenir; katalizör düşükse önce katalizör önerisi | İlk 3–5 öncelik; dağılma yok |
 | 2 | Ç | Taslak plan: her öncelik için eylem (iş başında / mentor / eğitim), bitiş, başarı kanıtı | Eylem "eğitime git" değil "X göstergesini kanıtlayacak iş" |
-| 3 | S | Mentor önerisi: aynı beceride seviye ≥ 4, mentor başına ≤ 3 menti | |
+| 3 | S | Mentor önerisi: aynı beceride seviye ≥ 4, mentor başına ≤ 3 menti; ➕ E3: danışılma sayısı yüksek kişiler aday listesine eklenir; ➕ E1: kariyer hedefi için "en yakın 3 rol" ve geçiş açığı gösterilir; ➕ E7 (Faz 2): açık uyan gelişim görevleri önerilir | |
 | 4 | Y | Planı onaylar, kaynak taahhüdü (görev, rotasyon, proje) | Yönetici "iş" vermezse plan kâğıtta kalır |
 | 5 | Ç + Mentor | Uygulama; ilerleme % ve notlar | Çeyrekte bir kontrol |
 | 6 | Ç | Eylem tamamlanınca kanıtı kasaya ekler → gösterge → ara döngüde yeniden değerlendirme | Kapanış = seviye artışı veya gösterge kanıtı |
@@ -385,7 +386,8 @@ stateDiagram-v2
 | 2 | İK | Kurum, GM, bölge, şube sınıfı, segment ısı haritaları; güçlü alanlar (≥ hedef+0,5), gelişim alanları (< %60 karşılama) |
 | 3 | İK | Kalite metrikleri: öz–kanıtlanmış farkı, cömertlik, itiraz, 360 yanıt, plan oranı |
 | 4 | İK | Devralınan vs kanıtlanmış karşılaştırması (ilk döngü), trend (sonraki döngüler) |
-| 5 | İK | Katalizör ve potansiyel doğrulama (n ≥ 30; 2. döngüden) |
+| 5 | İK | Katalizör ve potansiyel doğrulama (n ≥ 30; 2. döngüden); ➕ E10: ölçüm kalitesi panosu (kappa, gösterge ayırt ediciliği, KPI–seviye yakınsama) |
+| 5b | İK + GMY | ➕ E6 (Faz 2): stratejik beceri planı — yükselen becerilerde kapsama hedefi, azalan becerilerde yatırım durdurma; gelecek eğilimi etiketleri yıllık gözden geçirilir |
 | 6 | İK → YK/GMY | Döngü raporu: bulgular, revizyon önerileri, yatırım öncelikleri |
 | 7 | Y/ÜY | Kendi birim panosu; envanter araması ("X ≥ 3 kimde var") |
 
@@ -404,7 +406,7 @@ stateDiagram-v2
 | # | Kim | Adım |
 |---|---|---|
 | 1 | S | Her beceri için iç kıtlık (bus factor) ve kayıp riski (sahiplerin ayrılma/emeklilik riski) hesaplanır |
-| 2 | ÜY/GMY + İK | İş etkisi, edinim süresi, dış kıtlık puanlanır (1–5) |
+| 2 | ÜY/GMY + İK | İş etkisi, edinim süresi, dış kıtlık puanlanır (1–5); ➕ E2: Delphi aracıyla anonim iki tur |
 | 3 | S | Kritik beceri skoru (02 §3 formülü) ≥ eşik → "Kritik" önerisi |
 | 4 | ÜY/GMY + İK | Öneriyi onaylar/düzeltir (gerekçeli) |
 | 5 | ÜY/GMY + İK | Kritik rol: stratejik etki, benzersizlik, doldurma süresi, boşluk maliyeti, kritik beceri yoğunluğu → skor → onay |
@@ -425,7 +427,8 @@ stateDiagram-v2
 
 | # | Kim | Adım |
 |---|---|---|
-| 1 | S | Her kritik rol için aday önerisi: kariyer yolunda olan + rol profiline göre açık + potansiyel; hazırlık önerisi (Hazır / 1–2 yıl / 3+) |
+| 1 | S | Her kritik rol için aday önerisi: kariyer yolunda olan + rol profiline göre açık + potansiyel + ➕ E1 beceri komşuluğu (kariyer yolunda tanımlı olmayan ama profili yakın kişiler de önerilir); hazırlık önerisi (Hazır / 1–2 yıl / 3+) |
+| 1b | İK | ➕ E9 (Faz 2): şube/bölge müdürü havuzundaki "1–2 yıl" adayları için değerlendirme merkezi; sonuç "Simülasyon" kanıtı olarak kasaya girer |
 | 2 | ÜY + İK | Aday havuzunu teyit eder, ekler/çıkarır (gerekçeli); hazırlığı onaylar |
 | 3 | S | Her aday için otomatik gelişim planı taslağı (hedef rol açıkları) → P13 |
 | 4 | İK | Yedek derinliği raporu: kritik rol başına 0 / 1 / 2+ hazır yedek; şube müdürlüğü ve bölge müdürlüğü havuzları bölge bazında |

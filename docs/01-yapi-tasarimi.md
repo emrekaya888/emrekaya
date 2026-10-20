@@ -326,3 +326,25 @@ Gizlilik: kişi bazlı puanlar sadece hiyerarşi hattı + İK; akran/360 girdile
 - Sistem "form doldurma" olarak algılanır → gelişim planı ve mentor eşleşmesi ilk döngüde görünür fayda olarak sunulur; yöneticilere servis haritası hemen geri verilir.
 
 **Başarı ölçütleri (12 ay):** değerlendirme tamamlanma ≥ %90; mutabık kalınan satır oranı ≥ %85; her kritik rol için en az 1 adlandırılmış yedek; plan tamamlama ≥ %60; öz–yönetici farkı ≤ 0,5.
+
+---
+
+## 9. v1.1 eklemeleri — araştırma ve sektör raporlarından türeyen tasarım kararları
+
+Öğrenme raporundaki (11) kuram, meta-analiz ve sektör bulguları tasarıma on ekleme getirdi. Her biri için gerekçe, hangi faza girdiği ve hangi dokümanlarda ayrıntılandığı aşağıdadır. "Ocak" = ilk döngü açılışında var; "Faz 2" = ilk döngü kapanışından sonra.
+
+| # | Ekleme | Gerekçe (kaynak) | Faz | Ayrıntı |
+|---|---|---|---|---|
+| E1 | **Beceri komşuluğu ve kariyer yolu motoru** — her kişi için rol profilleri arası örtüşmeden hesaplanan "en yakın 3 rol" ve geçiş açığı; kariyer yolları elle değil veriyle de önerilir | Beceri temelli organizasyon literatürü (Mercer, Bersin); LinkedIn: kariyer ilerlemesi öğrenmenin 1. motivasyonu | Ocak (hesap), Faz 2 (öneri ekranı) | 02 §3, 09 P13/P16 |
+| E2 | **Delphi uzlaşı aracı** — KPI eşiği ve kritiklik puanları için anonim, iki turlu uzman puanlama; dağılım ve gerekçeler görünür, ikinci turda yakınsama | Delphi tekniği; tek toplantıda "en yüksek ses" sorunu | Ocak (eşikler için şart) | 02 §2.9, 09 P3/P15 |
+| E3 | **Danışma ağı sinyali (ONA-lite)** — 360 formuna tek soru: "Teknik sorularınızı en çok kime sorarsınız? (en fazla 3 kişi)"; danışılma sayısı yüksek ama kanıtlanmış seviyesi düşük kişi "gizli uzman, kanıt eksik" bayrağı alır; mentor aday listesine girer | Organizasyonel ağ analizi; seviye 4–5 doğrulaması için ikinci kaynak | Ocak | 02 §2.4, 05 §5, 09 P7/P11 |
+| E4 | **Yönetici yük panosu ve eşiği** — döngüde yönetici başına bekleyen gösterge kararı sayısı ve tahmini süre izlenir; eşik aşılırsa İK iş ortağına otomatik uyarı ve "öncelikli satırlar" görünümü | Gartner 2025: yöneticilerin ~%75'i bunalmış; Gallup: ekip bağlılığının ~%70'i yöneticiye bağlı | Ocak | 02 §3, 06 §6, 09 P8 |
+| E5 | **Yönetici tutarlılığı liderlik göstergesi** — "Performans Yönetimi" (L7) yetkinliğine sistem verisiyle otomatik dolan gösterge: cömertlik endeksi ±0,5 içinde, red gerekçeleri tam, mutabakat süresinde | Öğrenme raporu 10. bölüm önerisi; yönetici kalitesi ölçülmeden iyileşmez | Ocak (gösterge), ilk döngü sonunda değerlendirilir | 04 B, 05 §2 |
+| E6 | **Stratejik beceri planı görünümü** — "Yükselen" etiketli becerilerde hedef kapsama (ör. 2 yılda seviye ≥ 3 olan kişi sayısı), "Azalan" becerilerde yatırım durdurma; yıllık gelecek eğilimi gözden geçirmesi | WEF 2025: becerilerin ~%40'ı 2030'a kadar değişiyor; yarı ömür kısalıyor | Faz 2 (ilk harita sonrası) | 09 P14, P6 |
+| E7 | **Gelişim görevleri pazarı** — kısa süreli proje/görev ilanları; açığı olan ve "stretch" isteyen kişiler başvurur; tamamlanan görev hem gelişim planı eylemi hem potansiyel (stretch) kanıtıdır | 70-20-10'un %70'i; Unilever iç yetenek pazarı; CEB potansiyel modelinde "istek" | Faz 2 | 02 §2.5, 09 P13 |
+| E8 | **Rol–lisans zorunluluk matrisi** — rol profiline `zorunlu_lisans_kodları`; Uyum birimi onaylı; lisanssız görev yapan listesi uyum raporu olarak çıkar | SPK Tebliği VII-128.7: zorunluluk unvana bağlı; denetimde savunulabilirlik | Ocak | 02 §2.3, 06 §4 |
+| E9 | **Değerlendirme merkezi kanıt türü** — şube müdürü ve bölge müdürü yedek havuzları için simülasyon/vaka merkezi; sonuçları "Simülasyon" kanıt türü olarak kasaya girer | Gaugler ve ark. (1987) ~.37, Hermelin ve ark. ~.28 geçerlilik; kritik rollerde değer | Faz 2 | 02 §2.4, 09 P16 |
+| E10 | **Ölçüm kalitesi panosu** — değerlendiriciler arası uyum (kappa), gösterge ayırt ediciliği, KPI–seviye yakınsaması, 360 yanıt oranı; döngü kilidinde anlık görüntüye dahil | Psikometrik güvenilirlik/geçerlilik; sistem her döngüde kendi kanıtını üretir | Ocak (temel), Faz 2 (tam) | 02 §2.8, 10 §7 |
+
+**Bilerek eklenmeyenler:** Performansa bağlı ücret ve 9-kutu (S5/S11 kararları); yapay zekâ ile beceri çıkarımı (KVKK ve kanıt ilkesi; en fazla "öneri" olarak Faz 3'te); zorunlu dağılım (araştırma karşı).
+

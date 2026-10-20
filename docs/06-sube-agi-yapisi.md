@@ -223,6 +223,7 @@ Kurallar:
 - **Pilot yok, tek seferde açılış (karar):** pilot yerine (a) gerçek verilerle **prova döngüsü** (test ortamında 2 bölge verisiyle uçtan uca akış, sonuçlar silinir), (b) 600 yöneticiye kısa rol bazlı eğitim ve 15 İK iş ortağına derin eğitim, (c) açılış ayında İK yardım masası, (d) ilk döngünün "kalibrasyon yılı" ilan edilmesi: sonuçlar ücret/terfiye bağlı değil (S5), eşikler ve göstergeler ilk döngü sonunda revize edilir.
 - **Tek döngü, dalgalı açılış:** aynı döngü içinde bölgeler 3 dalgada (5+5+5) 2'şer hafta arayla açılır; takvim tek, yük dağıtılmış.
 - **İK iş ortağı başına bölge:** 15 bölge × 1 İK iş ortağı kalibrasyon ve itirazları taşır; iş ortağı başına ~30 şube, ~430 çalışan.
+- ➕ **Yönetici yük panosu (E4):** şube müdürü başına bekleyen karar ve tahmini süre izlenir; 8 saat/döngü eşiği aşılınca İK iş ortağı devreye girer. Gartner 2025 bulgusu (yöneticilerin ~%75'i bunalmış) bu önlemin gerekçesidir.
 
 ---
 

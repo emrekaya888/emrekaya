@@ -8,7 +8,7 @@ Bu depo şu an **tasarım aşamasındadır**. Uygulama kodu yazılmadan önce t�
 
 | Doküman | İçerik |
 |---|---|
-| [docs/YYS-Tasarim-Dokumani.pdf](docs/YYS-Tasarim-Dokumani.pdf) | **Tüm dokümanların tek PDF sürümü** (kapak, içindekiler, 00–11 ve Ek A; 106 sayfa) |
+| [docs/YYS-Tasarim-Dokumani.pdf](docs/YYS-Tasarim-Dokumani.pdf) | **Tüm dokümanların tek PDF sürümü** (kapak, içindekiler, 00–11 ve Ek A) |
 | [docs/Yetkinlik-Yonetimi-Ogrenme-Raporu.pdf](docs/Yetkinlik-Yonetimi-Ogrenme-Raporu.pdf) | **Öğrenme raporunun ayrı PDF sürümü** (24 sayfa) |
 | [docs/01-yapi-tasarimi.md](docs/01-yapi-tasarimi.md) | Kavramsal çerçeve, modüller, seviye ölçeği, süreç akışları, metrikler, kritik rol/yedekleme, işe alım bağlantısı, yol haritası |
 | [docs/02-veri-modeli.md](docs/02-veri-modeli.md) | Varlıklar, alanlar, ilişkiler, durum makineleri, hesaplama formülleri |
