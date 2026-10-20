@@ -16,6 +16,7 @@ Bu depo şu an **tasarım aşamasındadır**. Uygulama kodu yazılmadan önce t�
 | [docs/06-sube-agi-yapisi.md](docs/06-sube-agi-yapisi.md) | Bölge → şube → portföy ekipleri; ortak şube teknik beceri seti, segment becerileri, hedef matrisi, bankacılık kanıt türleri, çift hat değerlendirme, üç kademeli kalibrasyon, ölçek hesabı |
 | [docs/07-teknik-mimari.md](docs/07-teknik-mimari.md) | Teknoloji yığını, kod yapısı, yetkilendirme, içe aktarma, güvenlik, teslim planı |
 | [docs/09-surecler.md](docs/09-surecler.md) | Süreç kitabı: 19 süreç; her biri için tetikleyici, adımlar (kim ne yapar), kurallar, dikkat noktaları, çıktı ve ölçüt |
+| [docs/10-yontem-kilavuzu.md](docs/10-yontem-kilavuzu.md) | Danışman yöntem kılavuzu: yetkinlik seçim yöntemi, teknik beceri tespit yöntemi, BARS gösterge geliştirme, anket ve form tasarımları (örnek maddelerle), veri toplama planı, KPI eşik yöntemi, değerlendirici hataları ve eğitimi, psikometrik kontroller, iletişim, KVKK |
 | [docs/08-uygulama-akisi.md](docs/08-uygulama-akisi.md) | Ocak 2027 açılışına giden adım adım uygulama akışı: her adımda yapılacaklar, dikkat edilecekler, çıktı ve çıkış kriteri; sprint takvimi; döngü işletimi |
 | [docs/sablonlar/teknik-beceri-toplama-sablonu.md](docs/sablonlar/teknik-beceri-toplama-sablonu.md) | Müdür ve yöneticilerden teknik beceri toplamak için şablon, çalıştay akışı ve kalite kriterleri |
 | [docs/sablonlar/teknik-beceri-toplama.csv](docs/sablonlar/teknik-beceri-toplama.csv) | Aynı şablonun Excel'e açılabilir CSV sürümü |
