@@ -245,3 +245,22 @@ export const competencyOrgUnitsRelations = relations(competencyOrgUnits, ({ one 
 
 export type Competency = typeof competencies.$inferSelect;
 export type Indicator = typeof indicators.$inferSelect;
+
+// ---------------- Sprint 3: Rol profilleri
+export const profileSource = pgEnum("profile_source", ["AUTO", "MANUAL", "COPY"]);
+export const roleProfiles = pgTable("role_profiles", {
+  id: serial("id").primaryKey(),
+  roleId: integer("role_id").notNull().references(() => roles.id),
+  competencyId: integer("competency_id").notNull().references(() => competencies.id),
+  targetLevel: integer("target_level").notNull().default(3),
+  weight: integer("weight").notNull().default(2),
+  mandatory: boolean("mandatory").notNull().default(false),
+  source: profileSource("source").notNull().default("MANUAL"),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+}, (t) => [uniqueIndex("role_profiles_role_comp_idx").on(t.roleId, t.competencyId), index("role_profiles_role_idx").on(t.roleId)]);
+export const roleProfilesRelations = relations(roleProfiles, ({ one }) => ({
+  role: one(roles, { fields: [roleProfiles.roleId], references: [roles.id] }),
+  competency: one(competencies, { fields: [roleProfiles.competencyId], references: [competencies.id] }),
+}));
+export const rolesRelations = relations(roles, ({ many }) => ({ profiles: many(roleProfiles), positions: many(positions) }));
+export type RoleProfile = typeof roleProfiles.$inferSelect;

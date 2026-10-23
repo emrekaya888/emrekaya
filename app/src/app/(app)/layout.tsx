@@ -7,6 +7,7 @@ const nav = [
   { href: "/organizasyon", label: "Organizasyon" },
   { href: "/kisiler", label: "Kişiler" },
   { href: "/kutuphane", label: "Yetkinlik kütüphanesi" },
+  { href: "/rol-profilleri", label: "Rol profilleri" },
   { href: "/roller", label: "Roller ve pozisyonlar" },
   { href: "/ice-aktarma", label: "İçe aktarma" },
   { href: "/kurulum", label: "Kurulum" },

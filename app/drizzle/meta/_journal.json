@@ -15,6 +15,13 @@
       "when": 1792737213012,
       "tag": "0001_damp_franklin_storm",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792749016751,
+      "tag": "0002_bright_captain_marvel",
+      "breakpoints": true
     }
   ]
 }

@@ -31,7 +31,7 @@ export default async function KisilerPage({ searchParams }: { searchParams: Prom
         <table className="table"><thead><tr><th>Sicil</th><th>Ad Soyad</th><th>E-posta</th><th>Rol</th><th>Birim</th><th>Pozisyon</th><th>İşe giriş</th></tr></thead>
           <tbody>
             {rows.length === 0 && <tr><td colSpan={7} className="text-slate-500">Kayıt yok.</td></tr>}
-            {rows.map((r) => <tr key={r.id}><td>{r.no}</td><td className="font-medium">{r.name}</td><td>{r.email ?? "—"}</td><td>{r.role ?? <span className="text-amber-700">Atama yok</span>}</td><td>{r.unit ?? "—"}</td><td>{r.position ?? "—"}</td><td>{r.hireDate ?? "—"}</td></tr>)}
+            {rows.map((r) => <tr key={r.id}><td>{r.no}</td><td className="font-medium"><a href={`/kisiler/${r.id}`} className="underline">{r.name}</a></td><td>{r.email ?? "—"}</td><td>{r.role ?? <span className="text-amber-700">Atama yok</span>}</td><td>{r.unit ?? "—"}</td><td>{r.position ?? "—"}</td><td>{r.hireDate ?? "—"}</td></tr>)}
           </tbody></table>
       </div>
       <div className="flex gap-2 text-sm">

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { asc, count, eq } from "drizzle-orm";
 import { db, schema } from "@/db";
 import { networkLabel, segmentLabel } from "@/db/labels";
@@ -9,7 +10,7 @@ export default async function RollerPage() {
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-bold text-[var(--brand)]">Roller ve pozisyonlar</h1>
-      <p className="text-sm text-slate-500">Rol = iş ailesi + kademe. Pozisyon = rolün bir birimdeki kadrosu. Rol profilleri (hedef seviyeler) sprint 3 kapsamında eklenecek.</p>
+      <p className="text-sm text-slate-500">Rol = iş ailesi + kademe. Pozisyon = rolün bir birimdeki kadrosu. Hedef seviyeler için <Link href="/rol-profilleri" className="underline">Rol profilleri</Link> sayfasına bakın.</p>
       <div className="card overflow-x-auto">
         <table className="table"><thead><tr><th>Kod</th><th>Rol</th><th>İş ailesi</th><th>Kademe</th><th>Yönetici</th><th>Ağ</th><th>Segment</th><th>Pozisyon sayısı</th></tr></thead>
           <tbody>
