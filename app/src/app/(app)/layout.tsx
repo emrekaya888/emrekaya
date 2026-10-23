@@ -4,6 +4,7 @@ import { systemRoleLabel } from "@/db/labels";
 
 const nav = [
   { href: "/", label: "Özet" },
+  { href: "/asamalar", label: "Aşamalar" },
   { href: "/organizasyon", label: "Organizasyon" },
   { href: "/kisiler", label: "Kişiler" },
   { href: "/kutuphane", label: "Yetkinlik kütüphanesi" },

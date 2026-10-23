@@ -306,3 +306,11 @@ export const evidenceIndicatorsRelations = relations(evidenceIndicators, ({ one 
   indicator: one(indicators, { fields: [evidenceIndicators.indicatorId], references: [indicators.id] }),
 }));
 export type Evidence = typeof evidence.$inferSelect;
+
+// ---------------- Ayarlar (aşama onayları vb.)
+export const settings = pgTable("settings", {
+  key: text("key").primaryKey(),
+  value: jsonb("value").notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedBy: integer("updated_by"),
+});

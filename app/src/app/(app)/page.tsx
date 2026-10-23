@@ -1,5 +1,6 @@
 import { count, isNull, and, eq } from "drizzle-orm";
 import { db, schema } from "@/db";
+import { StageBanner } from "./stage-banner";
 
 export default async function OzetPage() {
   const [[units], [persons], [rolesCount], [positionsCount], [assigned], batches] = await Promise.all([
@@ -16,6 +17,7 @@ export default async function OzetPage() {
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold text-[var(--brand)]">Özet</h1>
+      <StageBanner />
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
         {cards.map(([label, value]) => (
           <div key={label} className="card"><div className="text-sm text-slate-500">{label}</div><div className="text-2xl font-bold">{value}</div></div>
