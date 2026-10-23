@@ -238,3 +238,147 @@ const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, m => ({ "&": "&a
 const pct = x => "%" + Math.round(x * 100);
 const activeCycle = () => S.cycles.find(c => c.status !== "KILITLI") || null;
 const lastCycle = () => S.cycles[S.cycles.length - 1] || null;
+
+// ===================== Arayüz altyapısı =====================
+const $ = sel => document.querySelector(sel);
+let route = "ozet", param = null, flash = null;
+function go(r, p) { route = r; param = p == null ? null : p; render(); window.scrollTo(0, 0); }
+function note(kind, text) { flash = { kind, text }; render(); }
+function confirmBox(title, text, onYes, opts) {
+  opts = opts || {};
+  $("#modal").innerHTML = `<div class="modal" id="mdl"><div class="box" role="dialog" aria-modal="true"><h3>${esc(title)}</h3><p class="small">${esc(text)}</p>${opts.input ? `<label>${esc(opts.input)}<textarea id="mdl-in" rows="3"></textarea></label>` : ""}<div class="row" style="justify-content:flex-end;margin-top:12px"><button class="btn" id="mdl-no">Vazgeç</button><button class="btn p ${opts.danger ? "danger" : ""}" id="mdl-yes">${esc(opts.yes || "Evet")}</button></div></div></div>`;
+  $("#mdl-no").onclick = () => { $("#modal").innerHTML = ""; };
+  $("#mdl-yes").onclick = () => { const v = opts.input ? $("#mdl-in").value.trim() : null; if (opts.input && opts.required && v.length < (opts.min || 1)) { $("#mdl-in").focus(); return; } $("#modal").innerHTML = ""; onYes(v); };
+  setTimeout(() => ($("#mdl-in") || $("#mdl-yes")).focus(), 0);
+}
+const opt = (list, val, labelFn) => list.map(x => `<option value="${esc(x.id)}" ${x.id === val ? "selected" : ""}>${esc(labelFn ? labelFn(x) : x.name)}</option>`).join("");
+const lvOpts = (max, val, kind) => { let s = ""; for (let i = 0; i <= (max || 5); i++) s += `<option value="${i}" ${i === val ? "selected" : ""}>${i} · ${LEVELS[kind || "TEKNIK"][i]}</option>`; return s; };
+const badgeLv = (n, kind) => `<span class="badge ${n >= 3 ? "ok" : n >= 1 ? "" : "mute"}" title="${esc(LEVELS[kind || "TEKNIK"][n] || "")}">${n}</span>`;
+const sevBadge = s => `<span class="badge ${s === "HATA" ? "bad" : "warn"}">${s}</span>`;
+const fmtDate = d => d ? new Date(d).toLocaleDateString("tr-TR") : "—";
+const bar = x => `<span class="bar" title="${pct(x)}"><i style="width:${Math.round(x * 100)}%"></i></span>`;
+const flashHtml = () => { if (!flash) return ""; const f = flash; flash = null; return `<div class="msg ${f.kind}">${esc(f.text)}</div>`; };
+
+// ===================== Gezinme =====================
+const NAV = [
+  ["Genel", [["ozet", "Özet ve aşamalar"]]],
+  ["Kurulum", [["kurulum", "Kurulum (birim, rol, kişi)"], ["kutuphane", "Yetkinlik kütüphanesi"], ["profiller", "Rol profilleri"]]],
+  ["Kanıt ve değerlendirme", [["kanit", "Kanıt kasam"], ["ekipkanit", "Ekibimin kanıtları"], ["degerlendirme", "Değerlendirmem"], ["ekipdeg", "Ekibimin değerlendirmeleri"], ["ust", "Üst doğrulama / itiraz"]]],
+  ["Yönetim", [["donguler", "Döngüler"], ["gelisim", "Gelişim planları"], ["raporlar", "Raporlar"], ["yedek", "Yedek ve veri"]]],
+];
+function renderNav() {
+  const who = isAdmin() ? "İK yöneticisi (tam yetki)" : (me() ? me().name : "—");
+  $("#nav").innerHTML = `<div class="brand">Yetkinlik Yönetim Sistemi<small>Sade sürüm v0 · İK Grup Müdürlüğü</small></div>` +
+    NAV.map(([g, items]) => `<div class="group">${g}</div>` + items.map(([r, l]) => `<a href="#${r}" class="${route === r ? "active" : ""}" data-r="${r}">${l}</a>`).join("")).join("") +
+    `<div class="who">Kim olarak bakıyorum<select id="whoSel"><option value="admin" ${isAdmin() ? "selected" : ""}>İK yöneticisi (tam yetki)</option>${S.people.filter(p => p.active).map(p => `<option value="${p.id}" ${S.currentUser === p.id ? "selected" : ""}>${esc(p.name)} · ${esc((role(p.roleId) || {}).name || "")}</option>`).join("")}</select><div class="small" style="opacity:.75;margin-top:4px">${esc(who)}</div></div>`;
+  $("#nav").querySelectorAll("a[data-r]").forEach(a => a.onclick = e => { e.preventDefault(); go(a.dataset.r); });
+  $("#whoSel").onchange = e => { S.currentUser = e.target.value; save(); render(); };
+}
+
+// ===================== Aşamalar (13 §5–7) =====================
+function computeStages() {
+  const units = S.units, roles = S.roles, people = S.people.filter(p => p.active);
+  const noRole = people.filter(p => !role(p.roleId)).length;
+  const noMgr = units.filter(u => !u.managerId && people.some(p => p.unitId === u.id)).map(u => u.name);
+  const actBeh = S.competencies.filter(c => c.kind === "DAVRANISSAL" && c.status === "AKTIF").length;
+  const actTech = S.competencies.filter(c => c.kind === "TEKNIK" && c.status === "AKTIF").length;
+  const drafts = S.competencies.filter(c => c.status !== "AKTIF" && c.status !== "ARSIV").length;
+  const unprofiled = people.filter(p => !S.profiles.some(x => x.roleId === p.roleId)).length;
+  const roleErrors = roles.filter(r => profileWarnings(profileRows(r.id), r.isManager, people.some(p => p.roleId === r.id)).some(w => w[0] === "HATA")).length;
+  const rolesNoTech = roles.filter(r => people.some(p => p.roleId === r.id) && !profileRows(r.id).some(x => x.kind === "TEKNIK")).length;
+  const withEv = people.filter(p => S.evidence.some(e => e.personId === p.id)).length;
+  const pendingEv = S.evidence.filter(e => e.status === "SUNULDU").length;
+  let totalInd = 0, provenInd = 0;
+  for (const p of people) for (const c of provenFor(p.id, p.roleId)) for (const i of c.indicators) if (i.level <= c.target) { totalInd++; if (i.proven) provenInd++; }
+  const coverage = totalInd ? provenInd / totalInd : 0, evRatio = people.length ? withEv / people.length : 0;
+  const lc = lastCycle(); const as = lc ? lc.assessments : []; const nA = as.length;
+  const selfDone = as.filter(a => a.status !== "ACILDI").length;
+  const mgrDone = as.filter(a => ["YONETICI_TAMAM", "MUTABAKATTA", "ITIRAZDA", "KESINLESTI", "KILITLI"].includes(a.status)).length;
+  const finalized = as.filter(a => ["KESINLESTI", "KILITLI"].includes(a.status)).length;
+  const l5pending = as.filter(a => a.status === "UST_DOGRULAMADA").reduce((n, a) => n + a.lines.filter(l => l.l5Candidate && l.l5Validated == null).length, 0);
+  const appealsOpen = as.reduce((n, a) => n + a.lines.filter(l => l.appealFlag).length, 0);
+  const plans = lc ? S.plans.filter(p => p.cycleId === lc.id) : [];
+  const planned = plans.filter(p => p.actions.some(a => a.status !== "IPTAL")).length, approvedPlans = plans.filter(p => p.status !== "TASLAK").length;
+  const pc = x => nA ? `${pct(x / nA)} (${x}/${nA})` : "döngü yok";
+  const st = [
+    { key: "kurulum", title: "Kurulum", summary: "Müdürlükler, roller ve kişiler.", guidance: ["Kurulum sayfasından İK Grup Müdürlüğü altına müdürlükleri ekleyin; her müdürlüğe yönetici atayın.", "Rolleri kademe diziniyle girin (uzman yardımcısı → uzman → kıdemli → yönetmen → müdür → grup müdürü).", "Her kişiye bir birim ve bir rol verin."], link: "kurulum",
+      checks: [["En az 2 birim", units.length >= 2, `${units.length} birim`, true], ["En az 1 rol ve 1 kişi", roles.length >= 1 && people.length >= 1, `${roles.length} rol, ${people.length} kişi`, true], ["Rolsüz kişi yok", noRole === 0, `${noRole} kişi rolsüz`, true], ["Kişisi olan her birimin yöneticisi atanmış", noMgr.length === 0, noMgr.length ? noMgr.join(", ") : "tamam", true]] },
+    { key: "yetkinlik", title: "Yetkinlik tanımlama", summary: "Davranışsal sözlük ve müdürlük başına teknik beceriler; her seviyede 3 gösterge.", guidance: ["Aday sözlüğünden 8–10 çekirdek + 4–5 liderlik yetkinliği seçin; her müdürlükte 60 dk çalıştayla 8–12 teknik beceri çıkarın.", "Göstergeleri geçmiş zamanda, tek davranış ve kanıtı tarif edecek biçimde yazın; kalite uyarılarını temizleyin.", "Her seviyede en az 3 gösterge ve 1 zorunlu olmadan aktifleştirme yapılamaz."], link: "kutuphane",
+      checks: [["Aktif davranışsal yetkinlik ≥ 8", actBeh >= 8, `${actBeh} aktif`, true], ["Aktif teknik beceri ≥ 5", actTech >= 5, `${actTech} aktif`, true], ["Taslak veya incelemede kalan yok", drafts === 0, `${drafts} bekliyor`, false]] },
+    { key: "rol_profili", title: "Rol profilleri", summary: "Her rol için hedef seviye, ağırlık ve zorunluluk; kişi başı en fazla 30 satır.", guidance: ["\"Davranışsal yetkinlikleri tüm rollere uygula\" ile başlayın; sonra her role müdürlüğünün teknik becerilerini ekleyin.", "Hedef: bu rolde 2 yıldır çalışan, beklendiği gibi yapan kişi hangi seviyededir? Her şeyi 4 yapmayın.", "Profilsiz kişi kalmayınca aşama tamamlanır."], link: "profiller",
+      checks: [["Profilsiz kişi yok", unprofiled === 0, `${unprofiled} kişi`, true], ["Yapısal hatası olan rol yok (satır > 30)", roleErrors === 0, `${roleErrors} rol`, true], ["Her rolde en az 1 teknik beceri", rolesNoTech === 0, `${rolesNoTech} rolde teknik yok`, false]] },
+    { key: "kanit", title: "Kanıt toplama (ön dönem)", summary: "Herkes kanıt kasasını doldurur; yöneticiler kanıtları karara bağlar.", guidance: ["Çalışanlara 15 dakikalık tanıtım: \"yaparım değil yaptım\"; bir kanıt birden çok göstergeyi karşılar.", "Yöneticiler kanıtları haftalık inceler; red ve ek bilgi gerekçeli olmalı; gözlem notu ekleyebilir.", "Döngü açılmadan önce hedefe kadar göstergelerin en az %40'ı kanıtlı olmalı."], link: "kanit",
+      checks: [["Kanıt eklemiş kişi oranı ≥ %80", evRatio >= 0.8, `${pct(evRatio)} (${withEv}/${people.length})`, false], ["Hedefe kadar gösterge kapsama ≥ %40", coverage >= 0.4, `${pct(coverage)} (${provenInd}/${totalInd})`, true], ["Bekleyen kanıt yok", pendingEv === 0, `${pendingEv} bekliyor`, false]] },
+    { key: "degerlendirme", title: "Değerlendirme döngüsü", summary: "Döngü açılır: öz-beyan, yönetici doğrulaması, seviye 5 üst onayı.", guidance: ["Döngüler sayfasından döngüyü oluşturup açın; satırlar rol profilinden üretilir.", "Çalışanlar kanıtlarını sunup öz-beyanı tamamlar (2 hafta); yöneticiler kanıtları karara bağlayıp doğrulamayı tamamlar (2 hafta).", "Seviye 5 iddiaları grup müdürü onayına düşer; onaysız 5 verilmez."], link: "donguler",
+      checks: [["Döngü açıldı", !!lc && lc.status !== "HAZIRLIK", lc ? `${lc.name} · ${CYCLE_LABEL[lc.status]}` : "döngü yok", true], ["Öz-beyan tamamlama ≥ %90", nA > 0 && selfDone / nA >= 0.9, pc(selfDone), true], ["Yönetici doğrulaması ≥ %90", nA > 0 && mgrDone / nA >= 0.9, pc(mgrDone), true], ["Seviye 5 onayı bekleyen yok", l5pending === 0, `${l5pending} bekliyor`, false]] },
+    { key: "mutabakat", title: "Mutabakat ve itiraz", summary: "Görüşme, mutabık seviye, çalışan onayı veya itiraz, grup müdürü kararı.", guidance: ["Fark ≥ 2 veya reddedilmiş zorunlu kanıt varsa görüşme zorunlu; görüşme notu yazılır.", "Mutabık seviye kanıtlanmış seviyeyi aşamaz; çalışan onaylar ya da gerekçeli itiraz eder.", "İtirazlar Üst doğrulama / itiraz sayfasında kanıt üzerinden karara bağlanır."], link: "ekipdeg",
+      checks: [["Kesinleşen değerlendirme ≥ %85", nA > 0 && finalized / nA >= 0.85, pc(finalized), true], ["Bekleyen itiraz yok", appealsOpen === 0, `${appealsOpen} satır`, true]] },
+    { key: "kalibrasyon", title: "Kalibrasyon ve kilit", summary: "Grup müdürü + müdürler oturumu; döngü kilitlenir ve anlık görüntü alınır.", guidance: ["Raporlarda dağılım ve cömertlik endeksine bakın; kalibrasyon seviye yükseltmez, kanıt görevi açar.", "Döngüyü kalibrasyon aşamasına alın, sonra kilitleyin."], link: "donguler",
+      checks: [["Döngü kilitlendi", !!lc && lc.status === "KILITLI", lc ? CYCLE_LABEL[lc.status] : "döngü yok", true]] },
+    { key: "raporlar", title: "Raporlar ve gelişim planı", summary: "Isı haritası, kalibrasyon bayrakları, öğrenim ölçütleri; kişi başı 3 öncelikli gelişim planı.", guidance: ["Raporlar sayfasında ısı haritası, dağılım, bus factor ve yönetici tutarlılığına bakın; sonuçları \"gelişim alanı\" diliyle paylaşın.", "Her çalışan ilk 3 önceliğinden eylem ekler (eksik gösterge = iş); yönetici planı onaylar.", "Öğrenim ölçütlerinin 7/9'u sağlanırsa genişleme kararı."], link: "raporlar",
+      checks: [["Eylemi olan gelişim planı oranı ≥ %80", finalized > 0 && planned / finalized >= 0.8, finalized ? `${pct(planned / finalized)} (${planned}/${finalized})` : "kesinleşen değerlendirme yok", true], ["Yönetici onaylı plan oranı ≥ %80", finalized > 0 && approvedPlans / finalized >= 0.8, finalized ? pct(approvedPlans / finalized) : "—", false]] },
+  ];
+  st.forEach(s => { s.autoOk = s.checks.filter(c => c[3]).every(c => c[1]); s.confirmed = S.stages[s.key] || null; });
+  let cur = st.findIndex(s => !s.confirmed); if (cur < 0) cur = st.length - 1;
+  return { stages: st, current: cur };
+}
+
+// ===================== Ekranlar =====================
+const V = {};
+V.ozet = () => {
+  const { stages, current } = computeStages();
+  const people = S.people.filter(p => p.active);
+  const tiles = [["Birim", S.units.length], ["Rol", S.roles.length], ["Kişi", people.length], ["Aktif yetkinlik", S.competencies.filter(c => c.status === "AKTIF").length], ["Kanıt", S.evidence.length], ["Bekleyen kanıt", S.evidence.filter(e => e.status === "SUNULDU").length]];
+  let h = `<h1>Özet ve aşamalar</h1><p class="lead">Sistem şu anda <b>${current + 1}. aşamada: ${esc(stages[current].title)}</b>. Her aşamanın otomatik kontrolleri sağlanınca İK onaylar; sonraki aşama açılır. Kontroller tavsiyedir, önceki aşamaya her zaman dönülebilir.</p>`;
+  if (S.example) h += `<div class="msg warn">Örnek veri yüklü (adların yanında "(örnek)"). Gerçek kuruluma başlarken <a href="#yedek" data-go="yedek">Yedek ve veri</a> sayfasından örnek veriyi temizleyin.</div>`;
+  h += flashHtml();
+  h += `<div class="grid" style="margin-bottom:14px">${tiles.map(([k, v]) => `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div></div>`).join("")}</div>`;
+  h += `<div class="steps">${stages.map((s, i) => `<span class="${s.confirmed ? "done" : i === current ? "cur" : ""}">${i + 1}. ${esc(s.title)}</span>`).join("")}</div>`;
+  stages.forEach((s, i) => {
+    h += `<details class="card ${i === current ? "current" : ""}" ${i === current ? "open" : ""}><summary>${i + 1}. ${esc(s.title)} ${s.confirmed ? `<span class="badge ok">onaylandı · ${fmtDate(s.confirmed.at)}</span>` : s.autoOk ? `<span class="badge ok">kontroller tamam</span>` : `<span class="badge warn">kontroller eksik</span>`}</summary><p class="small muted">${esc(s.summary)}</p>
+    <ul class="small">${s.guidance.map(g => `<li>${esc(g)}</li>`).join("")}</ul>
+    <table><thead><tr><th>Kontrol</th><th>Durum</th><th>Ayrıntı</th></tr></thead><tbody>${s.checks.map(c => `<tr><td>${esc(c[0])} ${c[3] ? "" : '<span class="badge mute">tavsiye</span>'}</td><td>${c[1] ? '<span class="ok">✓</span>' : '<span class="warn">△</span>'}</td><td class="small muted">${esc(c[2])}</td></tr>`).join("")}</tbody></table>
+    <div class="row" style="margin-top:8px"><button class="btn s" data-go="${s.link}">Sayfaya git</button>${isAdmin() ? (s.confirmed ? `<button class="btn s" data-unconfirm="${s.key}">Onayı geri al</button>` : `<button class="btn s p" data-confirm="${s.key}" ${s.autoOk ? "" : 'title="Zorunlu kontroller eksik; yine de onaylanabilir"'}>Aşamayı onayla</button>`) : ""}</div>
+    ${s.confirmed && s.confirmed.note ? `<p class="small muted" style="margin-top:6px">Not: ${esc(s.confirmed.note)}</p>` : ""}</details>`;
+  });
+  return h;
+};
+V.ozet.bind = () => {
+  $("#main").querySelectorAll("[data-confirm]").forEach(b => b.onclick = () => confirmBox("Aşamayı onayla", "Bu aşamayı tamamlandı olarak işaretliyorsunuz. İsterseniz kısa bir not bırakın.", v => { S.stages[b.dataset.confirm] = { at: new Date().toISOString(), by: S.currentUser, note: v }; audit("STAGE_CONFIRM", b.dataset.confirm); save(); note("ok", "Aşama onaylandı."); }, { input: "Not (isteğe bağlı)", yes: "Onayla" }));
+  $("#main").querySelectorAll("[data-unconfirm]").forEach(b => b.onclick = () => { delete S.stages[b.dataset.unconfirm]; audit("STAGE_UNCONFIRM", b.dataset.unconfirm); save(); note("ok", "Onay geri alındı."); });
+};
+
+// ---------- Kurulum
+V.kurulum = () => {
+  if (!isAdmin()) return `<h1>Kurulum</h1><div class="msg warn">Bu sayfa İK yöneticisi görünümünde düzenlenir. Sol alttan "İK yöneticisi" seçin.</div>`;
+  const tree = pid => `<ul>${S.units.filter(u => (u.parentId || null) === pid).map(u => { const m = person(u.managerId); const n = S.people.filter(p => p.active && p.unitId === u.id).length; return `<li><b>${esc(u.name)}</b> <span class="badge mute">${UNIT_TYPES[u.type] || u.type}</span> <span class="small muted">yönetici: ${m ? esc(m.name) : '<span class="warn">atanmamış</span>'} · ${n} kişi</span> <button class="btn s" data-eu="${u.id}">Düzenle</button> <button class="btn s danger" data-du="${u.id}">Sil</button>${tree(u.id)}</li>`; }).join("")}</ul>`;
+  const eu = param && param.unit ? unit(param.unit) : null;
+  const er = param && param.role ? role(param.role) : null;
+  const ep = param && param.person ? person(param.person) : null;
+  let h = `<h1>Kurulum</h1><p class="lead">Birimleri (grup müdürlüğü, müdürlükler, servisler), rolleri ve kişileri burada ekler, düzenler, silersiniz. Yönetici zinciri birim yöneticisinden türer: bir kişinin yöneticisi, bağlı olduğu birimin (veya üst biriminin) yöneticisidir.</p>` + flashHtml();
+  h += `<div class="card"><h2>Birimler</h2><div class="tree">${tree(null)}</div>
+  <form id="fUnit" class="form" style="margin-top:10px"><input type="hidden" name="id" value="${eu ? eu.id : ""}"><label>Birim adı<input name="name" required value="${esc(eu ? eu.name : "")}"></label><label>Tür<select name="type">${Object.entries(UNIT_TYPES).map(([k, v]) => `<option value="${k}" ${eu && eu.type === k ? "selected" : ""}>${v}</option>`).join("")}</select></label><label>Üst birim<select name="parentId"><option value="">— (en üst)</option>${opt(S.units.filter(u => !eu || u.id !== eu.id), eu ? eu.parentId : (S.units[0] || {}).id)}</select></label><label>Yönetici<select name="managerId"><option value="">— atanmamış</option>${opt(S.people.filter(p => p.active), eu ? eu.managerId : null)}</select></label><div class="row"><button class="btn p">${eu ? "Kaydet" : "Birim ekle"}</button>${eu ? '<button type="button" class="btn" data-cancel>Vazgeç</button>' : ""}</div></form></div>`;
+  h += `<div class="card"><h2>Roller</h2><div class="tbl"><table><thead><tr><th>Rol</th><th>Aile</th><th>Kademe</th><th>Yönetici rolü</th><th>Kişi</th><th>Profil satırı</th><th></th></tr></thead><tbody>${S.roles.slice().sort((a, b) => a.grade - b.grade).map(r => `<tr><td>${esc(r.name)}</td><td>${esc(r.family || "")}</td><td>${r.grade}</td><td>${r.isManager ? "Evet" : "—"}</td><td>${S.people.filter(p => p.active && p.roleId === r.id).length}</td><td>${S.profiles.filter(p => p.roleId === r.id).length}</td><td class="row"><button class="btn s" data-er="${r.id}">Düzenle</button><button class="btn s danger" data-dr="${r.id}">Sil</button></td></tr>`).join("") || '<tr><td colspan="7" class="muted">Rol yok.</td></tr>'}</tbody></table></div>
+  <form id="fRole" class="form" style="margin-top:10px"><input type="hidden" name="id" value="${er ? er.id : ""}"><label>Rol adı<input name="name" required value="${esc(er ? er.name : "")}"></label><label>Rol ailesi<input name="family" value="${esc(er ? er.family : "")}" placeholder="İnsan Kaynakları"></label><label>Kademe (1 = en alt)<input name="grade" type="number" min="1" max="12" value="${er ? er.grade : 2}"></label><label><input type="checkbox" name="isManager" ${er && er.isManager ? "checked" : ""}> Yönetici rolü</label><div class="row"><button class="btn p">${er ? "Kaydet" : "Rol ekle"}</button>${er ? '<button type="button" class="btn" data-cancel>Vazgeç</button>' : ""}</div></form></div>`;
+  h += `<div class="card"><h2>Kişiler</h2><div class="tbl"><table><thead><tr><th>Sicil</th><th>Ad Soyad</th><th>Birim</th><th>Rol</th><th>Yönetici</th><th>Durum</th><th></th></tr></thead><tbody>${S.people.slice().sort((a, b) => a.name.localeCompare(b.name, "tr")).map(p => { const m = person(managerOf(p.id)); return `<tr class="${p.active ? "" : "muted"}"><td class="mono">${esc(p.no)}</td><td>${esc(p.name)}</td><td class="small">${esc(unitPath(p.unitId))}</td><td>${esc((role(p.roleId) || {}).name || '<span class="warn">rol yok</span>')}</td><td class="small">${m ? esc(m.name) : "—"}</td><td>${p.active ? '<span class="badge ok">aktif</span>' : '<span class="badge mute">ayrıldı</span>'}</td><td class="row"><button class="btn s" data-ep="${p.id}">Düzenle</button><button class="btn s danger" data-dp="${p.id}">Sil</button></td></tr>`; }).join("") || '<tr><td colspan="7" class="muted">Kişi yok.</td></tr>'}</tbody></table></div>
+  <form id="fPerson" class="form" style="margin-top:10px"><input type="hidden" name="id" value="${ep ? ep.id : ""}"><label>Sicil no<input name="no" required value="${esc(ep ? ep.no : "")}"></label><label>Ad Soyad<input name="name" required value="${esc(ep ? ep.name : "")}"></label><label>E-posta<input name="email" value="${esc(ep ? ep.email : "")}"></label><label>Birim<select name="unitId" required>${opt(S.units, ep ? ep.unitId : null, u => unitPath(u.id))}</select></label><label>Rol<select name="roleId" required>${opt(S.roles.slice().sort((a, b) => a.grade - b.grade), ep ? ep.roleId : null)}</select></label><label><input type="checkbox" name="active" ${!ep || ep.active ? "checked" : ""}> Aktif</label><div class="row"><button class="btn p">${ep ? "Kaydet" : "Kişi ekle"}</button>${ep ? '<button type="button" class="btn" data-cancel>Vazgeç</button>' : ""}</div></form>
+  <details style="margin-top:10px"><summary>Toplu kişi ekle (CSV yapıştır)</summary><p class="small muted">Her satır: <code>sicil;ad soyad;birim adı;rol adı;e-posta</code>. Birim ve rol adları yukarıdakilerle birebir aynı olmalı. Aynı sicil varsa güncellenir.</p><textarea id="csvPeople" rows="5" class="json" placeholder="3004;Ali Veli;İşe Alım Müdürlüğü;İK Uzmanı;ali@banka.com"></textarea><div class="row" style="margin-top:6px"><button class="btn" id="csvGo">Aktar</button></div></details></div>`;
+  return h;
+};
+V.kurulum.bind = () => {
+  const m = $("#main"); if (!$("#fUnit")) return;
+  const fd = f => Object.fromEntries(new FormData(f).entries());
+  m.querySelectorAll("[data-cancel]").forEach(b => b.onclick = () => go("kurulum"));
+  m.querySelectorAll("[data-eu]").forEach(b => b.onclick = () => go("kurulum", { unit: b.dataset.eu }));
+  m.querySelectorAll("[data-er]").forEach(b => b.onclick = () => go("kurulum", { role: b.dataset.er }));
+  m.querySelectorAll("[data-ep]").forEach(b => b.onclick = () => go("kurulum", { person: b.dataset.ep }));
+  $("#fUnit").onsubmit = e => { e.preventDefault(); const d = fd(e.target); if (d.parentId && d.id) { let u = unit(d.parentId), g = 0; while (u && g++ < 30) { if (u.id === d.id) return note("bad", "Bir birim kendi altına taşınamaz."); u = unit(u.parentId); } }
+    if (d.id) { Object.assign(unit(d.id), { name: d.name.trim(), type: d.type, parentId: d.parentId || null, managerId: d.managerId || null }); audit("UNIT_UPDATE", d.name); } else { S.units.push({ id: uid(), name: d.name.trim(), type: d.type, parentId: d.parentId || null, managerId: d.managerId || null }); audit("UNIT_CREATE", d.name); }
+    save(); param = null; note("ok", "Birim kaydedildi."); };
+  m.querySelectorAll("[data-du]").forEach(b => b.onclick = () => { const u = unit(b.dataset.du); const kids = S.units.filter(x => x.parentId === u.id).length, ppl = S.people.filter(p => p.unitId === u.id).length; if (kids || ppl) return note("bad", `"${u.name}" silinemez: ${kids} alt birim, ${ppl} kişi bağlı. Önce onları taşıyın.`); confirmBox("Birimi sil", `"${u.name}" silinecek.`, () => { S.units = S.units.filter(x => x.id !== u.id); audit("UNIT_DELETE", u.name); save(); note("ok", "Birim silindi."); }, { danger: true, yes: "Sil" }); });
+  $("#fRole").onsubmit = e => { e.preventDefault(); const d = fd(e.target); const v = { name: d.name.trim(), family: (d.family || "").trim(), grade: Math.max(1, +d.grade || 1), isManager: !!d.isManager }; if (d.id) { Object.assign(role(d.id), v); audit("ROLE_UPDATE", v.name); } else { S.roles.push(Object.assign({ id: uid() }, v)); audit("ROLE_CREATE", v.name); } save(); param = null; note("ok", "Rol kaydedildi."); };
+  m.querySelectorAll("[data-dr]").forEach(b => b.onclick = () => { const r = role(b.dataset.dr); const n = S.people.filter(p => p.roleId === r.id).length; if (n) return note("bad", `"${r.name}" silinemez: ${n} kişi bu rolde.`); confirmBox("Rolü sil", `"${r.name}" ve rol profili satırları silinecek.`, () => { S.roles = S.roles.filter(x => x.id !== r.id); S.profiles = S.profiles.filter(p => p.roleId !== r.id); audit("ROLE_DELETE", r.name); save(); note("ok", "Rol silindi."); }, { danger: true, yes: "Sil" }); });
+  $("#fPerson").onsubmit = e => { e.preventDefault(); const d = fd(e.target); const dup = S.people.find(p => p.no === d.no.trim() && p.id !== d.id); if (dup) return note("bad", `Sicil ${d.no} zaten ${dup.name} adına kayıtlı.`); const v = { no: d.no.trim(), name: d.name.trim(), email: (d.email || "").trim(), unitId: d.unitId, roleId: d.roleId, active: !!d.active }; if (d.id) { Object.assign(person(d.id), v); audit("PERSON_UPDATE", v.name); } else { S.people.push(Object.assign({ id: uid() }, v)); audit("PERSON_CREATE", v.name); } save(); param = null; note("ok", "Kişi kaydedildi."); };
+  m.querySelectorAll("[data-dp]").forEach(b => b.onclick = () => { const p = person(b.dataset.dp); const ev = S.evidence.filter(e => e.personId === p.id).length; confirmBox("Kişiyi sil", ev ? `"${p.name}" için ${ev} kanıt var. Silmek yerine "Aktif" işaretini kaldırmanız önerilir. Yine de kişi, kanıtları ve değerlendirmeleri silinsin mi?` : `"${p.name}" silinecek.`, () => { S.people = S.people.filter(x => x.id !== p.id); S.evidence = S.evidence.filter(e => e.personId !== p.id); S.units.forEach(u => { if (u.managerId === p.id) u.managerId = null; }); S.cycles.forEach(c => c.assessments = c.assessments.filter(a => a.personId !== p.id)); S.plans = S.plans.filter(x => x.personId !== p.id); if (S.currentUser === p.id) S.currentUser = "admin"; audit("PERSON_DELETE", p.name); save(); note("ok", "Kişi silindi."); }, { danger: true, yes: "Sil" }); });
+  $("#csvGo").onclick = () => { const lines = $("#csvPeople").value.split(/\r?\n/).map(l => l.trim()).filter(Boolean); let ok = 0; const errs = []; lines.forEach((l, i) => { const [no, name, un, rn, email] = l.split(";").map(x => (x || "").trim()); const u = S.units.find(x => x.name.toLowerCase() === (un || "").toLowerCase()), r = S.roles.find(x => x.name.toLowerCase() === (rn || "").toLowerCase()); if (!no || !name) return errs.push(`Satır ${i + 1}: sicil ve ad zorunlu.`); if (!u) return errs.push(`Satır ${i + 1}: birim bulunamadı "${un}".`); if (!r) return errs.push(`Satır ${i + 1}: rol bulunamadı "${rn}".`); const ex = S.people.find(p => p.no === no); if (ex) Object.assign(ex, { name, unitId: u.id, roleId: r.id, email: email || ex.email, active: true }); else S.people.push({ id: uid(), no, name, email: email || "", unitId: u.id, roleId: r.id, active: true }); ok++; }); audit("PERSON_IMPORT", `${ok} satır`); save(); note(errs.length ? "warn" : "ok", `${ok} kişi aktarıldı.${errs.length ? " Hatalar: " + errs.join(" ") : ""}`); };
+};
