@@ -5,23 +5,31 @@
 export interface LintIssue { severity: "HATA" | "UYARI"; code: string; message: string }
 
 const judgmentWords = ["iyi", "etkili", "başarılı", "kaliteli", "mükemmel", "güçlü", "zayıf", "yeterli", "uygun"];
-const abilityPatterns = [/yapabil/i, /bilir\b/i, /\bbilir\./i, /farkında/i, /edebil/i, /olabil/i, /abilir\b/i, /ebilir\b/i];
-const pastTensePatterns = [/dı\b/i, /di\b/i, /du\b/i, /dü\b/i, /tı\b/i, /ti\b/i, /tu\b/i, /tü\b/i, /mış\b/i, /miş\b/i, /muş\b/i, /müş\b/i, /ştü\b/i, /\(otomatik\)/i, /\(z\)/i];
+/** Cümlenin herhangi bir yerinde geçtiğinde yetenek/bilgi dili sayılan sözcükler */
+const abilityWords = ["yapabilir", "edebilir", "olabilir", "bilir", "bilmektedir", "farkındadır", "yapabilmektedir", "hâkimdir", "hakimdir"];
+/** Son sözcük bu eklerle bitiyorsa geçmiş zaman kabul edilir */
+const pastEndings = ["dı", "di", "du", "dü", "tı", "ti", "tu", "tü", "mış", "miş", "muş", "müş", "dılar", "diler", "dular", "düler"];
+
+function wordsOf(text: string): string[] {
+  return text.toLowerCase().replace(/\([^)]*\)/g, " ").split(/[^a-zçğıöşüâîû]+/).filter(Boolean);
+}
 
 export function lintIndicatorText(text: string): LintIssue[] {
   const issues: LintIssue[] = [];
   const t = text.trim();
   if (t.length < 15) issues.push({ severity: "HATA", code: "KISA", message: "Gösterge çok kısa; ne yapıldığını ve çıktısını yazın." });
   if (t.length > 220) issues.push({ severity: "UYARI", code: "UZUN", message: "Gösterge çok uzun; tek davranışa indirin." });
-  if (abilityPatterns.some((p) => p.test(t))) issues.push({ severity: "HATA", code: "YETENEK_DILI", message: "\"yapabilir / bilir / farkındadır\" ölçülemez; geçmiş zamanda yapılan işi yazın." });
-  const words = t.toLowerCase().split(/[^a-zçğıöşü]+/i);
+  const words = wordsOf(t);
+  const lastWord = words[words.length - 1] ?? "";
+  const abilityHit = words.some((w) => abilityWords.includes(w)) || /(abilir|ebilir)$/.test(lastWord);
+  if (abilityHit) issues.push({ severity: "HATA", code: "YETENEK_DILI", message: "\"yapabilir / bilir / farkındadır\" ölçülemez; geçmiş zamanda yapılan işi yazın." });
   const judged = judgmentWords.filter((w) => words.includes(w));
   if (judged.length) issues.push({ severity: "UYARI", code: "YARGI", message: `Yargı sözcüğü: ${judged.join(", ")}. Gözlenebilir davranış ve çıktı yazın.` });
-  const andCount = (t.match(/\b(ve|veya|ya da)\b/gi) ?? []).length;
+  const andCount = words.filter((w) => w === "ve" || w === "veya").length + (t.match(/ya da/gi) ?? []).length;
   if (andCount >= 2) issues.push({ severity: "UYARI", code: "COKLU_DAVRANIS", message: "Birden fazla davranış tek göstergede olabilir; ayırmayı düşünün." });
-  const lastWord = words.filter(Boolean).pop() ?? "";
-  const pastTense = pastTensePatterns.some((p) => p.test(lastWord)) || pastTensePatterns.some((p) => p.test(t.slice(-12)));
-  if (!pastTense) issues.push({ severity: "UYARI", code: "ZAMAN", message: "Geçmiş zaman kullanın (hazırladı, kurdu, öğretti)." });
+  const automatic = /\(otomatik\)/i.test(t);
+  const pastTense = pastEndings.some((e) => lastWord.endsWith(e));
+  if (!pastTense && !automatic) issues.push({ severity: "UYARI", code: "ZAMAN", message: "Geçmiş zaman kullanın (hazırladı, kurdu, öğretti)." });
   return issues;
 }
 

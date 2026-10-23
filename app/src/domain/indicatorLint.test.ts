@@ -16,6 +16,12 @@ describe("gösterge metni kontrolü", () => {
     expect(i.some((x) => x.code === "YARGI")).toBe(true);
     expect(i.some((x) => x.code === "COKLU_DAVRANIS")).toBe(true);
   });
+  it("Türkçe geçmiş zaman ekleri ve -ebilir içeren sıfatlar doğru ayrılır", () => {
+    expect(lintIndicatorText("Atanan zorunlu eğitimleri süresinde tamamladı").some((x) => x.code === "ZAMAN")).toBe(false);
+    expect(lintIndicatorText("Öğrendiğini işine uygulayıp ölçülebilir bir sonuç aldı").some((x) => x.code === "YETENEK_DILI")).toBe(false);
+    expect(lintIndicatorText("Bir sapmayı fark edip yöneticisine bildirdi").filter((x) => x.severity === "HATA")).toHaveLength(0);
+    expect(lintIndicatorText("Raporu hatasız hazırlayabilir").some((x) => x.code === "YETENEK_DILI")).toBe(true);
+  });
   it("geçmiş zaman yoksa uyarır, (otomatik) etiketi geçer", () => {
     expect(lintIndicatorText("Çapraz satış oranı hedefin üzerinde olur").some((x) => x.code === "ZAMAN")).toBe(true);
     expect(lintIndicatorText("Çapraz satış oranı 2 dönem hedefin ≥ %100'ü (otomatik)").some((x) => x.code === "ZAMAN")).toBe(false);
