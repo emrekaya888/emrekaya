@@ -10,7 +10,7 @@ Tasarım dokümanları `docs/` altında, uygulama `app/` altındadır. Sade sür
 
 ## Giriş linki
 
-Uygulama henüz bir sunucuda yayında değildir; kendi bilgisayarınızda veya kurum sunucusunda çalıştırıldığında giriş adresi **http://localhost:3000/giris** olur (ilk hesap: admin@banka.local / Admin123!, ilk girişte Hesabım sayfasından değiştirin).
+Uygulama henüz bir sunucuda yayında değildir; kendi bilgisayarınızda veya kurum sunucusunda çalıştırıldığında giriş adresi **http://localhost:3080/giris** olur (ilk hesap: admin@banka.local / Admin123!, ilk girişte Hesabım sayfasından değiştirin).
 
 ### En kolay yol: Docker ile tek komut
 
@@ -24,7 +24,7 @@ cd app
 docker compose up --build
 ```
 
-İlk açılış birkaç dakika sürer (imaj, veritabanı, migration, tohum veri). Ardından tarayıcıda http://localhost:3000/giris. Veriler `yys-db`, kanıt dosyaları `yys-uploads` birimlerinde kalıcıdır. Üretimde `docker-compose.yml` içindeki şifre ve `SESSION_SECRET` değerlerini değiştirin.
+İlk açılış birkaç dakika sürer (imaj, veritabanı, migration, tohum veri). Ardından tarayıcıda http://localhost:3080/giris. Veriler `yys-db`, kanıt dosyaları `yys-uploads` birimlerinde kalıcıdır. Üretimde `docker-compose.yml` içindeki şifre ve `SESSION_SECRET` değerlerini değiştirin.
 
 ## Uygulamayı çalıştırma (geliştirici yolu)
 
@@ -35,7 +35,7 @@ npm install
 npm run db:push                 # şemayı PostgreSQL'e uygular
 npm run db:seed                 # İK admin (admin@banka.local / Admin123!) ve örnek organizasyon
 npm run db:seed:library         # seviye tanımları, kanıt türleri ve 3 örnek yetkinlik (göstergeli)
-npm run dev                     # http://localhost:3000
+npm run dev                     # http://localhost:3000 (geliştirici modu; Docker ile 3080)
 npm test                        # iş kuralı ve içe aktarma testleri
 ```
 

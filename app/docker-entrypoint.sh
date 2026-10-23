@@ -10,5 +10,5 @@ npx drizzle-kit migrate
 echo "Tohum veri (İK admin, seviye tanımları, kanıt türleri)..."
 npx tsx scripts/seed.ts
 npx tsx scripts/seed-library.ts
-echo "Uygulama başlıyor: http://localhost:${PORT:-3000}"
+echo "Uygulama başlıyor (konteyner içi port ${PORT:-3000}; dışarıdan compose ile http://localhost:3080/giris)"
 exec npx next start -p "${PORT:-3000}"
