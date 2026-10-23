@@ -6,8 +6,8 @@
 |---|---|---|
 | Uygulama | **TypeScript, Next.js (App Router)** — web + PWA | Tek kod tabanı; sunucu bileşenleri ile hızlı raporlar; PWA ile mobil (ana ekrana ekleme, bildirim, çevrimdışı kanıt taslağı) |
 | Arayüz | React, Tailwind, erişilebilir bileşen kütüphanesi | Mobil öncelikli formlar (kanıt ekleme, 360) |
-| API | Next.js route handlers + tRPC veya REST (OpenAPI) | HRIS/satış sistemleri için sonradan entegrasyon yüzeyi |
-| Veritabanı | **PostgreSQL** + Prisma | İlişkisel model; sürümleme ve denetim izi için uygun; 6.400 kullanıcı için fazlasıyla yeterli |
+| API | Next.js sunucu eylemleri (server actions) + gerekirse REST (OpenAPI) | HRIS/satış sistemleri için sonradan entegrasyon yüzeyi |
+| Veritabanı | **PostgreSQL** + Drizzle ORM (tip güvenli şema, SQL'e yakın; Prisma yerine tercih edildi, bkz. not) | İlişkisel model; sürümleme ve denetim izi için uygun; 6.400 kullanıcı için fazlasıyla yeterli |
 | Kimlik | SSO (OIDC: Entra ID / Keycloak) + rol tabanlı yetki | Banka ortamında SSO beklenir; yoksa e-posta + şifre + MFA |
 | Dosya | S3 uyumlu nesne depolama (MinIO kurum içi / bulut) | Kanıt dosyaları; imzalı URL ile erişim |
 | İş kuyruğu | Postgres tabanlı kuyruk veya Redis | Toplu içe aktarma, 360 davetleri, bildirimler, seviye yeniden hesaplama |
@@ -19,14 +19,20 @@ Barındırma: kurum içi Kubernetes/Docker veya bulut; banka olduğundan **kurum
 ## 2. Modül → kod yapısı
 
 ```
-apps/web                 Next.js uygulaması (web + PWA)
-packages/db              Prisma şeması, migration, seed
-packages/domain          Saf iş kuralları: seviye hesaplama, öncelik, kritiklik, potansiyel, hazırlık
-packages/import          CSV/Excel içe aktarma (organizasyon, kişi, KPI, lisans, devralınan değerlendirme)
-packages/ui              Ortak bileşenler
+app/                      Next.js uygulaması (web + PWA)
+  src/db/                 Drizzle şeması, bağlantı, Türkçe etiketler
+  src/domain/             Saf iş kuralları: seviye hesaplama, öncelik, kritiklik, potansiyel, hazırlık, yük (birim testli)
+  src/import/             CSV ayrıştırma, doğrulama, uygulama (organizasyon, rol, pozisyon, kişi; sonra KPI, lisans, devralınan)
+  src/lib/                Oturum, kimlik doğrulama, yetki kapsamı
+  src/app/(auth)/giris    Giriş
+  src/app/(app)/          Uygulama ekranları (özet, organizasyon, kişiler, roller, içe aktarma …)
+  scripts/seed.ts         Geliştirme tohumu
+  drizzle/                Migration dosyaları
 ```
 
-`packages/domain` arayüzden bağımsızdır; her formül `02` ve `05` dokümanındaki tanımla birebir test edilir.
+`src/domain` arayüzden ve veritabanından bağımsızdır; her formül `02` ve `05` dokümanındaki tanımla birebir test edilir (Vitest). Tek uygulama, klasör ayrımı; ileride paketlere bölünebilir.
+
+**Uygulama notu (Sprint 1, 23.10.2026):** ORM olarak Drizzle seçildi (Prisma 8 henüz ön sürümde; Drizzle SQL'e yakın, migration ve tip güvenliği yeterli). Kimlik doğrulama ilk sürümde e-posta + şifre (bcrypt, iron-session çerezi); SSO (OIDC) kurum kararıyla eklenecek.
 
 ## 3. Yetkilendirme modeli
 

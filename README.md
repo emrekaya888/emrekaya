@@ -4,7 +4,21 @@ Kurumun teknik beceri ve davranışsal yetkinliklerini **tespit, değerlendirme,
 
 Kapsam: Genel Müdürlük departmanları (100+) ve şube ağı (bölge → şube → portföy ekipleri); 6.400 çalışan, 600 yönetici.
 
-Bu depo şu an **tasarım aşamasındadır**. Uygulama kodu yazılmadan önce tüm yapı dokümanlarda netleştirilir.
+Tasarım dokümanları `docs/` altında, uygulama `app/` altındadır. Sprint 1 (organizasyon, kişi, rol/pozisyon, yetki, CSV içe aktarma) tamamlanmıştır; sonraki sprintler 07 numaralı dokümandaki teslim planını izler.
+
+## Uygulamayı çalıştırma
+
+```bash
+cd app
+cp .env.example .env            # DATABASE_URL ve SESSION_SECRET
+npm install
+npm run db:push                 # şemayı PostgreSQL'e uygular
+npm run db:seed                 # İK admin (admin@banka.local / Admin123!) ve örnek organizasyon
+npm run dev                     # http://localhost:3000
+npm test                        # iş kuralı ve içe aktarma testleri
+```
+
+PostgreSQL 16 gerekir. İçe aktarma sırası: organizasyon → roller → pozisyonlar → kişiler (biçimler uygulamadaki "İçe aktarma" sayfasında).
 
 | Doküman | İçerik |
 |---|---|

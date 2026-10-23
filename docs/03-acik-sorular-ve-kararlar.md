@@ -75,5 +75,6 @@ Her soru için **önerilen varsayılan** yazıldı. Karar verilince "Karar" süt
 | 2026-10-20 | S30 | Pilot yok, tek seferde | Emre Kaya | Prova döngüsü + 3 dalga |
 | 2026-10-20 | S33 | Açılış Ocak 2027 | Emre Kaya | 08 uygulama akışı yazıldı |
 | 2026-10-20 | S25b, S31, S32 | Rol kademeleri şimdilik detaylandırılmayacak; varsayılanlar kullanılır | Emre Kaya | |
+| 2026-10-23 | – | İK Grup Müdürlüğü pilotu yapılmayacak; uygulama geliştirme (sprint 1) başlıyor | Emre Kaya | 07 teslim planı |
 | 2026-10-20 | – | Araştırma kaynaklı v1.1 eklemeleri (E1–E10) tasarıma işlendi; onay S36–S38 | Claude (öneri) | 01 §9 |
 | 2026-10-19 | – | Teknik ve davranışsal tüm seviyelerde davranış göstergesi; tüm puanlar kanıtla ("yaptım/bildim/sahibim") | Emre Kaya | 05 dokümanı yazıldı |
