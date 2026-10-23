@@ -9,6 +9,7 @@ const nav = [
   { href: "/kutuphane", label: "Yetkinlik kütüphanesi" },
   { href: "/roller", label: "Roller ve pozisyonlar" },
   { href: "/ice-aktarma", label: "İçe aktarma" },
+  { href: "/kurulum", label: "Kurulum" },
 ];
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {

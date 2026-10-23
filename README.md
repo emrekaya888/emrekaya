@@ -21,7 +21,7 @@ npm run dev                     # http://localhost:3000
 npm test                        # iş kuralı ve içe aktarma testleri
 ```
 
-PostgreSQL 16 gerekir. İçe aktarma sırası: organizasyon → roller → pozisyonlar → kişiler (biçimler uygulamadaki "İçe aktarma" sayfasında).
+PostgreSQL 16 gerekir. Küçük kurulumlar için **Kurulum** sayfasından birim, rol, pozisyon, kişi ve giriş hesabı elle eklenip çıkarılabilir; toplu yükleme için "İçe aktarma" sayfası (sıra: organizasyon → roller → pozisyonlar → kişiler).
 
 | Doküman | İçerik |
 |---|---|
