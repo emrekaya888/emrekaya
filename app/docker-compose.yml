@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: yys
+      POSTGRES_PASSWORD: yys_sifre_degistirin
+      POSTGRES_DB: yys
+    volumes:
+      - yys-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U yys -d yys"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://yys:yys_sifre_degistirin@db:5432/yys
+      SESSION_SECRET: degistirin-en-az-32-karakter-uzunlugunda-gizli-anahtar-0123
+      SEED_ADMIN_EMAIL: admin@banka.local
+      SEED_ADMIN_PASSWORD: Admin123!
+      SEED_SAMPLE: "false"
+      PORT: "3000"
+    ports:
+      - "3000:3000"
+    volumes:
+      - yys-uploads:/app/uploads
+volumes:
+  yys-db:
+  yys-uploads:

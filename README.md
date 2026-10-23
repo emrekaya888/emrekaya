@@ -8,7 +8,25 @@ Kapsam: Genel Müdürlük departmanları (100+) ve şube ağı (bölge → şube
 
 Tasarım dokümanları `docs/` altında, uygulama `app/` altındadır. Sade sürümün (v0) altı sprinti tamamlanmıştır: kurulum ve içe aktarma, yetkinlik kütüphanesi, rol profilleri, kanıt kasası, değerlendirme döngüsü (mutabakat, itiraz, üst onay, kilit), raporlar ve gelişim planı; ayrıca etap etap ilerleyen Aşamalar rehberi.
 
-## Uygulamayı çalıştırma
+## Giriş linki
+
+Uygulama henüz bir sunucuda yayında değildir; kendi bilgisayarınızda veya kurum sunucusunda çalıştırıldığında giriş adresi **http://localhost:3000/giris** olur (ilk hesap: admin@banka.local / Admin123!, ilk girişte Hesabım sayfasından değiştirin).
+
+### En kolay yol: Docker ile tek komut
+
+Docker Desktop kuruluysa:
+
+```bash
+git clone https://github.com/emrekaya888/emrekaya.git
+cd emrekaya
+git checkout claude/competency-management-system-hhll0p
+cd app
+docker compose up --build
+```
+
+İlk açılış birkaç dakika sürer (imaj, veritabanı, migration, tohum veri). Ardından tarayıcıda http://localhost:3000/giris. Veriler `yys-db`, kanıt dosyaları `yys-uploads` birimlerinde kalıcıdır. Üretimde `docker-compose.yml` içindeki şifre ve `SESSION_SECRET` değerlerini değiştirin.
+
+## Uygulamayı çalıştırma (geliştirici yolu)
 
 ```bash
 cd app
