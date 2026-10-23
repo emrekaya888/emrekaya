@@ -385,3 +385,35 @@ export const assessmentLinesRelations = relations(assessmentLines, ({ one }) => 
   assessment: one(assessments, { fields: [assessmentLines.assessmentId], references: [assessments.id] }),
   competency: one(competencies, { fields: [assessmentLines.competencyId], references: [competencies.id] }),
 }));
+
+// ---------------- Sprint 6: Gelişim planı
+export const planStatus = pgEnum("plan_status", ["TASLAK", "ONAYLI", "DEVAM", "TAMAMLANDI"]);
+export const actionType = pgEnum("action_type", ["ISBASINDA", "ILISKI", "EGITIM"]);
+export const actionStatus = pgEnum("action_status", ["PLANLANDI", "DEVAM", "TAMAMLANDI", "IPTAL"]);
+export const developmentPlans = pgTable("development_plans", {
+  id: serial("id").primaryKey(),
+  personId: integer("person_id").notNull().references(() => people.id),
+  cycleId: integer("cycle_id").references(() => cycles.id),
+  status: planStatus("status").notNull().default("TASLAK"),
+  approvedBy: integer("approved_by"),
+  approvedAt: timestamp("approved_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+}, (t) => [uniqueIndex("development_plans_person_cycle_idx").on(t.personId, t.cycleId)]);
+export const planActions = pgTable("plan_actions", {
+  id: serial("id").primaryKey(),
+  planId: integer("plan_id").notNull().references(() => developmentPlans.id, { onDelete: "cascade" }),
+  competencyId: integer("competency_id").notNull().references(() => competencies.id),
+  indicatorId: integer("indicator_id").references(() => indicators.id),
+  currentLevel: integer("current_level").notNull().default(0),
+  targetLevel: integer("target_level").notNull().default(1),
+  priorityScore: integer("priority_score").notNull().default(0),
+  actionType: actionType("action_type").notNull().default("ISBASINDA"),
+  description: text("description").notNull(),
+  mentorPersonId: integer("mentor_person_id").references(() => people.id),
+  dueDate: date("due_date"),
+  status: actionStatus("status").notNull().default("PLANLANDI"),
+  progress: integer("progress").notNull().default(0),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+export const developmentPlansRelations = relations(developmentPlans, ({ one, many }) => ({ person: one(people, { fields: [developmentPlans.personId], references: [people.id] }), actions: many(planActions) }));
+export const planActionsRelations = relations(planActions, ({ one }) => ({ plan: one(developmentPlans, { fields: [planActions.planId], references: [developmentPlans.id] }), competency: one(competencies, { fields: [planActions.competencyId], references: [competencies.id] }), indicator: one(indicators, { fields: [planActions.indicatorId], references: [indicators.id] }) }));

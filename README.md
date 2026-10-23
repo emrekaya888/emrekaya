@@ -6,7 +6,7 @@ Kapsam: Genel Müdürlük departmanları (100+) ve şube ağı (bölge → şube
 
 **Güncel kapsam (23.10.2026):** önce İK Grup Müdürlüğü için sade sürüm (v0), bkz. `docs/13-sade-surum-ik-grup.md`; 01–12 hedef tasarımdır.
 
-Tasarım dokümanları `docs/` altında, uygulama `app/` altındadır. Sprint 1 (organizasyon, kurulum, içe aktarma), sprint 2 (yetkinlik kütüphanesi) ve sprint 3 (rol profilleri) tamamlanmıştır; sonraki sprintler 13 numaralı dokümandaki v0 planını izler.
+Tasarım dokümanları `docs/` altında, uygulama `app/` altındadır. Sade sürümün (v0) altı sprinti tamamlanmıştır: kurulum ve içe aktarma, yetkinlik kütüphanesi, rol profilleri, kanıt kasası, değerlendirme döngüsü (mutabakat, itiraz, üst onay, kilit), raporlar ve gelişim planı; ayrıca etap etap ilerleyen Aşamalar rehberi.
 
 ## Uygulamayı çalıştırma
 

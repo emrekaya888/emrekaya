@@ -62,7 +62,7 @@ Açılış → Öz-beyan + kanıt (2 hafta) → Yönetici doğrulaması (2 hafta
 | 3 | Rol profilleri (hedef seviye, ağırlık, zorunlu); otomatik çekirdek/liderlik bağlama; alt kademeden +1 kopyalama; tutarsızlık uyarıları; kişi başı satır listesi | **Tamamlandı** (23.10) |
 | 4 | Kanıt kasası: "yaptım" formu, dosya/bağlantı, gözlem notu, gösterge eşleme, geçerlilik, yönetici kabul/ek bilgi/red; yetkinlik durumu (kanıtlanmış seviye); şifre değiştirme | **Tamamlandı** (23.10) |
 | 5 | Değerlendirme döngüsü: açma, öz-beyan, yönetici doğrulaması, seviye 5 üst onayı, mutabakat (görüşme notu, mutabık ≤ kanıtlanmış), çalışan onayı/itiraz, üst karar, kilit ve anlık görüntü; Aşamalar rehberi | **Tamamlandı** (23.10) |
-| 6 | Raporlar: ısı haritası, tamamlanma, öz–kanıtlanmış farkı, cömertlik, bus factor; gelişim planı (3 öncelik); kalibrasyon özet ekranı | |
+| 6 | Raporlar: tamamlanma, müdürlük × yetkinlik ısı haritası, dağılım/hedef karşılama/bus factor, yönetici tutarlılığı (cömertlik, kanıt kabul oranı), kalibrasyon bayrakları, öğrenim ölçütleri; gelişim planı (ilk 3 öncelik, eksik gösterge = eylem, mentor önerisi, 70-20-10 türü, yönetici onayı) | **Tamamlandı** (23.10) |
 
 Kullanıcı rolleri (v0): Çalışan · Yönetici (müdür) · Üst yönetici (grup müdürü) · İK admin (yetkinlik ekibi). Diğer roller şemada durur, ekranda kullanılmaz.
 

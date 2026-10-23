@@ -14,7 +14,7 @@ export interface Stage {
   checks: StageCheck[]; autoOk: boolean; confirmed: { at: string; byEmail: string; note?: string } | null; implemented: boolean;
 }
 
-const { orgUnits, roles, positions, people, competencies, roleProfiles, evidence, cycles, assessments, assessmentLines } = schema;
+const { orgUnits, roles, positions, people, competencies, roleProfiles, evidence, cycles, assessments, assessmentLines, developmentPlans } = schema;
 
 export async function computeStages(): Promise<{ stages: Stage[]; currentIndex: number }> {
   const confirmations = Object.fromEntries((await db.select().from(settings())).map((r) => [r.key, r.value as Stage["confirmed"]]));
@@ -57,6 +57,9 @@ export async function computeStages(): Promise<{ stages: Stage[]; currentIndex: 
   const [l5pending] = lastCycle ? await db.select({ c: sql<number>`count(*)::int` }).from(assessmentLines).innerJoin(assessments, eq(assessments.id, assessmentLines.assessmentId)).where(and(eq(assessments.cycleId, lastCycle.id), eq(assessmentLines.level5Candidate, true), sql`${assessmentLines.level5Validated} is null`, sql`${assessments.status} = 'UST_DOGRULAMADA'`)) : [{ c: 0 }];
   const [appealsOpen] = lastCycle ? await db.select({ c: sql<number>`count(*)::int` }).from(assessmentLines).innerJoin(assessments, eq(assessments.id, assessmentLines.assessmentId)).where(and(eq(assessments.cycleId, lastCycle.id), eq(assessmentLines.appealFlag, true))) : [{ c: 0 }];
   const cycleOpen = !!lastCycle && lastCycle.status !== "HAZIRLIK";
+  const plans = lastCycle ? await db.select({ personId: developmentPlans.personId, status: developmentPlans.status, actions: sql<number>`(select count(*) from plan_actions pa where pa.plan_id = ${developmentPlans.id} and pa.status <> 'IPTAL')::int` }).from(developmentPlans).where(eq(developmentPlans.cycleId, lastCycle.id)) : [];
+  const planned = plans.filter((p) => p.actions > 0).length;
+  const approvedPlans = plans.filter((p) => p.status !== "TASLAK").length;
   const pct = (x: number) => (nA ? `%${Math.round((x / nA) * 100)} (${x}/${nA})` : "döngü yok");
 
   const stages: Stage[] = [
@@ -115,7 +118,13 @@ export async function computeStages(): Promise<{ stages: Stage[]; currentIndex: 
       links: [{ href: "/donguler", label: "Döngüler" }, { href: "/raporlar", label: "Raporlar" }],
       checks: [{ label: "Döngü kilitlendi", ok: !!lastCycle && lastCycle.status === "KILITLI", detail: lastCycle ? lastCycle.status : "döngü yok", required: true }],
       autoOk: false, confirmed: confirmations["stage:kalibrasyon"] ?? null, implemented: true },
-    { key: "raporlar", order: 8, title: "Raporlar ve gelişim planı", summary: "Isı haritası, öğrenim ölçütleri, kişi başı 3 öncelik.", guidance: ["Öğrenim raporu ve genişleme kararı (13 §7)."], links: [], checks: [], autoOk: false, confirmed: confirmations["stage:raporlar"] ?? null, implemented: false },
+    { key: "raporlar", order: 8, title: "Raporlar ve gelişim planı", summary: "Isı haritası, kalibrasyon bayrakları, öğrenim ölçütleri; kişi başı 3 öncelikli gelişim planı.",
+      guidance: ["Raporlar sayfasında ısı haritası, dağılım, bus factor ve yönetici tutarlılığına bakın; sonuçları önce yöneticilerle, sonra çalışanlarla \"gelişim alanı\" diliyle paylaşın.", "Her çalışan ilk 3 önceliğinden eylem ekler (eksik gösterge = iş); yönetici planı onaylar.", "Öğrenim ölçütlerinin 7/9'u sağlanırsa genişleme kararı (13 §7)."],
+      links: [{ href: "/raporlar", label: "Raporlar" }, { href: "/gelisim", label: "Gelişim planım" }, { href: "/gelisim/ekip", label: "Ekibimin planları" }],
+      checks: [
+        { label: "Eylemi olan gelişim planı oranı ≥ %80", ok: finalized > 0 && planned / finalized >= 0.8, detail: finalized ? `%${Math.round((planned / finalized) * 100)} (${planned}/${finalized} kesinleşen)` : "kesinleşen değerlendirme yok", required: true },
+        { label: "Yönetici onaylı plan oranı ≥ %80", ok: finalized > 0 && approvedPlans / finalized >= 0.8, detail: finalized ? `%${Math.round((approvedPlans / finalized) * 100)}` : "—", required: false },
+      ], autoOk: false, confirmed: confirmations["stage:raporlar"] ?? null, implemented: true },
   ];
   for (const s of stages) s.autoOk = s.checks.filter((c) => c.required).every((c) => c.ok) && s.checks.length > 0;
   const currentIndex = Math.max(0, stages.findIndex((s) => !s.confirmed));
