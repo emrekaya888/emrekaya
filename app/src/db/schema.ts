@@ -156,3 +156,92 @@ export type Role = typeof roles.$inferSelect;
 export type Position = typeof positions.$inferSelect;
 export type Person = typeof people.$inferSelect;
 export type SystemRole = (typeof systemRole.enumValues)[number];
+
+// ---------------- Sprint 2: Yetkinlik kütüphanesi
+export const competencyKind = pgEnum("competency_kind", ["TEKNIK", "DAVRANISSAL"]);
+export const competencySubKind = pgEnum("competency_sub_kind", [
+  "CEKIRDEK", "LIDERLIK", // davranışsal
+  "YAZILIM_ARAC", "MEVZUAT_STANDART", "SUREC_METODOLOJI", "URUN_ALAN", "EKIPMAN_ISLEM", "DIL", // teknik kategori
+]);
+export const competencyStatus = pgEnum("competency_status", ["TASLAK", "INCELEMEDE", "AKTIF", "EMEKLI"]);
+export const futureTrend = pgEnum("future_trend", ["YUKSELEN", "STABIL", "AZALAN"]);
+export const levelScale = pgEnum("level_scale", ["TEKNIK", "DAVRANISSAL"]);
+
+export const competencies = pgTable("competencies", {
+  id: serial("id").primaryKey(),
+  code: text("code").notNull(),
+  name: text("name").notNull(),
+  kind: competencyKind("kind").notNull(),
+  subKind: competencySubKind("sub_kind"),
+  definition: text("definition").notNull().default(""),
+  boundaryNote: text("boundary_note"),
+  futureTrend: futureTrend("future_trend").notNull().default("STABIL"),
+  defaultCriticality: integer("default_criticality").notNull().default(2),
+  status: competencyStatus("status").notNull().default("TASLAK"),
+  version: integer("version").notNull().default(1),
+  previousVersionId: integer("previous_version_id").references((): AnyPgColumn => competencies.id),
+  ownerOrgUnitId: integer("owner_org_unit_id").references(() => orgUnits.id),
+  createdBy: integer("created_by").references(() => users.id),
+  approvedBy: integer("approved_by").references(() => users.id),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+}, (t) => [uniqueIndex("competencies_code_version_idx").on(t.code, t.version), index("competencies_status_idx").on(t.status)]);
+
+export const competencyOrgUnits = pgTable("competency_org_units", {
+  id: serial("id").primaryKey(),
+  competencyId: integer("competency_id").notNull().references(() => competencies.id),
+  orgUnitId: integer("org_unit_id").notNull().references(() => orgUnits.id),
+  isPrimary: boolean("is_primary").notNull().default(false),
+}, (t) => [uniqueIndex("competency_org_units_idx").on(t.competencyId, t.orgUnitId)]);
+
+export const levelDefinitions = pgTable("level_definitions", {
+  id: serial("id").primaryKey(),
+  scale: levelScale("scale").notNull(),
+  level: integer("level").notNull(),
+  name: text("name").notNull(),
+  generalDefinition: text("general_definition").notNull(),
+}, (t) => [uniqueIndex("level_definitions_idx").on(t.scale, t.level)]);
+
+export const levelAnchors = pgTable("level_anchors", {
+  id: serial("id").primaryKey(),
+  competencyId: integer("competency_id").notNull().references(() => competencies.id),
+  level: integer("level").notNull(),
+  anchorText: text("anchor_text").notNull().default(""),
+}, (t) => [uniqueIndex("level_anchors_idx").on(t.competencyId, t.level)]);
+
+export const evidenceTypes = pgTable("evidence_types", {
+  id: serial("id").primaryKey(),
+  code: text("code").notNull(),
+  name: text("name").notNull(),
+  verifierRole: text("verifier_role").notNull().default("YONETICI"),
+  active: boolean("active").notNull().default(true),
+}, (t) => [uniqueIndex("evidence_types_code_idx").on(t.code)]);
+
+export const indicators = pgTable("indicators", {
+  id: serial("id").primaryKey(),
+  competencyId: integer("competency_id").notNull().references(() => competencies.id),
+  level: integer("level").notNull(),
+  sortOrder: integer("sort_order").notNull().default(1),
+  text: text("text").notNull(),
+  mandatory: boolean("mandatory").notNull().default(false),
+  evidenceTypeCodes: text("evidence_type_codes").array().notNull().default([]),
+  minEvidence: integer("min_evidence").notNull().default(1),
+  validityMonths: integer("validity_months").notNull().default(24),
+  active: boolean("active").notNull().default(true),
+}, (t) => [index("indicators_competency_level_idx").on(t.competencyId, t.level)]);
+
+export const competenciesRelations = relations(competencies, ({ one, many }) => ({
+  indicators: many(indicators),
+  anchors: many(levelAnchors),
+  units: many(competencyOrgUnits),
+  owner: one(orgUnits, { fields: [competencies.ownerOrgUnitId], references: [orgUnits.id] }),
+}));
+export const indicatorsRelations = relations(indicators, ({ one }) => ({ competency: one(competencies, { fields: [indicators.competencyId], references: [competencies.id] }) }));
+export const levelAnchorsRelations = relations(levelAnchors, ({ one }) => ({ competency: one(competencies, { fields: [levelAnchors.competencyId], references: [competencies.id] }) }));
+export const competencyOrgUnitsRelations = relations(competencyOrgUnits, ({ one }) => ({
+  competency: one(competencies, { fields: [competencyOrgUnits.competencyId], references: [competencies.id] }),
+  orgUnit: one(orgUnits, { fields: [competencyOrgUnits.orgUnitId], references: [orgUnits.id] }),
+}));
+
+export type Competency = typeof competencies.$inferSelect;
+export type Indicator = typeof indicators.$inferSelect;

@@ -58,8 +58,8 @@ Açılış → Öz-beyan + kanıt (2 hafta) → Yönetici doğrulaması (2 hafta
 | Sprint | Teslim | Durum |
 |---|---|---|
 | 1 | Organizasyon, kişi, rol/pozisyon, yetki, CSV içe aktarma, giriş | **Tamamlandı** (23.10) |
-| 2 | Yetkinlik kütüphanesi: yetkinlik, seviye, gösterge, kanıt türü; sürüm/durum; kütüphane ekranları | Başlıyor |
-| 3 | Rol profilleri (hedef seviye, ağırlık, zorunlu); kişi başı satır listesi | |
+| 2 | Yetkinlik kütüphanesi: yetkinlik, seviye, gösterge, kanıt türü; sürüm/durum; kütüphane ekranları; gösterge kalite kontrolü | **Tamamlandı** (23.10) |
+| 3 | Rol profilleri (hedef seviye, ağırlık, zorunlu); kişi başı satır listesi | Sırada |
 | 4 | Kanıt kasası: "yaptım" formu, dosya/bağlantı, gözlem notu, gösterge eşleme, geçerlilik | |
 | 5 | Değerlendirme döngüsü: açma, öz-beyan, yönetici doğrulaması (toplu ekran), seviye 5 onayı, mutabakat, itiraz, kilit | |
 | 6 | Raporlar: ısı haritası, tamamlanma, öz–kanıtlanmış farkı, cömertlik, bus factor; gelişim planı (3 öncelik); kalibrasyon özet ekranı | |

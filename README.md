@@ -6,7 +6,7 @@ Kapsam: Genel Müdürlük departmanları (100+) ve şube ağı (bölge → şube
 
 **Güncel kapsam (23.10.2026):** önce İK Grup Müdürlüğü için sade sürüm (v0), bkz. `docs/13-sade-surum-ik-grup.md`; 01–12 hedef tasarımdır.
 
-Tasarım dokümanları `docs/` altında, uygulama `app/` altındadır. Sprint 1 (organizasyon, kişi, rol/pozisyon, yetki, CSV içe aktarma) tamamlanmıştır; sonraki sprintler 07 numaralı dokümandaki teslim planını izler.
+Tasarım dokümanları `docs/` altında, uygulama `app/` altındadır. Sprint 1 (organizasyon, kişi, rol/pozisyon, yetki, CSV içe aktarma) ve sprint 2 (yetkinlik kütüphanesi) tamamlanmıştır; sonraki sprintler 13 numaralı dokümandaki v0 planını izler.
 
 ## Uygulamayı çalıştırma
 
@@ -16,6 +16,7 @@ cp .env.example .env            # DATABASE_URL ve SESSION_SECRET
 npm install
 npm run db:push                 # şemayı PostgreSQL'e uygular
 npm run db:seed                 # İK admin (admin@banka.local / Admin123!) ve örnek organizasyon
+npm run db:seed:library         # seviye tanımları, kanıt türleri ve 3 örnek yetkinlik (göstergeli)
 npm run dev                     # http://localhost:3000
 npm test                        # iş kuralı ve içe aktarma testleri
 ```

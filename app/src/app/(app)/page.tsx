@@ -28,7 +28,7 @@ export default async function OzetPage() {
             <tbody>{batches.map((b) => <tr key={b.id}><td>{b.type}</td><td>{b.fileName}</td><td>{b.status}</td><td>{b.totalRows}</td><td>{b.validRows}</td><td>{b.errorRows}</td></tr>)}</tbody></table>
         )}
       </div>
-      <p className="text-sm text-slate-500">Sprint 1: organizasyon, kişi, rol/pozisyon, yetki ve içe aktarma. Sonraki sprint: yetkinlik kütüphanesi ve beceri toplama portalı.</p>
+      <p className="text-sm text-slate-500">Sade sürüm (v0, İK Grup Müdürlüğü): sprint 1 organizasyon ve içe aktarma, sprint 2 yetkinlik kütüphanesi tamamlandı. Sırada rol profilleri.</p>
     </div>
   );
 }

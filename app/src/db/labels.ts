@@ -15,3 +15,14 @@ export const systemRoleLabel: Record<string, string> = {
   CALISAN: "Çalışan", YONETICI: "Yönetici", KURATOR: "Küratör", ALAN_UZMANI: "Alan uzmanı", UST_DOGRULAYICI: "Üst doğrulayıcı",
   IK_IS_ORTAGI: "İK iş ortağı", IK_ADMIN: "İK admin", UST_YONETIM: "Üst yönetim",
 };
+export const competencyKindLabel: Record<string, string> = { TEKNIK: "Teknik beceri", DAVRANISSAL: "Davranışsal yetkinlik" };
+export const competencySubKindLabel: Record<string, string> = {
+  CEKIRDEK: "Çekirdek", LIDERLIK: "Liderlik", YAZILIM_ARAC: "Yazılım / Araç", MEVZUAT_STANDART: "Mevzuat / Standart",
+  SUREC_METODOLOJI: "Süreç / Metodoloji", URUN_ALAN: "Ürün / Alan bilgisi", EKIPMAN_ISLEM: "Ekipman / İşlem", DIL: "Dil",
+};
+export const competencyStatusLabel: Record<string, string> = { TASLAK: "Taslak", INCELEMEDE: "İncelemede", AKTIF: "Aktif", EMEKLI: "Emekli" };
+export const futureTrendLabel: Record<string, string> = { YUKSELEN: "Yükselen", STABIL: "Stabil", AZALAN: "Azalan" };
+export const levelNames = {
+  TEKNIK: ["Yok / Uygulanamaz", "Başlangıç", "Uygulayıcı", "Yetkin Uygulayıcı", "Yöneten", "Yön Veren"],
+  DAVRANISSAL: ["Yok / Uygulanamaz", "Gelişmekte", "Uygular", "Güçlü", "Rol model", "Kültür taşıyıcı"],
+} as const;
