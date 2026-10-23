@@ -26,3 +26,4 @@ export const levelNames = {
   TEKNIK: ["Yok / Uygulanamaz", "Başlangıç", "Uygulayıcı", "Yetkin Uygulayıcı", "Yöneten", "Yön Veren"],
   DAVRANISSAL: ["Yok / Uygulanamaz", "Gelişmekte", "Uygular", "Güçlü", "Rol model", "Kültür taşıyıcı"],
 } as const;
+export const evidenceStatusLabel: Record<string, string> = { TASLAK: "Taslak", SUNULDU: "Sunuldu", KABUL: "Kabul", EK_BILGI: "Ek bilgi istendi", RED: "Red" };

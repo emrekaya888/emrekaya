@@ -264,3 +264,45 @@ export const roleProfilesRelations = relations(roleProfiles, ({ one }) => ({
 }));
 export const rolesRelations = relations(roles, ({ many }) => ({ profiles: many(roleProfiles), positions: many(positions) }));
 export type RoleProfile = typeof roleProfiles.$inferSelect;
+
+// ---------------- Sprint 4: Kanıt kasası
+export const evidenceStatus = pgEnum("evidence_status", ["TASLAK", "SUNULDU", "KABUL", "EK_BILGI", "RED"]);
+export const evidence = pgTable("evidence", {
+  id: serial("id").primaryKey(),
+  personId: integer("person_id").notNull().references(() => people.id),
+  typeCode: text("type_code").notNull(),
+  whatIDid: text("what_i_did").notNull(),
+  startDate: date("start_date"),
+  endDate: date("end_date").notNull(),
+  result: text("result"),
+  verifier: text("verifier"),
+  link: text("link"),
+  fileName: text("file_name"),
+  filePath: text("file_path"),
+  fileMime: text("file_mime"),
+  fileSize: integer("file_size"),
+  isObservation: boolean("is_observation").notNull().default(false),
+  status: evidenceStatus("status").notNull().default("TASLAK"),
+  managerNote: text("manager_note"),
+  decidedBy: integer("decided_by").references(() => people.id),
+  decidedAt: timestamp("decided_at", { withTimezone: true }),
+  createdByPersonId: integer("created_by_person_id").references(() => people.id),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+}, (t) => [index("evidence_person_idx").on(t.personId), index("evidence_status_idx").on(t.status)]);
+
+export const evidenceIndicators = pgTable("evidence_indicators", {
+  id: serial("id").primaryKey(),
+  evidenceId: integer("evidence_id").notNull().references(() => evidence.id, { onDelete: "cascade" }),
+  indicatorId: integer("indicator_id").notNull().references(() => indicators.id),
+}, (t) => [uniqueIndex("evidence_indicators_idx").on(t.evidenceId, t.indicatorId), index("evidence_indicators_ind_idx").on(t.indicatorId)]);
+
+export const evidenceRelations = relations(evidence, ({ one, many }) => ({
+  person: one(people, { fields: [evidence.personId], references: [people.id] }),
+  links: many(evidenceIndicators),
+}));
+export const evidenceIndicatorsRelations = relations(evidenceIndicators, ({ one }) => ({
+  evidence: one(evidence, { fields: [evidenceIndicators.evidenceId], references: [evidence.id] }),
+  indicator: one(indicators, { fields: [evidenceIndicators.indicatorId], references: [indicators.id] }),
+}));
+export type Evidence = typeof evidence.$inferSelect;

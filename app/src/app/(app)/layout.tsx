@@ -8,6 +8,8 @@ const nav = [
   { href: "/kisiler", label: "Kişiler" },
   { href: "/kutuphane", label: "Yetkinlik kütüphanesi" },
   { href: "/rol-profilleri", label: "Rol profilleri" },
+  { href: "/kanit", label: "Kanıt kasam" },
+  { href: "/kanit/ekip", label: "Ekibimin kanıtları" },
   { href: "/roller", label: "Roller ve pozisyonlar" },
   { href: "/ice-aktarma", label: "İçe aktarma" },
   { href: "/kurulum", label: "Kurulum" },
@@ -31,7 +33,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         <div className="mt-auto border-t border-white/20 pt-4 text-xs">
           <div className="font-medium">{session.fullName}</div>
           <div className="text-sky-200">{roles || "Rol atanmamış"}</div>
-          <form action={logoutAction}><button className="mt-2 underline">Çıkış</button></form>
+          <div className="mt-2 flex gap-3"><Link href="/hesap" className="underline">Hesabım</Link><form action={logoutAction}><button className="underline">Çıkış</button></form></div>
         </div>
       </aside>
       <div className="flex-1">
