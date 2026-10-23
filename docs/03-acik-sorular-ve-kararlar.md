@@ -48,6 +48,8 @@ Her soru için **önerilen varsayılan** yazıldı. Karar verilince "Karar" süt
 | S37 | Danışma sorusu | 360 formundaki "kime sorarsınız" sorusu (E3) KVKK aydınlatma metnine eklenecek; sonuç kişiye puan olarak yansımayacak. Uygun mu? | Evet | |
 | S38 | Yönetici tutarlılık göstergesi | Yönetici tutarlılığının L7 liderlik göstergesi olarak otomatik puanlanması (E5) yöneticilere önceden duyurulacak. Uygun mu? | Evet, ilk döngüde "bilgilendirme amaçlı", 2. döngüde gösterge | |
 
+| S39 | Kapsam küçültme | Sade sürüm (v0) önce İK Grup Müdürlüğü'nün 5 müdürlüğünde; 360, potansiyel, otomatik kanıt, yedekleme ve işe alım v0 dışı; halkalar halinde genişleme | 13 dokümanı | Karar: Evet (23.10.2026) |
+
 ## Karar kaydı
 
 | Tarih | # | Karar | Veren | Not |
@@ -75,6 +77,7 @@ Her soru için **önerilen varsayılan** yazıldı. Karar verilince "Karar" süt
 | 2026-10-20 | S30 | Pilot yok, tek seferde | Emre Kaya | Prova döngüsü + 3 dalga |
 | 2026-10-20 | S33 | Açılış Ocak 2027 | Emre Kaya | 08 uygulama akışı yazıldı |
 | 2026-10-20 | S25b, S31, S32 | Rol kademeleri şimdilik detaylandırılmayacak; varsayılanlar kullanılır | Emre Kaya | |
-| 2026-10-23 | – | İK Grup Müdürlüğü pilotu yapılmayacak; uygulama geliştirme (sprint 1) başlıyor | Emre Kaya | 07 teslim planı |
+| 2026-10-23 | S39 | Kapsam küçültüldü: önce İK Grup Müdürlüğü için sade sürüm (v0), öğrenimle genişleme; S30 ve S33 bu kararla değişti | Emre Kaya | 13 dokümanı |
+| 2026-10-23 | – | Uygulama geliştirme (sprint 1) tamamlandı | Claude | 07 |
 | 2026-10-20 | – | Araştırma kaynaklı v1.1 eklemeleri (E1–E10) tasarıma işlendi; onay S36–S38 | Claude (öneri) | 01 §9 |
 | 2026-10-19 | – | Teknik ve davranışsal tüm seviyelerde davranış göstergesi; tüm puanlar kanıtla ("yaptım/bildim/sahibim") | Emre Kaya | 05 dokümanı yazıldı |

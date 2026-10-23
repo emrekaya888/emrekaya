@@ -1,6 +1,8 @@
 # 01 · Yapı Tasarımı — Yetkinlik Yönetim Sistemi
 
 > Amaç: Uygulama yazılmadan önce kavramsal yapıyı, süreçleri, kuralları ve ölçümleri netleştirmek.
+> **Kapsam notu (23.10.2026):** Bu doküman hedef tasarımdır. İlk uygulama, İK Grup Müdürlüğü için sade sürümdür (bkz. `13-sade-surum-ik-grup.md`).
+>
 > Sembol: ✅ sizin tarifinizden gelen, ➕ benim eklediğim, ❓ karar bekleyen (bkz. `03-acik-sorular-ve-kararlar.md`).
 >
 > **Güncelleme 19.10.2026 — alınan kararlar:** 100+ departman ölçeği; HRIS bağlantısı sonraya; davranışsal ölçek aynı 1–5; 360 var; seviye 5 için üst doğrulama; itirazda İK + üst yönetici; ücret/terfiden ayrık; web + mobil; eğitim kataloğu kapsam dışı; potansiyel bu sistemde ölçülecek; **tüm seviyelerde davranış göstergesi ve her puan kanıtla** (ayrıntı: `05-kanit-gosterge-ve-potansiyel-modeli.md`). **Şube ağı** (bölge → şube → portföy ekipleri) aynı yapıya dahil edildi: `06-sube-agi-yapisi.md`. Teknoloji: kısıt yok, tüm sistem birlikte: `07-teknik-mimari.md`. Ölçek: 6.400 çalışan, 600 yönetici, 15 bölge, 450 şube. Pilot yok; prova döngüsü + tek seferde açılış.

@@ -4,6 +4,8 @@ Kurumun teknik beceri ve davranışsal yetkinliklerini **tespit, değerlendirme,
 
 Kapsam: Genel Müdürlük departmanları (100+) ve şube ağı (bölge → şube → portföy ekipleri); 6.400 çalışan, 600 yönetici.
 
+**Güncel kapsam (23.10.2026):** önce İK Grup Müdürlüğü için sade sürüm (v0), bkz. `docs/13-sade-surum-ik-grup.md`; 01–12 hedef tasarımdır.
+
 Tasarım dokümanları `docs/` altında, uygulama `app/` altındadır. Sprint 1 (organizasyon, kişi, rol/pozisyon, yetki, CSV içe aktarma) tamamlanmıştır; sonraki sprintler 07 numaralı dokümandaki teslim planını izler.
 
 ## Uygulamayı çalıştırma
@@ -33,6 +35,7 @@ PostgreSQL 16 gerekir. İçe aktarma sırası: organizasyon → roller → pozis
 | [docs/06-sube-agi-yapisi.md](docs/06-sube-agi-yapisi.md) | Bölge → şube → portföy ekipleri; ortak şube teknik beceri seti, segment becerileri, hedef matrisi, bankacılık kanıt türleri, çift hat değerlendirme, üç kademeli kalibrasyon, ölçek hesabı |
 | [docs/07-teknik-mimari.md](docs/07-teknik-mimari.md) | Teknoloji yığını, kod yapısı, yetkilendirme, içe aktarma, güvenlik, teslim planı |
 | [docs/09-surecler.md](docs/09-surecler.md) | Süreç kitabı: 19 süreç; her biri için tetikleyici, adımlar (kim ne yapar), kurallar, dikkat noktaları, çıktı ve ölçüt |
+| [docs/13-sade-surum-ik-grup.md](docs/13-sade-surum-ik-grup.md) | **Sade sürüm (v0) kapsamı:** İK Grup Müdürlüğü ile başlangıç; ne var/ne yok, sadeleştirilmiş kütüphane ve döngü, sprintler, takvim, öğrenim ölçütleri ve genişleme kriteri |
 | [docs/12-proje-yonetim-modeli.md](docs/12-proje-yonetim-modeli.md) | Proje yönetim modeli ve uygulama kılavuzu: yönetici özeti, yönetişim, RACI, kalite kapıları; İP0–İP10 iş paketleri, her adımda yapılacaklar, kaçınılacaklar ve örnekler; şablonlar ve kontrol listeleri |
 | [docs/11-ogrenme-raporu.md](docs/11-ogrenme-raporu.md) | Öğrenme raporu: yetkinlik yönetiminin kuramı, araştırma dayanakları, dünya örnekleri, tuzaklar, güncel sektör raporları (WEF, Deloitte, LinkedIn, Gartner, Gallup, Mercer, Bersin, McKinsey, CIPD), ek yöntemler ve araştırma kanıtı, tasarımın ilkelere eşlemesi; sözlük, kaynakça, sınama soruları |
 | [docs/10-yontem-kilavuzu.md](docs/10-yontem-kilavuzu.md) | Danışman yöntem kılavuzu: yetkinlik seçim yöntemi, teknik beceri tespit yöntemi, BARS gösterge geliştirme, anket ve form tasarımları (örnek maddelerle), veri toplama planı, KPI eşik yöntemi, değerlendirici hataları ve eğitimi, psikometrik kontroller, iletişim, KVKK |
