@@ -10,9 +10,9 @@ export interface ReportLine { personId: number; unitId: number; competencyId: nu
 
 /** Kişinin raporlama birimi: DEPARTMAN (müdürlük) seviyesindeki atası; yoksa kendi birimi. */
 export function reportingUnit(ctx: OrgContext, personId: number): number | null {
-  let id = ctx.personUnit.get(personId) ?? null; let guard = 0; let last = id;
-  while (id != null && guard++ < 50) { const u = ctx.units.get(id); if (!u) break; if (u.type === "DEPARTMAN") return u.id; last = id; id = u.parentId ?? null; }
-  return last;
+  const own = ctx.personUnit.get(personId) ?? null; let id = own; let guard = 0;
+  while (id != null && guard++ < 50) { const u = ctx.units.get(id); if (!u) break; if (u.type === "DEPARTMAN" || u.type === "SUBE") return u.id; id = u.parentId ?? null; }
+  return own;
 }
 
 export async function buildReport(cycleId: number) {
