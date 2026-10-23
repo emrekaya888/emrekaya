@@ -8,7 +8,16 @@ Kapsam: Genel Müdürlük departmanları (100+) ve şube ağı (bölge → şube
 
 Tasarım dokümanları `docs/` altında, uygulama `app/` altındadır. Sade sürümün (v0) altı sprinti tamamlanmıştır: kurulum ve içe aktarma, yetkinlik kütüphanesi, rol profilleri, kanıt kasası, değerlendirme döngüsü (mutabakat, itiraz, üst onay, kilit), raporlar ve gelişim planı; ayrıca etap etap ilerleyen Aşamalar rehberi.
 
-## Giriş linki
+## Kurulumsuz sürüm: tek dosya HTML (önerilen başlangıç)
+
+`html/yys.html` dosyası sunucu, Docker veya kurulum gerektirmez: dosyayı indirip çift tıklayın, tarayıcıda açılır. Tüm akış (kurulum → yetkinlik → rol profili → kanıt → döngü → mutabakat/itiraz → kalibrasyon/kilit → raporlar ve gelişim planı) aynı kurallarla çalışır; her ekranda 📘 öğretici kutular ve "Öğrenme rehberi (A'dan Z'ye)" sayfası vardır.
+
+- **Giriş:** `admin / Admin123!` (İK yöneticisi, tam yetki). Örnek kişiler: kullanıcı adı = şifre = sicil no (örn. `3001 / 3001`); ilk girişte şifre değiştirilir.
+- **Hesaplar:** Kurulum sayfasında "Hepsine hesap aç" her kişiye sicil numarasıyla hesap açar. Admin "İK görünümü: şu kişi olarak bak" ile herkesin ekranını görebilir; "Süreç takibi" sayfası kimin ne yaptığını gösterir.
+- **Veri:** Yalnız açıldığı tarayıcıda saklanır (localStorage). "Yedek ve veri" sayfasından JSON dışa/içe aktarma ve birden fazla dosyayı birleştirme vardır. Haftada bir yedek alın.
+- **Gerçek kuruluma geçiş:** "Yedek ve veri → Örnek veriyi temizle".
+
+## Giriş linki (sunucu sürümü)
 
 Uygulama henüz bir sunucuda yayında değildir; kendi bilgisayarınızda veya kurum sunucusunda çalıştırıldığında giriş adresi **http://localhost:3080/giris** olur (ilk hesap: admin@banka.local / Admin123!, ilk girişte Hesabım sayfasından değiştirin).
 
