@@ -27,3 +27,5 @@ export const levelNames = {
   DAVRANISSAL: ["Yok / Uygulanamaz", "Gelişmekte", "Uygular", "Güçlü", "Rol model", "Kültür taşıyıcı"],
 } as const;
 export const evidenceStatusLabel: Record<string, string> = { TASLAK: "Taslak", SUNULDU: "Sunuldu", KABUL: "Kabul", EK_BILGI: "Ek bilgi istendi", RED: "Red" };
+export const cycleStatusLabel: Record<string, string> = { HAZIRLIK: "Hazırlık", OZ_BEYAN: "Öz-beyan", YONETICI: "Yönetici doğrulaması", MUTABAKAT: "Mutabakat", KALIBRASYON: "Kalibrasyon", KILITLI: "Kilitli" };
+export const assessmentStatusLabel: Record<string, string> = { ACILDI: "Açıldı", OZ_BEYAN_TAMAM: "Öz-beyan tamam", YONETICI_TAMAM: "Yönetici doğrulaması tamam", UST_DOGRULAMADA: "Üst doğrulamada (seviye 5)", MUTABAKATTA: "Mutabakatta", ITIRAZDA: "İtirazda", KESINLESTI: "Kesinleşti", KILITLI: "Kilitli" };

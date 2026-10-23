@@ -314,3 +314,74 @@ export const settings = pgTable("settings", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   updatedBy: integer("updated_by"),
 });
+
+// ---------------- Sprint 5: Değerlendirme döngüsü
+export const cycleStatus = pgEnum("cycle_status", ["HAZIRLIK", "OZ_BEYAN", "YONETICI", "MUTABAKAT", "KALIBRASYON", "KILITLI"]);
+export const cycleType = pgEnum("cycle_type", ["ANA", "ARA", "ISE_GIRIS"]);
+export const assessmentStatus = pgEnum("assessment_status", ["ACILDI", "OZ_BEYAN_TAMAM", "YONETICI_TAMAM", "UST_DOGRULAMADA", "MUTABAKATTA", "ITIRAZDA", "KESINLESTI", "KILITLI"]);
+
+export const cycles = pgTable("cycles", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  type: cycleType("type").notNull().default("ANA"),
+  status: cycleStatus("status").notNull().default("HAZIRLIK"),
+  selfDeadline: date("self_deadline"),
+  managerDeadline: date("manager_deadline"),
+  agreementDeadline: date("agreement_deadline"),
+  openedAt: timestamp("opened_at", { withTimezone: true }),
+  lockedAt: timestamp("locked_at", { withTimezone: true }),
+  metrics: jsonb("metrics"),
+  createdBy: integer("created_by"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const assessments = pgTable("assessments", {
+  id: serial("id").primaryKey(),
+  cycleId: integer("cycle_id").notNull().references(() => cycles.id),
+  personId: integer("person_id").notNull().references(() => people.id),
+  positionId: integer("position_id").references(() => positions.id),
+  roleId: integer("role_id").notNull().references(() => roles.id),
+  managerPersonId: integer("manager_person_id").references(() => people.id),
+  status: assessmentStatus("status").notNull().default("ACILDI"),
+  selfCompletedAt: timestamp("self_completed_at", { withTimezone: true }),
+  managerCompletedAt: timestamp("manager_completed_at", { withTimezone: true }),
+  meetingNote: text("meeting_note"),
+  agreementSentAt: timestamp("agreement_sent_at", { withTimezone: true }),
+  employeeApprovedAt: timestamp("employee_approved_at", { withTimezone: true }),
+  finalizedAt: timestamp("finalized_at", { withTimezone: true }),
+}, (t) => [uniqueIndex("assessments_cycle_person_idx").on(t.cycleId, t.personId), index("assessments_manager_idx").on(t.managerPersonId)]);
+
+export const assessmentLines = pgTable("assessment_lines", {
+  id: serial("id").primaryKey(),
+  assessmentId: integer("assessment_id").notNull().references(() => assessments.id, { onDelete: "cascade" }),
+  competencyId: integer("competency_id").notNull().references(() => competencies.id),
+  targetLevel: integer("target_level").notNull(),
+  weight: integer("weight").notNull(),
+  mandatory: boolean("mandatory").notNull().default(false),
+  selfLevel: integer("self_level"),
+  provenLevel: integer("proven_level"),
+  nextProgress: integer("next_progress"),
+  level5Candidate: boolean("level5_candidate").notNull().default(false),
+  level5Validated: boolean("level5_validated"),
+  level5ValidatedBy: integer("level5_validated_by"),
+  rejectedMandatory: boolean("rejected_mandatory").notNull().default(false),
+  meetingRequired: boolean("meeting_required").notNull().default(false),
+  agreedLevel: integer("agreed_level"),
+  managerNote: text("manager_note"),
+  appealFlag: boolean("appeal_flag").notNull().default(false),
+  appealReason: text("appeal_reason"),
+  appealDecision: text("appeal_decision"),
+  appealDecidedBy: integer("appeal_decided_by"),
+  appealNote: text("appeal_note"),
+}, (t) => [uniqueIndex("assessment_lines_idx").on(t.assessmentId, t.competencyId)]);
+
+export const cyclesRelations = relations(cycles, ({ many }) => ({ assessments: many(assessments) }));
+export const assessmentsRelations = relations(assessments, ({ one, many }) => ({
+  cycle: one(cycles, { fields: [assessments.cycleId], references: [cycles.id] }),
+  person: one(people, { fields: [assessments.personId], references: [people.id] }),
+  lines: many(assessmentLines),
+}));
+export const assessmentLinesRelations = relations(assessmentLines, ({ one }) => ({
+  assessment: one(assessments, { fields: [assessmentLines.assessmentId], references: [assessments.id] }),
+  competency: one(competencies, { fields: [assessmentLines.competencyId], references: [competencies.id] }),
+}));

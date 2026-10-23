@@ -14,7 +14,7 @@ export interface Stage {
   checks: StageCheck[]; autoOk: boolean; confirmed: { at: string; byEmail: string; note?: string } | null; implemented: boolean;
 }
 
-const { orgUnits, roles, positions, people, competencies, roleProfiles, evidence } = schema;
+const { orgUnits, roles, positions, people, competencies, roleProfiles, evidence, cycles, assessments, assessmentLines } = schema;
 
 export async function computeStages(): Promise<{ stages: Stage[]; currentIndex: number }> {
   const confirmations = Object.fromEntries((await db.select().from(settings())).map((r) => [r.key, r.value as Stage["confirmed"]]));
@@ -47,6 +47,17 @@ export async function computeStages(): Promise<{ stages: Stage[]; currentIndex: 
   for (const pid of ids) { const rid = ctx.personRole.get(pid); if (!rid) continue; const cs = await provenForPerson(pid, rid); for (const c of cs) for (const i of c.indicators) if (i.level <= c.targetLevel) { totalInd++; if (i.proven) provenInd++; } }
   const coverage = totalInd ? provenInd / totalInd : 0;
   const evRatio = ids.length ? withEv.c / ids.length : 0;
+  // Döngü
+  const [lastCycle] = await db.select().from(cycles).orderBy(sql`${cycles.id} desc`).limit(1);
+  const asRows = lastCycle ? await db.select({ status: assessments.status }).from(assessments).where(eq(assessments.cycleId, lastCycle.id)) : [];
+  const nA = asRows.length;
+  const selfDone = asRows.filter((a) => a.status !== "ACILDI").length;
+  const mgrDone = asRows.filter((a) => ["YONETICI_TAMAM", "MUTABAKATTA", "ITIRAZDA", "KESINLESTI", "KILITLI"].includes(a.status)).length;
+  const finalized = asRows.filter((a) => ["KESINLESTI", "KILITLI"].includes(a.status)).length;
+  const [l5pending] = lastCycle ? await db.select({ c: sql<number>`count(*)::int` }).from(assessmentLines).innerJoin(assessments, eq(assessments.id, assessmentLines.assessmentId)).where(and(eq(assessments.cycleId, lastCycle.id), eq(assessmentLines.level5Candidate, true), sql`${assessmentLines.level5Validated} is null`, sql`${assessments.status} = 'UST_DOGRULAMADA'`)) : [{ c: 0 }];
+  const [appealsOpen] = lastCycle ? await db.select({ c: sql<number>`count(*)::int` }).from(assessmentLines).innerJoin(assessments, eq(assessments.id, assessmentLines.assessmentId)).where(and(eq(assessments.cycleId, lastCycle.id), eq(assessmentLines.appealFlag, true))) : [{ c: 0 }];
+  const cycleOpen = !!lastCycle && lastCycle.status !== "HAZIRLIK";
+  const pct = (x: number) => (nA ? `%${Math.round((x / nA) * 100)} (${x}/${nA})` : "döngü yok");
 
   const stages: Stage[] = [
     { key: "kurulum", order: 1, title: "Kurulum", summary: "Müdürlükler, roller, pozisyonlar, kişiler ve giriş hesapları.",
@@ -83,9 +94,27 @@ export async function computeStages(): Promise<{ stages: Stage[]; currentIndex: 
         { label: "Hedefe kadar gösterge kapsama ≥ %40", ok: coverage >= 0.4, detail: `%${Math.round(coverage * 100)} (${provenInd}/${totalInd})`, required: true },
         { label: "Bekleyen kanıt yok", ok: pendingEv.c === 0, detail: `${pendingEv.c} bekliyor`, required: false },
       ], autoOk: false, confirmed: confirmations["stage:kanit"] ?? null, implemented: true },
-    { key: "degerlendirme", order: 5, title: "Değerlendirme döngüsü", summary: "Döngü açılır: öz-beyan, yönetici doğrulaması, seviye 5 onayı.", guidance: ["Döngüyü İK açar; satırlar rol profilinden üretilir.", "Öz-beyan 2 hafta, yönetici doğrulaması 2 hafta."], links: [{ href: "/donguler", label: "Döngüler" }], checks: [], autoOk: false, confirmed: confirmations["stage:degerlendirme"] ?? null, implemented: false },
-    { key: "mutabakat", order: 6, title: "Mutabakat ve itiraz", summary: "Görüşme, mutabık seviye, itiraz kararı.", guidance: ["Fark ≥ 2 veya reddedilmiş zorunlu kanıt varsa görüşme zorunlu.", "Mutabık seviye kanıtlanmış seviyeyi aşamaz."], links: [], checks: [], autoOk: false, confirmed: confirmations["stage:mutabakat"] ?? null, implemented: false },
-    { key: "kalibrasyon", order: 7, title: "Kalibrasyon ve kilit", summary: "Grup müdürü + müdürler oturumu; döngü kilitlenir.", guidance: ["Kalibrasyon seviye yükseltmez; dağılım sinyaldir."], links: [], checks: [], autoOk: false, confirmed: confirmations["stage:kalibrasyon"] ?? null, implemented: false },
+    { key: "degerlendirme", order: 5, title: "Değerlendirme döngüsü", summary: "Döngü açılır: öz-beyan, yönetici doğrulaması, seviye 5 üst onayı.",
+      guidance: ["Döngüler sayfasından döngüyü oluşturup açın; satırlar rol profilinden üretilir.", "Çalışanlar kanıtlarını sunup öz-beyanı tamamlar (2 hafta); yöneticiler kanıtları karara bağlayıp doğrulamayı tamamlar (2 hafta).", "Seviye 5 iddiaları grup müdürü onayına düşer; onaysız 5 verilmez."],
+      links: [{ href: "/donguler", label: "Döngüler" }, { href: "/degerlendirme", label: "Değerlendirmem" }, { href: "/degerlendirme/ekip", label: "Ekibimin değerlendirmeleri" }],
+      checks: [
+        { label: "Döngü açıldı", ok: cycleOpen, detail: lastCycle ? `${lastCycle.name} · ${lastCycle.status}` : "döngü yok", required: true },
+        { label: "Öz-beyan tamamlama ≥ %90", ok: nA > 0 && selfDone / nA >= 0.9, detail: pct(selfDone), required: true },
+        { label: "Yönetici doğrulaması ≥ %90", ok: nA > 0 && mgrDone / nA >= 0.9, detail: pct(mgrDone), required: true },
+        { label: "Seviye 5 onayı bekleyen yok", ok: l5pending.c === 0, detail: `${l5pending.c} bekliyor`, required: false },
+      ], autoOk: false, confirmed: confirmations["stage:degerlendirme"] ?? null, implemented: true },
+    { key: "mutabakat", order: 6, title: "Mutabakat ve itiraz", summary: "Görüşme, mutabık seviye, çalışan onayı veya itiraz, grup müdürü kararı.",
+      guidance: ["Fark ≥ 2 veya reddedilmiş zorunlu kanıt varsa görüşme zorunlu; görüşme notu yazılır.", "Mutabık seviye kanıtlanmış seviyeyi aşamaz; çalışan onaylar ya da gerekçeli itiraz eder.", "İtirazlar Üst doğrulama / itiraz sayfasında kanıt üzerinden karara bağlanır."],
+      links: [{ href: "/degerlendirme/ekip", label: "Ekibimin değerlendirmeleri" }, { href: "/degerlendirme/ust", label: "Üst doğrulama / itiraz" }],
+      checks: [
+        { label: "Kesinleşen değerlendirme ≥ %85", ok: nA > 0 && finalized / nA >= 0.85, detail: pct(finalized), required: true },
+        { label: "Bekleyen itiraz yok", ok: appealsOpen.c === 0, detail: `${appealsOpen.c} satır`, required: true },
+      ], autoOk: false, confirmed: confirmations["stage:mutabakat"] ?? null, implemented: true },
+    { key: "kalibrasyon", order: 7, title: "Kalibrasyon ve kilit", summary: "Grup müdürü + müdürler oturumu; döngü kilitlenir ve anlık görüntü alınır.",
+      guidance: ["Kalibrasyon panosunda dağılım ve cömertlik endeksine bakın; kalibrasyon seviye yükseltmez, kanıt görevi açar.", "Döngüyü kalibrasyon aşamasına alın, sonra kilitleyin."],
+      links: [{ href: "/donguler", label: "Döngüler" }, { href: "/raporlar", label: "Raporlar" }],
+      checks: [{ label: "Döngü kilitlendi", ok: !!lastCycle && lastCycle.status === "KILITLI", detail: lastCycle ? lastCycle.status : "döngü yok", required: true }],
+      autoOk: false, confirmed: confirmations["stage:kalibrasyon"] ?? null, implemented: true },
     { key: "raporlar", order: 8, title: "Raporlar ve gelişim planı", summary: "Isı haritası, öğrenim ölçütleri, kişi başı 3 öncelik.", guidance: ["Öğrenim raporu ve genişleme kararı (13 §7)."], links: [], checks: [], autoOk: false, confirmed: confirmations["stage:raporlar"] ?? null, implemented: false },
   ];
   for (const s of stages) s.autoOk = s.checks.filter((c) => c.required).every((c) => c.ok) && s.checks.length > 0;
