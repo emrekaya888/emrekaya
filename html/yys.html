@@ -1,0 +1,240 @@
+<title>Yetkinlik Yönetim Sistemi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sol sabit menü + çalışma alanı; yoğun tablo ve form odaklı araç, kart yalnız "nesne" olan blokta */
+:root{
+  --bg:#f4f6f8; --surface:#ffffff; --fg:#17202a; --muted:#5b6774; --line:#d9e0e7;
+  --brand:#0b3d62; --brand-2:#2a7fb8; --brand-soft:#e3eef7;
+  --ok:#1f7a3a; --ok-soft:#e3f3e8; --warn:#9a6200; --warn-soft:#fff3d6; --bad:#b42318; --bad-soft:#fde8e6;
+  --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0f161d;--surface:#172029;--fg:#e8edf2;--muted:#9aa8b6;--line:#2a3743;--brand:#9cc9ea;--brand-2:#5aa6dc;--brand-soft:#1b2f40;--ok:#6fcf8a;--ok-soft:#163421;--warn:#e8b84a;--warn-soft:#3b2d0c;--bad:#f28b82;--bad-soft:#3f1a17;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f161d;--surface:#172029;--fg:#e8edf2;--muted:#9aa8b6;--line:#2a3743;--brand:#9cc9ea;--brand-2:#5aa6dc;--brand-soft:#1b2f40;--ok:#6fcf8a;--ok-soft:#163421;--warn:#e8b84a;--warn-soft:#3b2d0c;--bad:#f28b82;--bad-soft:#3f1a17;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:14px;line-height:1.45;margin:0;min-height:100%}
+#app{display:flex;min-height:100vh}
+nav.side{width:232px;flex:0 0 232px;background:var(--brand);color:#fff;padding:16px 12px;padding-left:max(12px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:2px;position:sticky;top:0;height:100vh;overflow:auto}
+:root[data-theme="dark"] nav.side, :root:not([data-theme="light"]) nav.side{color:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) nav.side{background:#0b2a44}}
+:root[data-theme="dark"] nav.side{background:#0b2a44}
+nav.side .brand{font-weight:700;margin-bottom:10px;line-height:1.2}
+nav.side .brand small{display:block;font-weight:400;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+nav.side a{color:#fff;text-decoration:none;padding:7px 10px;border-radius:6px;font-size:13.5px;display:block}
+nav.side a:hover{background:rgba(255,255,255,.1)}
+nav.side a.active{background:rgba(255,255,255,.18);font-weight:600}
+nav.side .group{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.65;margin:10px 10px 2px}
+nav.side .who{margin-top:auto;border-top:1px solid rgba(255,255,255,.25);padding-top:10px;font-size:12px}
+nav.side select{width:100%;margin-top:4px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:6px}
+nav.side select option{color:#17202a}
+main{flex:1;min-width:0;padding-block:20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.topbar{display:none}
+@media (max-width:860px){#app{flex-direction:column}nav.side{position:static;width:auto;height:auto;flex-direction:row;flex-wrap:wrap;gap:4px}nav.side .group{display:none}nav.side .who{margin-top:0;border:0;padding:0;width:100%}nav.side .brand{width:100%}}
+h1{font-size:22px;margin:0 0 4px;color:var(--brand);text-wrap:balance}
+h2{font-size:16px;margin:0 0 8px}
+h3{font-size:14px;margin:0 0 6px}
+p{margin:0 0 8px}
+.lead{color:var(--muted);max-width:72ch;margin-bottom:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;margin-bottom:14px}
+.card.current{border-color:var(--brand-2);box-shadow:0 0 0 2px var(--brand-soft)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.tile .k{font-size:12px;color:var(--muted)}.tile .v{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;background:var(--brand-soft);color:var(--brand);padding:6px 8px;font-weight:600}
+td{padding:6px 8px;border-top:1px solid var(--line);vertical-align:top}
+tr.hl td{background:var(--warn-soft)}
+.tbl{overflow-x:auto}
+.btn{font:inherit;font-size:13px;padding:7px 12px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.btn:hover{border-color:var(--brand-2)}
+.btn.p{background:var(--brand);border-color:var(--brand);color:#fff}
+:root[data-theme="dark"] .btn.p{color:#0b2a44}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.p{color:#0b2a44}}
+.btn.s{padding:3px 8px;font-size:12px}
+.btn.danger{color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--brand-2);outline-offset:1px}
+input,select,textarea{font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg);width:100%}
+input[type=checkbox]{width:auto}
+label{font-size:12.5px;color:var(--muted);display:block}
+label>input,label>select,label>textarea{margin-top:3px}
+.form{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));align-items:end}
+.form .wide{grid-column:1/-1}
+.badge{display:inline-block;border-radius:999px;padding:1px 8px;font-size:11.5px;font-weight:500;background:var(--brand-soft);color:var(--brand)}
+.badge.ok{background:var(--ok-soft);color:var(--ok)}.badge.warn{background:var(--warn-soft);color:var(--warn)}.badge.bad{background:var(--bad-soft);color:var(--bad)}.badge.mute{background:var(--line);color:var(--muted)}
+.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}.muted{color:var(--muted)}.small{font-size:12px}.mono{font-family:var(--mono);font-size:12px}
+.msg{padding:8px 10px;border-radius:6px;margin:8px 0;font-size:13px}.msg.ok{background:var(--ok-soft);color:var(--ok)}.msg.bad{background:var(--bad-soft);color:var(--bad)}.msg.warn{background:var(--warn-soft);color:var(--warn)}
+.bar{height:8px;background:var(--line);border-radius:4px;width:96px;overflow:hidden}.bar i{display:block;height:100%;background:var(--brand-2)}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.steps span{border-radius:999px;padding:3px 10px;font-size:12px;background:var(--line);color:var(--muted)}
+.steps span.done{background:var(--ok-soft);color:var(--ok)}.steps span.cur{background:var(--brand);color:#fff}
+details>summary{cursor:pointer;font-weight:600}
+.tree ul{list-style:none;margin:0;padding-left:16px;border-left:1px solid var(--line)}.tree>ul{padding-left:0;border:0}
+.tree li{margin:3px 0}
+.heat td.c{text-align:center;font-variant-numeric:tabular-nums}
+.c.g{background:var(--ok-soft)}.c.y{background:var(--warn-soft)}.c.r{background:var(--bad-soft)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal .box{background:var(--surface);border-radius:8px;padding:16px;max-width:460px;width:100%}
+.pick{max-height:280px;overflow:auto;border:1px solid var(--line);border-radius:6px;padding:6px;font-size:13px}
+.pick label{display:flex;gap:6px;align-items:flex-start;color:var(--fg);margin:3px 0}
+.pick .lv{font-family:var(--mono);font-size:11px;background:var(--line);border-radius:4px;padding:0 4px;white-space:nowrap}
+textarea.json{font-family:var(--mono);font-size:11.5px;min-height:140px}
+@media (prefers-reduced-motion:no-preference){.btn{transition:border-color .15s}}
+</style>
+<div id="app">
+  <nav class="side" id="nav"></nav>
+  <main id="main"></main>
+</div>
+<div id="modal"></div>
+<script>
+// ===================== Veri ve kalıcılık =====================
+const KEY = "yys_v0";
+const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+const today = () => new Date().toISOString().slice(0, 10);
+const LEVELS = {
+  TEKNIK: ["Yok / Uygulanamaz", "Başlangıç", "Uygulayıcı", "Yetkin Uygulayıcı", "Yöneten", "Yön Veren"],
+  DAVRANISSAL: ["Yok / Uygulanamaz", "Gelişmekte", "Uygular", "Güçlü", "Rol model", "Kültür taşıyıcı"],
+};
+const LEVEL_DEF = ["—", "Temel kavramları bilir, yakın gözetimle basit görevleri yapar", "Standart görevleri bağımsız yapar; rutin dışı durumda destek ister", "Karmaşık/rutin dışı görevleri bağımsız çözer; başkalarına rehberlik eder", "Alanın standardını belirler; başkalarını geliştirir; süreci iyileştirir", "Kurum çapında yön verir; yeni yaklaşımlar geliştirir; dış referans uzmanıdır"];
+const EVTYPES = [["IS_CIKTISI", "İş çıktısı (rapor, tasarım, doküman)"], ["PROJE_GOREV", "Proje / görev kaydı"], ["GOZLEM_NOTU", "Yönetici gözlem notu"], ["SERTIFIKA_SINAV", "Sertifika / sınav"], ["PAYDAS_GERI_BILDIRIM", "Paydaş geri bildirimi"], ["OLCULEBILIR_SONUC", "Ölçülebilir sonuç"], ["MENTORLUK_KAYDI", "Mentorluk / eğitim verme kaydı"]];
+const EV_STATUS = { TASLAK: "Taslak", SUNULDU: "Sunuldu", KABUL: "Kabul", EK_BILGI: "Ek bilgi istendi", RED: "Red" };
+const CYCLE_STATUS = ["HAZIRLIK", "OZ_BEYAN", "YONETICI", "MUTABAKAT", "KALIBRASYON", "KILITLI"];
+const CYCLE_LABEL = { HAZIRLIK: "Hazırlık", OZ_BEYAN: "Öz-beyan", YONETICI: "Yönetici doğrulaması", MUTABAKAT: "Mutabakat", KALIBRASYON: "Kalibrasyon", KILITLI: "Kilitli" };
+const A_LABEL = { ACILDI: "Açıldı", OZ_BEYAN_TAMAM: "Öz-beyan tamam", YONETICI_TAMAM: "Doğrulama tamam", UST_DOGRULAMADA: "Üst doğrulamada (S5)", MUTABAKATTA: "Mutabakatta", ITIRAZDA: "İtirazda", KESINLESTI: "Kesinleşti", KILITLI: "Kilitli" };
+const SUBKIND = { CEKIRDEK: "Çekirdek", LIDERLIK: "Liderlik", YAZILIM_ARAC: "Yazılım / Araç", MEVZUAT_STANDART: "Mevzuat / Standart", SUREC_METODOLOJI: "Süreç / Metodoloji", URUN_ALAN: "Ürün / Alan bilgisi", EKIPMAN_ISLEM: "Ekipman / İşlem", DIL: "Dil" };
+const UNIT_TYPES = { DIREKTORLUK: "Grup Müdürlüğü / Direktörlük", DEPARTMAN: "Müdürlük", SERVIS: "Servis / Ekip" };
+
+let S = null;
+function emptyState() {
+  return { version: 1, createdAt: new Date().toISOString(), units: [], roles: [], people: [], competencies: [], profiles: [], evidence: [], cycles: [], plans: [], stages: {}, audit: [], currentUser: "admin", example: false };
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* depolama kapalı olabilir */ } }
+function load() {
+  try { const raw = localStorage.getItem(KEY); if (raw) { S = JSON.parse(raw); return; } } catch (e) {}
+  S = emptyState(); seedExample(); save();
+}
+function audit(action, detail) { S.audit.unshift({ at: new Date().toISOString(), by: S.currentUser, action, detail: detail || "" }); if (S.audit.length > 2000) S.audit.length = 2000; }
+
+function sampleCompetency(code, name, kind, subKind, def, rows) {
+  const levels = {};
+  for (let l = 1; l <= 5; l++) levels[l] = { anchor: "", indicators: [] };
+  rows.forEach(([l, text, mandatory, ev]) => levels[l].indicators.push({ id: uid(), text, mandatory, evidenceTypes: ev, validity: 24 }));
+  return { id: uid(), code, name, kind, subKind, definition: def, boundary: "", criticality: 2, status: "AKTIF", version: 1, levels };
+}
+function seedExample() {
+  S.example = true;
+  const grup = { id: uid(), parentId: null, type: "DIREKTORLUK", name: "İnsan Kaynakları Grup Müdürlüğü", managerId: null };
+  const m1 = { id: uid(), parentId: grup.id, type: "DEPARTMAN", name: "İşe Alım Müdürlüğü", managerId: null };
+  const m2 = { id: uid(), parentId: grup.id, type: "DEPARTMAN", name: "Yetenek ve Yetkinlik Yönetimi", managerId: null };
+  S.units.push(grup, m1, m2);
+  const rGM = { id: uid(), name: "Grup Müdürü", family: "İK Yönetimi", grade: 6, isManager: true };
+  const rM = { id: uid(), name: "Müdür", family: "İK Yönetimi", grade: 5, isManager: true };
+  const rU = { id: uid(), name: "İK Uzmanı", family: "İnsan Kaynakları", grade: 2, isManager: false };
+  const rUY = { id: uid(), name: "İK Uzman Yardımcısı", family: "İnsan Kaynakları", grade: 1, isManager: false };
+  S.roles.push(rGM, rM, rU, rUY);
+  const p = (no, name, unitId, roleId) => ({ id: uid(), no, name, email: "", unitId, roleId, active: true });
+  const gm = p("1001", "Ayşe Yılmaz (örnek)", grup.id, rGM.id);
+  const md1 = p("2001", "Can Aydın (örnek)", m1.id, rM.id);
+  const md2 = p("2002", "Elif Kaya (örnek)", m2.id, rM.id);
+  const u1 = p("3001", "Zeynep Arslan (örnek)", m1.id, rU.id);
+  const u2 = p("3002", "Mehmet Demir (örnek)", m1.id, rUY.id);
+  const u3 = p("3003", "Selin Koç (örnek)", m2.id, rU.id);
+  S.people.push(gm, md1, md2, u1, u2, u3);
+  grup.managerId = gm.id; m1.managerId = md1.id; m2.managerId = md2.id;
+  const c1 = sampleCompetency("D-C-01", "Sürekli Öğrenme", "DAVRANISSAL", "CEKIRDEK", "Yeni bilgi ve yöntemleri kendiliğinden arar, uygular ve paylaşır.", [
+    [1, "Atanan zorunlu eğitimleri süresinde tamamladı", true, ["SERTIFIKA_SINAV"]], [1, "Yöneticisinin önerdiği bir öğrenme kaynağını bitirip kısa özetini paylaştı", false, ["IS_CIKTISI"]], [1, "Yeni bir mevzuat veya ürün değişikliğini sorarak öğrendi ve notlarını ekiple paylaştı", false, ["GOZLEM_NOTU"]],
+    [2, "Kendi alanındaki bir mevzuat veya ürün değişikliğini işine yansıttı", true, ["IS_CIKTISI", "GOZLEM_NOTU"]], [2, "Son 12 ayda bir öğrenme etkinliğine kendi isteğiyle katıldı", false, ["SERTIFIKA_SINAV"]], [2, "Öğrendiği bir yöntemi bir iş çıktısında uyguladı", false, ["IS_CIKTISI"]],
+    [3, "Kendi belirlediği bir öğrenme hedefini 12 ayda tamamladı", true, ["SERTIFIKA_SINAV", "IS_CIKTISI"]], [3, "Öğrendiği bir konuyu ekiple paylaştı (sunum, yazı veya atölye)", true, ["IS_CIKTISI", "MENTORLUK_KAYDI"]], [3, "Öğrendiğini işine uygulayıp ölçülebilir bir sonuç aldı", false, ["OLCULEBILIR_SONUC"]],
+    [4, "Ekibi veya birimi için bir öğrenme programı ya da kılavuz tasarladı", true, ["IS_CIKTISI"]], [4, "En az iki kişiye mentorluk yaptı", false, ["MENTORLUK_KAYDI"]], [4, "Birimde bir öğrenme ritüeli başlattı ve sürdürdü", false, ["GOZLEM_NOTU"]],
+    [5, "Kurum çapında bir öğrenme pratiği kurdu veya dış toplulukta içerik üretti", true, ["IS_CIKTISI", "PAYDAS_GERI_BILDIRIM"]], [5, "Başka birimlerin öğrenme programlarına danışmanlık yaptı", false, ["PAYDAS_GERI_BILDIRIM"]], [5, "Kurumun öğrenme stratejisine kabul edilen bir öneri geliştirdi", false, ["IS_CIKTISI"]]]);
+  const c2 = sampleCompetency("D-C-02", "Süreç Odaklılık", "DAVRANISSAL", "CEKIRDEK", "İşi adımlar, standartlar ve iyileştirme döngüsü olarak görür.", [
+    [1, "Tanımlı süreç adımlarını kontrol listesiyle takip etti", true, ["GOZLEM_NOTU"]], [1, "Süreç dokümanını okuyup kendi görevindeki adımları özetledi", false, ["IS_CIKTISI"]], [1, "Bir sapmayı fark edip yöneticisine bildirdi", false, ["GOZLEM_NOTU"]],
+    [2, "Sürecindeki bir sapmayı tespit edip kayıt altına aldı", true, ["IS_CIKTISI"]], [2, "Süreç ölçümlerini (süre, hata) düzenli raporladı", false, ["IS_CIKTISI"]], [2, "Süreç değişikliğini ekibine aktardı", false, ["GOZLEM_NOTU"]],
+    [3, "Sürecin darboğazını veriyle tespit edip iyileştirme önerdi ve uyguladı", true, ["IS_CIKTISI", "OLCULEBILIR_SONUC"]], [3, "İyileştirme sonrası ölçülebilir kazanım raporladı", false, ["OLCULEBILIR_SONUC"]], [3, "Yeni çalışana süreci öğretti", false, ["MENTORLUK_KAYDI"]],
+    [4, "Birim için bir süreci baştan tasarladı ve standartlaştırdı", true, ["IS_CIKTISI"]], [4, "Süreç ölçüm sistemi kurdu ve birime raporladı", false, ["IS_CIKTISI"]], [4, "Birimler arası bir süreç arayüzünü netleştirdi", false, ["PAYDAS_GERI_BILDIRIM"]],
+    [5, "Kurum çapında süreç mimarisine kabul edilen bir öneri geliştirdi", true, ["IS_CIKTISI"]], [5, "Sürekli iyileştirme programını kurum düzeyinde kurdu", false, ["IS_CIKTISI"]], [5, "Dış kıyaslama yapıp kuruma uyarladı", false, ["IS_CIKTISI"]]]);
+  const c3 = sampleCompetency("T-IK-001", "İşe Alım ve Seçme Değerlendirme", "TEKNIK", "SUREC_METODOLOJI", "Rol profiline göre aday bulma, yapılandırılmış mülakat ve puan kartıyla değerlendirme, karar ve teklif süreçlerinin yürütülmesi.", [
+    [1, "Rol profiline göre aday ön elemesini kontrol listesiyle yaptı", true, ["IS_CIKTISI"]], [1, "Mülakatlara gözlemci olarak katılıp puan kartı doldurdu", false, ["GOZLEM_NOTU"]], [1, "Aday iletişimini standart şablonla yürüttü", false, ["IS_CIKTISI"]],
+    [2, "Standart bir pozisyonun işe alım sürecini bağımsız yürüttü", true, ["PROJE_GOREV"]], [2, "Yapılandırılmış mülakatı STAR yöntemiyle yürütüp puan kartını gerekçeli doldurdu", false, ["IS_CIKTISI"]], [2, "Süreç KPI'larını (süre, aday sayısı, kabul oranı) raporladı", false, ["OLCULEBILIR_SONUC"]],
+    [3, "Kritik veya zor doldurulan bir pozisyonu bağımsız kapattı", true, ["PROJE_GOREV"]], [3, "Yeni mülakatçılara yapılandırılmış mülakat eğitimi verdi", false, ["MENTORLUK_KAYDI"]], [3, "İşe alım kalitesini (90. gün) izleyip raporladı", false, ["OLCULEBILIR_SONUC"]],
+    [4, "Bir rol ailesi için seçme yöntemini (kılavuz, vaka, puan kartı) tasarladı", true, ["IS_CIKTISI"]], [4, "İşe alım sürecinde ölçülebilir iyileştirme sağladı", false, ["OLCULEBILIR_SONUC"]], [4, "İşe alım ekibini yönetip kalite standartlarını belirledi", false, ["GOZLEM_NOTU"]],
+    [5, "Kurum işe alım politikasına kabul edilen bir yaklaşım geliştirdi", true, ["IS_CIKTISI"]], [5, "Dış kıyaslama ve araştırmayla seçme yöntemini yeniledi", false, ["IS_CIKTISI"]], [5, "İşe alım konusunda kurum dışı bir platformda içerik üretti", false, ["PAYDAS_GERI_BILDIRIM"]]]);
+  S.competencies.push(c1, c2, c3);
+  for (const r of S.roles) { S.profiles.push({ roleId: r.id, competencyId: c1.id, target: defaultBehTarget(r.grade, r.isManager, "CEKIRDEK"), weight: 2, mandatory: false }); S.profiles.push({ roleId: r.id, competencyId: c2.id, target: defaultBehTarget(r.grade, r.isManager, "CEKIRDEK"), weight: 2, mandatory: false }); }
+  S.profiles.push({ roleId: rU.id, competencyId: c3.id, target: 3, weight: 3, mandatory: true }, { roleId: rUY.id, competencyId: c3.id, target: 2, weight: 3, mandatory: true }, { roleId: rM.id, competencyId: c3.id, target: 4, weight: 2, mandatory: false });
+  const ind = (c, l, i) => c.levels[l].indicators[i].id;
+  S.evidence.push({ id: uid(), personId: u1.id, type: "IS_CIKTISI", what: "2026 Eylül ayında Uzman Yardımcısı pozisyonu için rol profiline göre aday ön elemesini kontrol listesiyle yaptım; 42 başvurudan 8 aday kısa listeye alındı.", start: "2026-09-01", end: "2026-09-30", result: "Kısa liste 8 aday; 3 işe alındı.", verifier: "İşe Alım Müdürü", link: "", indicatorIds: [ind(c3, 1, 0)], status: "KABUL", managerNote: "", decidedBy: md1.id, decidedAt: "2026-10-05", createdBy: u1.id, isObservation: false },
+    { id: uid(), personId: u1.id, type: "GOZLEM_NOTU", what: "14 Ekim ortak mülakatında gözlemci olarak puan kartını eksiksiz doldurdu, gerekçeleri STAR yapısındaydı.", start: "", end: "2026-10-14", result: "", verifier: "", link: "", indicatorIds: [ind(c3, 1, 1)], status: "KABUL", managerNote: "", decidedBy: md1.id, decidedAt: "2026-10-14", createdBy: md1.id, isObservation: true },
+    { id: uid(), personId: u1.id, type: "SERTIFIKA_SINAV", what: "2026 yılı zorunlu uyum eğitimlerini (KVKK, etik, bilgi güvenliği) süresinde tamamladım.", start: "", end: "2026-03-15", result: "3 eğitim, 3 sınav geçildi", verifier: "LMS kaydı", link: "", indicatorIds: [ind(c1, 1, 0)], status: "SUNULDU", managerNote: "", decidedBy: null, decidedAt: null, createdBy: u1.id, isObservation: false });
+}
+
+// ===================== İş kuralları (05, 02, 12 dokümanları) =====================
+function defaultBehTarget(grade, isManager, subKind) { let t = grade <= 1 ? 2 : grade <= 3 ? 3 : 4; if (isManager) t = Math.max(t, 3); if (subKind === "LIDERLIK") t = Math.max(t, 3); return Math.min(t, 5); }
+function evidenceValid(endDate, months, ref) { const d = new Date(endDate); d.setMonth(d.getMonth() + (months || 24)); return d >= (ref || new Date()); }
+function computeProven(statuses, opts) {
+  const th = (opts && opts.threshold) || 0.7, req5 = !(opts && opts.noLevel5Gate), validated = !!(opts && opts.level5Validated);
+  let level = 0, broken = false; const per = [];
+  for (let n = 1; n <= 5; n++) {
+    const ind = statuses.filter(s => s.level === n); const total = ind.length; const proven = ind.filter(s => s.proven).length; const mm = ind.filter(s => s.mandatory && !s.proven).length;
+    const cov = total ? proven / total : 0; per.push({ level: n, coverage: cov, mandatoryMissing: mm, total });
+    if (broken || !total) { broken = true; continue; }
+    const ok = mm === 0 && cov >= th - 1e-9; const blocked = n === 5 && req5 && !validated;
+    if (ok && !blocked) level = n; else broken = true;
+  }
+  const next = per.find(p => p.level === level + 1);
+  return { level, next: level >= 5 ? 1 : next && next.total ? next.coverage : 0, per };
+}
+function lintIndicator(t) {
+  const issues = []; t = (t || "").trim();
+  const words = t.toLowerCase().replace(/\([^)]*\)/g, " ").split(/[^a-zçğıöşüâîû]+/).filter(Boolean); const last = words[words.length - 1] || "";
+  if (t.length < 15) issues.push(["HATA", "Çok kısa; ne yapıldığını ve çıktısını yazın."]);
+  if (["yapabilir", "edebilir", "olabilir", "bilir", "bilmektedir", "farkındadır", "hâkimdir", "hakimdir"].some(w => words.includes(w)) || /(abilir|ebilir)$/.test(last)) issues.push(["HATA", "\"yapabilir / bilir\" ölçülemez; geçmiş zamanda yapılan işi yazın."]);
+  const judged = ["iyi", "etkili", "başarılı", "kaliteli", "mükemmel", "güçlü", "zayıf", "yeterli", "uygun"].filter(w => words.includes(w)); if (judged.length) issues.push(["UYARI", "Yargı sözcüğü: " + judged.join(", ")]);
+  if (words.filter(w => w === "ve" || w === "veya").length >= 2) issues.push(["UYARI", "Birden fazla davranış olabilir; ayırmayı düşünün."]);
+  if (!["dı", "di", "du", "dü", "tı", "ti", "tu", "tü", "mış", "miş", "muş", "müş"].some(e => last.endsWith(e)) && !/\(otomatik\)/i.test(t)) issues.push(["UYARI", "Geçmiş zaman kullanın (hazırladı, kurdu, öğretti)."]);
+  return issues;
+}
+function structureIssues(c) { const out = []; for (let l = 1; l <= 5; l++) { const inds = c.levels[l].indicators; if (inds.length < 3) out.push(["HATA", `Seviye ${l}: en az 3 gösterge gerekir (${inds.length} var).`]); if (inds.length && !inds.some(i => i.mandatory)) out.push(["HATA", `Seviye ${l}: en az 1 zorunlu gösterge işaretleyin.`]); if (inds.length > 5) out.push(["UYARI", `Seviye ${l}: ${inds.length} gösterge çok; 3–5 tutun.`]); } return out; }
+function canActivate(c) { return !structureIssues(c).some(i => i[0] === "HATA") && (c.definition || "").trim().length > 0; }
+function profileWarnings(rows, isManager, hasPeople) {
+  const w = []; const tech = rows.filter(r => r.kind === "TEKNIK"), beh = rows.filter(r => r.kind === "DAVRANISSAL");
+  if (rows.length > 30) w.push(["HATA", `Kişi başı ${rows.length} satır; üst sınır 30.`]);
+  if (!tech.length) w.push(["UYARI", "Teknik beceri yok; rol yalnız davranışsal değerlendirilecek."]);
+  if (tech.length > 18) w.push(["UYARI", `${tech.length} teknik beceri; 12–18 önerilir.`]);
+  if (!beh.length) w.push(["UYARI", "Davranışsal yetkinlik bağlanmamış."]);
+  if (isManager && !beh.some(r => r.subKind === "LIDERLIK")) w.push(["UYARI", "Yönetici rolünde liderlik yetkinliği yok."]);
+  if (!isManager && beh.some(r => r.subKind === "LIDERLIK")) w.push(["UYARI", "Yönetici olmayan rolde liderlik yetkinliği var."]);
+  if (rows.length >= 5 && rows.every(r => r.target >= 4)) w.push(["UYARI", "Tüm hedefler 4 ve üstü; hedef \"beklenen\" olmalı, \"ideal\" değil."]);
+  if (!hasPeople) w.push(["UYARI", "Bu role bağlı kişi yok."]);
+  return w;
+}
+const priorityScore = (target, agreed, weight, crit) => Math.max(target - agreed, 0) * weight * crit;
+
+// ===================== Yardımcılar =====================
+const byId = (arr, id) => arr.find(x => x.id === id);
+const unit = id => byId(S.units, id), role = id => byId(S.roles, id), person = id => byId(S.people, id), comp = id => byId(S.competencies, id);
+function unitPath(id) { const parts = []; let u = unit(id); let g = 0; while (u && g++ < 30) { parts.unshift(u.name); u = unit(u.parentId); } return parts.join(" › "); }
+function managerOf(pid) { const p = person(pid); if (!p) return null; let u = unit(p.unitId); let g = 0; while (u && g++ < 30) { if (u.managerId && u.managerId !== pid) return u.managerId; u = unit(u.parentId); } return null; }
+function teamOf(mid) { return S.people.filter(p => p.active && p.id !== mid && managerOf(p.id) === mid).map(p => p.id); }
+function reportingUnit(pid) { const p = person(pid); let u = unit(p && p.unitId); let g = 0; while (u && g++ < 30) { if (u.type === "DEPARTMAN") return u.id; u = unit(u.parentId); } return p ? p.unitId : null; }
+function isAdmin() { return S.currentUser === "admin"; }
+function me() { return isAdmin() ? null : person(S.currentUser); }
+function isUpper() { if (isAdmin()) return true; const m = me(); if (!m) return false; const topUnits = S.units.filter(u => !u.parentId); return topUnits.some(u => u.managerId === m.id); }
+function allIndicators(c) { const out = []; for (let l = 1; l <= 5; l++) c.levels[l].indicators.forEach(i => out.push(Object.assign({ level: l, competencyId: c.id }, i))); return out; }
+function indicatorById(id) { for (const c of S.competencies) for (let l = 1; l <= 5; l++) { const i = c.levels[l].indicators.find(x => x.id === id); if (i) return Object.assign({ level: l, competency: c }, i); } return null; }
+function profileRows(roleId) { return S.profiles.filter(p => p.roleId === roleId).map(p => { const c = comp(p.competencyId); return c ? Object.assign({}, p, { code: c.code, name: c.name, kind: c.kind, subKind: c.subKind, status: c.status, criticality: c.criticality }) : null; }).filter(Boolean).sort((a, b) => (a.kind + (a.subKind || "") + a.code).localeCompare(b.kind + (b.subKind || "") + b.code)); }
+function provenFor(pid, roleId, l5map) {
+  return profileRows(roleId).map(r => {
+    const c = comp(r.competencyId); const inds = allIndicators(c);
+    const statuses = inds.map(i => { const ls = S.evidence.filter(e => e.personId === pid && e.indicatorIds.includes(i.id)); const proven = ls.some(e => e.status === "KABUL" && evidenceValid(e.end, i.validity)); const claimed = ls.some(e => e.status !== "RED"); return Object.assign({}, i, { proven, claimed, pending: ls.filter(e => e.status === "SUNULDU" || e.status === "EK_BILGI").length, count: ls.length }); });
+    const validated = !!(l5map && l5map[r.competencyId]);
+    const pr = computeProven(statuses, { level5Validated: validated }); const cl = computeProven(statuses.map(s => ({ level: s.level, mandatory: s.mandatory, proven: s.claimed })), { noLevel5Gate: true });
+    const l5c = computeProven(statuses, { noLevel5Gate: true }).level === 5;
+    return Object.assign({}, r, { proven: pr.level, claimed: cl.level, next: pr.next, indicators: statuses, l5Candidate: l5c, rejectedMandatory: inds.some(i => i.mandatory && S.evidence.some(e => e.personId === pid && e.status === "RED" && e.indicatorIds.includes(i.id))) });
+  });
+}
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+const pct = x => "%" + Math.round(x * 100);
+const activeCycle = () => S.cycles.find(c => c.status !== "KILITLI") || null;
+const lastCycle = () => S.cycles[S.cycles.length - 1] || null;
