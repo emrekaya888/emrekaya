@@ -16,6 +16,7 @@ Tasarım dokümanları `docs/` altında, uygulama `app/` altındadır. Sade sür
 - **Roller ayrı süreç görür:** İK admin davranışsal yetkinlikleri ve göstergelerini tanımlar, teknik beceriler için "Süreci başlat" der; müdürler kendi müdürlükleri için teknik becerileri (tanım, 5 seviye × göstergeler, kanıt türleri, önerilen rol hedefleri) girip İK onayına gönderir; İK onaylayınca aktifleşir, rol profillerine işlenir ve çalışanlara görünür. İK admin ayrıca rol profillerini, kurulumu ve süreç takibini yönetir. Müdürler ve grup müdürü tanımlı yetkinlikleri salt okunur görür; ekiplerinin kanıtlarını, yetkinlik taleplerini ve değerlendirmelerini yürütür. Çalışanlar rol profiline ek yetkinlik seçip yöneticisine onaya gönderir, kanıt girer, öz-beyan ve mutabakat yapar, gelişim planı yazar. Özet sayfası her role kendi adımlarını gösterir.
 - **Hesaplar:** Kurulum sayfasında "Hepsine hesap aç" her kişiye sicil numarasıyla hesap açar. Admin "İK görünümü: şu kişi olarak bak" ile herkesin ekranını görebilir; "Süreç takibi" sayfası kimin ne yaptığını gösterir.
 - **Veri:** Yalnız açıldığı tarayıcıda saklanır (localStorage). "Yedek ve veri" sayfasından JSON dışa/içe aktarma ve birden fazla dosyayı birleştirme vardır. Haftada bir yedek alın.
+- **Kütüphane boş başlar:** örnek yetkinlik yoktur; davranışsal yetkinlikleri İK, teknik becerileri müdürler (İK onayıyla) sıfırdan tanımlar. Örnek veri yalnız birim, rol, kişi ve hesaplardan oluşur.
 - **Gerçek kuruluma geçiş:** "Yedek ve veri → Örnek veriyi temizle".
 
 ## Giriş linki (sunucu sürümü)
