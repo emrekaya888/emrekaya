@@ -48,6 +48,7 @@ Her soru için **önerilen varsayılan** yazıldı. Karar verilince "Karar" süt
 | S37 | Danışma sorusu | 360 formundaki "kime sorarsınız" sorusu (E3) KVKK aydınlatma metnine eklenecek; sonuç kişiye puan olarak yansımayacak. Uygun mu? | Evet | |
 | S38 | Yönetici tutarlılık göstergesi | Yönetici tutarlılığının L7 liderlik göstergesi olarak otomatik puanlanması (E5) yöneticilere önceden duyurulacak. Uygun mu? | Evet, ilk döngüde "bilgilendirme amaçlı", 2. döngüde gösterge | |
 
+| S40 | Gösterge yapısı (v0) | Gösterge tek cümle olsun; zorunlu işareti, geçerlilik süresi ve kanıt türü kaldırılsın; her seviyede 1–3 gösterge; seviye kuralı "göstergelerin en az yarısı kanıtlı" (S21'deki %70 + zorunlu kuralı v0'da uygulanmaz); kanıt için süre sınırı yok; döngü yerine sürekli akış | HTML v0 | Karar: Evet (24.10.2026) |
 | S39 | Kapsam küçültme | Sade sürüm (v0) önce İK Grup Müdürlüğü'nün 5 müdürlüğünde; 360, potansiyel, otomatik kanıt, yedekleme ve işe alım v0 dışı; halkalar halinde genişleme | 13 dokümanı | Karar: Evet (23.10.2026) |
 
 ## Karar kaydı
@@ -81,3 +82,4 @@ Her soru için **önerilen varsayılan** yazıldı. Karar verilince "Karar" süt
 | 2026-10-23 | – | Uygulama geliştirme (sprint 1) tamamlandı | Claude | 07 |
 | 2026-10-20 | – | Araştırma kaynaklı v1.1 eklemeleri (E1–E10) tasarıma işlendi; onay S36–S38 | Claude (öneri) | 01 §9 |
 | 2026-10-19 | – | Teknik ve davranışsal tüm seviyelerde davranış göstergesi; tüm puanlar kanıtla ("yaptım/bildim/sahibim") | Emre Kaya | 05 dokümanı yazıldı |
+| 2026-10-24 | S40 | Gösterge sadeleştirildi (tek cümle, zorunlu/süre/kanıt türü yok; seviye = göstergelerin yarısı kanıtlı); döngüler kaldırıldı, sürekli akış; teknik becerileri müdürler tanımlar, İK onaylar; örnek yetkinlikler silindi | Emre Kaya | html/yys.html |
