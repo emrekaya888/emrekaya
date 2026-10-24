@@ -10,7 +10,7 @@ Tasarım dokümanları `docs/` altında, uygulama `app/` altındadır. Sade sür
 
 ## Kurulumsuz sürüm: tek dosya HTML (önerilen başlangıç)
 
-`html/yys.html` dosyası sunucu, Docker veya kurulum gerektirmez: dosyayı indirip çift tıklayın, tarayıcıda açılır. Tüm akış (kurulum → yetkinlik → rol profili → kanıt → döngü → mutabakat/itiraz → kalibrasyon/kilit → raporlar ve gelişim planı) aynı kurallarla çalışır; her ekranda 📘 öğretici kutular ve "Öğrenme rehberi (A'dan Z'ye)" sayfası vardır.
+`html/yys.html` dosyası sunucu, Docker veya kurulum gerektirmez: dosyayı indirip çift tıklayın, tarayıcıda açılır. Tüm akış (kurulum → yetkinlik → rol profili → kanıt → öz-beyan ve doğrulama → mutabakat/itiraz → raporlar, kalibrasyon ve gelişim planı) aynı kurallarla çalışır. Döngü/takvim yoktur: rol profili tanımlanınca herkesin değerlendirmesi açıktır, kişi ve yönetici hazır olduğunda ilerler, kesinleşince yeni tur başlatılır; İK isterse raporlardan "Dönemi kaydet" ile anlık görüntü alır; her ekranda 📘 öğretici kutular ve "Öğrenme rehberi (A'dan Z'ye)" sayfası vardır.
 
 - **Giriş:** `admin / Admin123!` (İK yöneticisi, tam yetki). Örnek kişiler: kullanıcı adı = şifre = sicil no (örn. `3001 / 3001`); ilk girişte şifre değiştirilir.
 - **Hesaplar:** Kurulum sayfasında "Hepsine hesap aç" her kişiye sicil numarasıyla hesap açar. Admin "İK görünümü: şu kişi olarak bak" ile herkesin ekranını görebilir; "Süreç takibi" sayfası kimin ne yaptığını gösterir.
