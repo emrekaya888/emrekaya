@@ -1,6 +1,6 @@
 # Yetkinlik Yönetimi — Öğrenme Raporu
 
-> Bu rapor, tasarım dokümanlarının (01–10) **arkasındaki bilgiyi** anlatır (Bölüm 12–13 güncel sektör raporları ve ek yöntemlerle genişletilmiştir): yetkinlik yönetimi nedir, hangi kuram ve araştırmalara dayanır, dünyada nasıl uygulanıyor, nerede başarısız oluyor ve bizim tasarımımız bu bilgiye nasıl oturuyor. Amaç, sistemi "kullanan" değil "anlayan ve savunabilen" bir İK ekibi yetiştirmek.
+> Bu rapor, tasarım dokümanlarının (01–10) **arkasındaki bilgiyi** anlatır (Bölüm 12–13 güncel sektör raporları ve ek yöntemlerle genişletilmiş; Bölüm 14, Ekim 2026 sadeleştirme kararlarını ve gerekçelerini işler): yetkinlik yönetimi nedir, hangi kuram ve araştırmalara dayanır, dünyada nasıl uygulanıyor, nerede başarısız oluyor ve bizim tasarımımız bu bilgiye nasıl oturuyor. Amaç, sistemi "kullanan" değil "anlayan ve savunabilen" bir İK ekibi yetiştirmek.
 >
 > Dürüstlük notu: Verilen kaynak ve vakalar yaygın bilinen, doğrulanabilir olanlardır. Kesin olmayan sayılar "yaklaşık" diye işaretlenmiştir; rakam uydurulmamıştır. Güncel kıyas verisi gerektiğinde ilgili kaynağa gidilmelidir.
 
@@ -86,6 +86,8 @@ Seviye tasarımında iki klasik referans vardır:
 4. Kalanları ölçek çıpası olarak kullan.
 
 Araştırma literatürü BARS'ın değerlendiriciler arası tutarlılığı artırdığını ama tek başına yanlılığı ortadan kaldırmadığını gösterir; bu yüzden biz göstergeyi **kanıt zorunluluğu** ve **kalibrasyonla** birleştirdik.
+
+> **v1 notu (Ekim 2026):** Uygulamada gösterge **tek cümle** ve seviye başına **1–3** adettir; zorunlu işareti, süre ve kanıt türü yoktur. Gerekçe ve bedeli Bölüm 14.2–14.3'te.
 
 **İyi gösterge yazımının üç testi:**
 - Gözlenebilir mi? ("Müşteriyi anlar" ✗ → "Görüşme sonrası ihtiyaç özetini CRM'e kaydetti ve müşteriye teyit ettirdi" ✓)
@@ -315,6 +317,7 @@ Kotter'ın sekiz adımı (aciliyet, koalisyon, vizyon, iletişim, engelleri kald
 | 360 meta-analizi: etki küçük, koşula bağlı | 360 teyit rolünde, gelişim planına bağlı | 05 §5, 09 P13 |
 | Öğrenme çevikliği: kanıt karışık | Kanıtlı ölçüm, yedeklemede tek başına kullanılmaz, 2. döngüde doğrulama | 05 §6, 10 §7 |
 | Delphi | KPI eşiği ve kritiklik puanlaması | 09 P3, P15 |
+| **v1 sadeleştirmesi (Ekim 2026):** tek cümle gösterge, yarısı kuralı, sürekli akış, yönetici görüşü + kanıt, müdürün yazdığı teknik beceri + İK onayı | Öğrenme dönemi için küçültülmüş model; geri alınabilir kurallar | **Bölüm 14**, docs/14 |
 
 ---
 
@@ -393,6 +396,110 @@ Sermaye piyasası faaliyetleri için **SPK Lisanslama ve Sicil Tutma Tebliği (V
 | Potansiyel | Kanıtlı öğrenme çevikliği + istek | Değerlendirme merkezi (2. faz), ONA | Orta; doğrulanmalı |
 | Yedekleme | Rol profili açığı + potansiyel | Beceri komşuluğu, değerlendirme merkezi | Orta–yüksek |
 | İşe alım | Yapılandırılmış mülakat (STAR) + iş örneği | Vaka sınavı | Yüksek |
+
+---
+
+## Bölüm 14 · Sadeleştirme kararları (v1, Ekim 2026): ne değişti, neden, neyi izleyeceğiz
+
+> Bu bölüm 23–25 Ekim 2026'da verilen kararları işler. Tasarım dokümanlarındaki (01–10) model "hedef model"dir; v1, bu modelin İK Grup Müdürlüğü'nde (5 müdürlük, ~55 kişi) **öğrenmek için** sadeleştirilmiş halidir. Her sadeleştirmenin bedeli vardır; bedeli bilerek ödüyor, geri alma yolunu açık bırakıyoruz.
+
+### 14.1 Neden sadeleştirdik?
+
+İlk denemede üç şey öğrendik:
+
+1. **Yük, öğrenmeyi engelliyordu.** 10 davranışsal × 5 seviye × 3–5 gösterge, her göstergede zorunluluk, geçerlilik süresi ve kanıt türü seçimi: İK'ya 150–250 karar, her müdüre bir o kadar. Sistem daha başlamadan "form doldurma" hissi veriyordu. Literatürün uyarısı burada doğrulandı: Spencer & Spencer'ın 20 yetkinlikli sözlüğü bile rol başına 6–10'a indirilir; CIPD "fazla katı ya da ayrıntılı çerçeve uygulanmaz" der (Bölüm 12).
+2. **Döngü yönetimi, küçük bir grupta gereksiz bir katmandı.** 55 kişide "öz-beyan dönemi açıldı, kapandı, kalibrasyona geçildi" gibi aşama geçişleri İK'nın elinde bir düğmeye dönüşüyor ve herkesi bekletiyordu. Deloitte ve Adobe'un "check-in" dersleri (Bölüm 10) zaten sürekli akışı önerir.
+3. **Kim neyi yapar netleşmeden ekran netleşmiyordu.** Aynı "kütüphane" sayfasını İK, müdür ve çalışanın farklı amaçlarla görmesi kafa karıştırdı. Rol başına ayrı menü ve ayrı süreç, kuramsal bir tercih değil, kullanım sonucudur.
+
+Sadeleştirmede ilke: **"Yaptım, yaparım değil" ve "mutabık ≤ kanıtlanmış" çekirdeği korunur; bunun dışındaki her ayrıntı ancak öğrendikten sonra geri eklenir.**
+
+### 14.2 Karar tablosu
+
+| Alan | Hedef model (01–10) | v1 (Ekim 2026) | Gerekçe | Bedeli / riski | Nasıl izleyeceğiz |
+|---|---|---|---|---|---|
+| Değerlendirme ritmi | Yıllık ana döngü + ara döngü; aşamalar İK'ca açılır/kapanır | **Sürekli akış.** Rol profili tanımlı herkesin değerlendirmesi hep açıktır; kişi hazır olunca öz-beyan, yönetici hazır olunca doğrulama; kesinleşince "yeni tur". İK isterse "dönem kaydet" ile anlık görüntü alır | Küçük grupta takvim yükü; "always-on" performans eğilimi | Sürüklenme: kimse başlamazsa süreç sessizce durur | Süreç takibi sayfası (kim ne yaptı), Özet'te "sıradaki adım", yönetici iş yükü tablosu |
+| Gösterge yapısı | Seviye × 3–5 gösterge; zorunlu işareti; geçerlilik süresi; kanıt türü | **Seviye × 1–3 gösterge, tek cümle.** Zorunlu, süre, kanıt türü yok. Gösterge örnek değil ölçüttür; parantezde örnek verilebilir | Yazma yükünü 1/3–1/5'e indirir; müdürlerin kendi becerilerini yazabilmesini mümkün kılar | Az gösterge → ayırt edicilik düşer; BARS'ın "geri eşleme" testi yapılmıyor | Raporlardaki **yığılma bayrağı** (bir seviyede >%60) ve "öz-beyan − kanıtlanmış" farkı; sorun çıkan yetkinlikte gösterge sayısı artırılır |
+| Seviye kuralı | Zorunlu göstergeler + göstergelerin ≥%70'i kanıtlı | **Göstergelerin en az yarısı kanıtlı** (3'te 2, 1'de 1); alt seviye zinciri korunur; seviye 5 için grup müdürü onayı sürer | %70 kuralı 3 göstergede fiilen "üçü de" demekti; öğrenme döneminde fazla sert | Daha cömert seviye; seviye 2–3'e kolay çıkış | Seviye dağılımı ve hedef karşılama oranı; cömertlik endeksi; gerekirse eşik %70'e geri alınır (tek sabit) |
+| Kanıt geçerliliği | 24 ay | **Süre yok** | İlk turda eski kanıtları da toplamak gerekir; süre tartışması dikkati dağıtıyordu | Beceri bayatlaması görülmez (WEF: beceri yarı ömrü kısalıyor) | Yeni turda yeniden hesaplama; ikinci yılda süre kuralı tartışılır |
+| Kritiklik | Yetkinlik başına 1–3 kritiklik; öncelik = açık × ağırlık × kritiklik | **Kritiklik yok.** Öncelik = açık × ağırlık | Ağırlık zaten rol bazında önemi taşıyor; iki ayrı "önem" alanı karışıyordu | Kurum çapında kritik beceri analizi (bus factor dışında) yapılamaz | Bus factor raporu sürüyor; kritik rol/beceri modülü v1 dışı |
+| Kod | Elle (T-IK-001 gibi) | **Otomatik:** önek-kısaltma-sıra (D-C-001, T-IA-001) | Tutarsız kodlama ve çakışma riski | — | — |
+| Tür / alt tür | Sabit liste (çekirdek, liderlik; yazılım, mevzuat…) | **İK yönetir:** tür adı, kod öneki, alt tür ekle/düzenle/sil; davranışsalda "yalnız yönetici" işareti | Kurumun kendi dili; liderlik ayrımı kural olarak korunur | Çok alt tür → dağınıklık | Alt tür sayısı rapor edilmez; İK takdiri |
+| Kütüphaneyi kim tanımlar | İK küratörleri; teknik beceri çalıştaylarını İK yürütür | **Davranışsal: yalnız İK. Teknik: müdürler kendi müdürlüğü için yazar, İK onaylar ya da notla geri gönderir.** Süreç başlatma adımı yok; müdürün sayfası hep açık | Beceriyi en iyi işi yapan bilir; İK darboğaz olmaz; onay kalite kapısıdır | Müdürlükler arası tutarsızlık; "yapabilir" dili | İK onayı + otomatik kalite kontrolü ("yapabilir" = hata); onaylı/geri gönderilen oranı |
+| Kütüphane ekranı | Tek liste | **İki sayfa:** Davranışsal yetkinlikler, Teknik beceriler; müdürler salt okunur görür, çalışanlar görmez | Kullanım karışıklığı | — | — |
+| Rol profiline ek yetkinlik | Yok (profil tamamen İK'nın) | **Çalışan kütüphaneden ek yetkinlik seçip gerekçesiyle yöneticisine onaya gönderir** (ayar: yalnız çalışanlar / herkes / kapalı). **Müdürler seçmez**; "Yetkinliklerim" sayfası onlarda yok | Profilde olmayan ama gerçekten kullanılan beceriler görünür olsun (skills-based organization, Bölüm 12) | Kişi başı 30 satır sınırını zorlar; ilgisiz talep | Talep onay/red oranı; satır sayısı uyarısı |
+| Yönetici puanı | Yönetici yalnız kanıtı doğrular; seviye kanıttan hesaplanır | **Yönetici değerlendirmesi eklendi:** yetkinlik başına görüş (0–5) + gerekçe; kanıt doğrulamasından ayrı tutulur. Görüş kanıtın üstündeyse gözlem notuyla kanıta dönüştürülür; mutabık yine kanıtı aşamaz | Yöneticinin gözlemi kaybolmasın; "görüş − kanıt" farkı öğretici bir sinyal | Görüş, kanıtı etkilemeden "ikinci puan" gibi algılanabilir | Raporlarda **görüş − kanıt** sütunu ve bayrağı; cömertlik endeksi |
+| Görüşme zorunluluğu | \|öz-beyan − kanıtlanmış\| ≥ 2 veya reddedilmiş zorunlu kanıt | **\|öz-beyan − kanıtlanmış\| ≥ 2 veya \|yönetici görüşü − kanıtlanmış\| ≥ 2** | Zorunlu gösterge kalktı; görüş farkı daha iyi sinyal | — | Görüşme yapılan satır oranı |
+| 360, potansiyel, kritik rol, yedekleme, işe alım bağlantısı | Tasarımda var | **v1 dışı** | Önce ölçüm temelini oturtmak | Yedekleme sorusu cevapsız kalır | Genişleme kararı (14.4) |
+| Kimlik ve erişim | Sunucu, SSO/HRIS | **Tek dosya HTML; kullanıcı adı/şifre; İK admin tüm süreci görür, istediği kişi gibi bakar; JSON yedek/birleştirme** | Kurulum engeli kalksın; öğrenme aracı | Veri tek tarayıcıda; çok kullanıcı için dosya alışverişi | Haftalık yedek; büyüyünce sunucu sürümüne geçiş (veri modeli ortak) |
+| Örnek içerik | Aday sözlük (16+7), teknik beceri fikir listeleri | **Yok.** Kütüphane boş başlar; örnek veri yalnız birim, rol, kişi, hesap | "Hazır liste" düşünmeyi kısaltıyordu; kurumun kendi dili | Başlangıç daha yavaş | Rehber kutularında doğru/yanlış örnekler kalır |
+
+### 14.3 Kuramla bağ: her sadeleştirmenin literatürdeki karşılığı
+
+- **Az gösterge, tek cümle.** BARS (Bölüm 2.3) çıpaların azlığını değil, *somutluğunu* şart koşar; Smith & Kendall'ın özgün çalışmasında seviye başına bir iki çıpa vardır. Kaybettiğimiz şey geri eşleme (retranslation) testidir; onun yerine iki vekil kullanıyoruz: otomatik dil kontrolü ("yapabilir / iyi / etkili" uyarıları) ve İK onayı. Ayırt edicilik düşerse raporlardaki yığılma bayrağı bunu gösterir; çözüm o yetkinlikte gösterge sayısını artırmaktır, genel kuralı değiştirmek değil.
+- **"Yarısı kanıtlı" kuralı.** Yeterlilik temelli sistemlerde (NVQ/MYK, Bölüm 4) her performans ölçütü için kanıt istenir; biz öğrenme döneminde eşiği düşürdük. Bu, cömertliğe yol açabilir; dengeleyici, mutabık seviyenin kanıtı aşamaması ve yönetici görüşünün ayrı kaydedilmesidir. Eşik tek bir sayı olarak tutulur ve ikinci turda yeniden değerlendirilir.
+- **Sürekli akış.** Bölüm 10'daki Adobe/Deloitte dersleri "yıllık ritüel yerine sık check-in" der; biz bunu uçlara taşıdık: ritüel yok, kişi hazır olduğunda. Riski "sürüklenme"dir; Süreç takibi ve "sıradaki adım" kutusu bu riski yönetir. Yıllık bir kalibrasyon oturumu yine de önerilir (kurum aşaması 7).
+- **Yönetici görüşü + kanıt.** Literatür yönetici puanının yanlılığını (hale, cömertlik, benzerlik) iyi belgeler (Bölüm 4, 10). Görüşü kaldırmak yerine **kanıttan ayrı** kaydedip farkı görünür kılmak, yanlılığı ölçülebilir hale getirir: "görüş − kanıt" farkı, yönetici tutarlılığı için cömertlik endeksinden daha doğrudan bir göstergedir.
+- **Beceriyi işi yapan tanımlar.** İş analizi yöntemleri (Bölüm 3) uzman panelini vazgeçilmez sayar; müdürün yazıp İK'nın onaylaması, hafif bir uzman paneli + kalite kapısı düzenidir. Tutarsızlık riski, İK onay notlarıyla ve ortak yazım kuralıyla (rehber kutuları) dengelenir.
+- **Çalışanın ek yetkinlik seçmesi.** Skills-based organization yaklaşımı (Bölüm 12: Deloitte, Bersin, Mercer) rol dışı becerilerin görünür olmasını ister; v1'de bunu kontrollü açıyoruz (yönetici onayı, 30 satır sınırı, müdürler hariç).
+- **Süre sınırının kalkması.** WEF'in "beceri yarı ömrü" bulgusuyla çelişir; bilinçli bir erteleme. Yeni turda güncel kanıtla yeniden hesaplama yapıldığı için bayatlama pratikte görünür; kural ikinci yılda gündeme alınır.
+
+### 14.4 Öğrenim ölçütleri (v1) ve genişleme kararı
+
+Raporlar sayfasındaki dokuz ölçüt; 7/9 sağlanırsa sistem sonraki birimlere açılır.
+
+| # | Soru | Eşik | Hangi bölümden geliyor |
+|---|---|---|---|
+| 1 | Öz-beyan şişiyor mu? (öz-beyan − kanıtlanmış) | ≤ 0,5 | Bölüm 4, 5 |
+| 2 | Mutabakat çalışıyor mu? (mutabık satır oranı) | ≥ %85 | Bölüm 5 |
+| 3 | İtiraz oranı | ≤ %10 | Bölüm 5 |
+| 4 | Tamamlanma (kesinleşen) | ≥ %90 | Bölüm 10 |
+| 5 | Seviye dağılımı makul mu? (tek seviyede yığılma) | > %60 yok | Bölüm 2, 9 |
+| 6 | Gelişim planı oranı | ≥ %80 | Bölüm 6 |
+| 7 | Yönetici tutarlılığı (\|cömertlik\| ≤ 0,5) | ≥ %80 yönetici | Bölüm 4, 9 |
+| 8 | Bekleyen kanıt | 0 | Bölüm 10 |
+| 9 | Kural ihlali bayrağı (mutabık > kanıtlanmış) | 0 | Bölüm 5 |
+
+Yeni eklenen izleme sinyali: **görüş − kanıt** (yönetici görüşü ile kanıtlanmış seviye arasındaki ortalama fark); 0,5'i aşan yönetici kalibrasyon oturumunda konuşulur.
+
+### 14.5 Roller ve iş yükü (v1)
+
+| Rol | Yaptığı | Tahmini yük |
+|---|---|---|
+| Çalışan | Rol profilini görür; kanıt yazar; (açıksa) ek yetkinlik seçer; öz-beyan; mutabakat yanıtı; gelişim planı | 2–3 saat / yıl |
+| Müdür | Teknik becerileri yazar (bir kez, 8–12 beceri); kanıt kararı (haftalık 20 dk); yetkinlik talepleri; yönetici görüşü + doğrulama; görüşme + mutabakat; plan onayı | Kişi başı ~45 dk / tur + kurulumda ~1 gün |
+| Grup müdürü | Müdür işleri + seviye 5 onayı + itiraz kararı + kalibrasyon oturumu | Tur başına 2–3 saat |
+| İK admin | Kurulum; davranışsal yetkinlikler ve göstergeleri; teknik beceri onayı; rol profilleri; süreç takibi; raporlar; yedek | Kurulumda 3–5 gün, sonra haftalık 1–2 saat |
+
+### 14.6 Bir yetkinliğin v1'deki yaşam döngüsü
+
+| Adım | Kim | Ne olur |
+|---|---|---|
+| 1 | Müdür (teknik) / İK (davranışsal) | Yetkinliği yazar: ad, tanım, 5 seviye × 1–3 gösterge; otomatik kalite kontrolü |
+| 2 | İK | Teknik beceriyi onaylar ya da notla geri gönderir; onaylanan aktifleşir, önerilen rol profilleri işlenir |
+| 3 | İK | Rol profillerinde hedef ve ağırlığı doğrular; davranışsalları tüm rollere uygular |
+| 4 | Çalışan | Rol profilinde görür; kanıt yazar ve göstergelere bağlar |
+| 5 | Müdür | Kanıtı kabul / ek bilgi / red; gözlem notu |
+| 6 | Sistem | Kanıtlanmış seviyeyi hesaplar (yarısı kuralı, zincir) |
+| 7 | Çalışan → Müdür → Çalışan | Öz-beyan → görüş + doğrulama → görüşme → mutabakat → onay veya itiraz |
+| 8 | Grup müdürü | Seviye 5 onayı; itiraz kararı; kesinleşme |
+| 9 | Çalışan + Müdür | Gelişim planı (ilk 3 öncelik, eksik gösterge = eylem) |
+| 10 | Çalışan / Müdür | Yeni kanıt birikince yeni tur |
+
+### 14.7 Geri alınabilir kararlar
+
+Her sadeleştirme tek bir kuralla geri açılabilecek biçimde kurgulandı:
+
+| Karar | Geri alma yolu |
+|---|---|
+| Yarısı kuralı | Eşik sabitini %70'e çek |
+| Zorunlu gösterge yok | Göstergeye "zorunlu" alanı ve kuralda "zorunlular + eşik" |
+| Süre yok | Kanıt geçerlilik ayı sabiti (24) |
+| Kritiklik yok | Yetkinliğe kritiklik alanı; öncelik puanına çarpan |
+| Sürekli akış | Dönem kaydı zaten var; gerekirse "dönem kapanışı" kuralı |
+| Müdürler ek yetkinlik seçmez | Kurulum ayarı: "Herkes" |
+| 360, potansiyel, yedekleme | Tasarım dokümanları (01, 05) hazır; v2 modülleri |
+
+**Özetle:** v1, hedef modelin "öğrenme için küçültülmüş" halidir. Çekirdek ilke değişmedi: seviye yalnız kanıtla gelir, mutabık kanıtı aşamaz, ücretten ayrıktır. Geri kalan her şey ölçülerek geri eklenir.
 
 ---
 
@@ -482,3 +589,7 @@ Sermaye piyasası faaliyetleri için **SPK Lisanslama ve Sicil Tutma Tebliği (V
 11. WEF ve Gartner bulguları tasarımdaki hangi iki kararı doğrudan gerekçelendiriyor?
 12. Smither ve arkadaşlarının 360 meta-analizi ışığında 360'ı neden "teyit" olarak konumlandırdık?
 13. Öğrenme çevikliği literatüründeki uyarı, potansiyel modelimizde hangi üç önlemle karşılanıyor?
+14. "Göstergelerin yarısı kanıtlı" kuralı %70 kuralına göre hangi yanlılığı artırır; bunu hangi iki mekanizma dengeler?
+15. Yönetici görüşü kanıtlanmış seviyenin üstündeyse sistem ne yapar ve neden mutabık seviye yine de kanıtı aşamaz?
+16. Teknik becerileri müdürlerin yazıp İK'nın onaylaması, iş analizi yöntemlerindeki hangi düzenin hafifletilmiş halidir; riski nasıl izlenir?
+17. Döngüsüz (sürekli) akışın en büyük riski nedir ve uygulama bunu hangi ekranla yönetir?
