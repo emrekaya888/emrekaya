@@ -8,11 +8,27 @@ Kapsam: Genel Müdürlük departmanları (100+) ve şube ağı (bölge → şube
 
 Tasarım dokümanları `docs/` altında, uygulama `app/` altındadır. Sade sürümün (v0) altı sprinti tamamlanmıştır: kurulum ve içe aktarma, yetkinlik kütüphanesi, rol profilleri, kanıt kasası, değerlendirme döngüsü (mutabakat, itiraz, üst onay, kilit), raporlar ve gelişim planı; ayrıca etap etap ilerleyen Aşamalar rehberi.
 
+## Yeniden yapılanma: v1, etap etap (25.10.2026)
+
+Uygulama `docs/14-v1-gereksinimler-ve-etaplar.md` belgesine göre sıfırdan, etap etap yeniden yazılmaktadır. `html/yys.html` her zaman **tamamlanmış son etabı** içerir; menüde etabı gelmemiş sayfalar kilitli görünür ve hangi etapta geleceğini gösterir. Önceki tam sürüm referans olarak `html/arsiv/yys-v0-tam.html` altındadır.
+
+| Etap | Durum |
+|---|---|
+| 0 · Çekirdek (giriş, hesaplar, role göre menü iskeleti, Özet, yedek) | **Tamamlandı** (25.10) |
+| 1 · Kurulum | — |
+| 2 · Davranışsal yetkinlikler | — |
+| 3 · Teknik beceriler | — |
+| 4 · Rol profilleri ve Yetkinliklerim | — |
+| 5 · Kanıt | — |
+| 6 · Değerlendirme | — |
+| 7 · Gelişim planı | — |
+| 8 · Raporlar ve takip | — |
+
 ## Kurulumsuz sürüm: tek dosya HTML (önerilen başlangıç)
 
 `html/yys.html` dosyası sunucu, Docker veya kurulum gerektirmez: dosyayı indirip çift tıklayın, tarayıcıda açılır. Tüm akış (kurulum → yetkinlik → rol profili → kanıt → öz-beyan ve doğrulama → mutabakat/itiraz → raporlar, kalibrasyon ve gelişim planı) aynı kurallarla çalışır. Döngü/takvim yoktur: rol profili tanımlanınca herkesin değerlendirmesi açıktır, kişi ve yönetici hazır olduğunda ilerler, kesinleşince yeni tur başlatılır; İK isterse raporlardan "Dönemi kaydet" ile anlık görüntü alır; her ekranda 📘 öğretici kutular ve "Öğrenme rehberi (A'dan Z'ye)" sayfası vardır.
 
-- **Giriş:** `admin / Admin123!` (İK yöneticisi, tam yetki). Örnek kişiler: kullanıcı adı = şifre = sicil no (örn. `3001 / 3001`); ilk girişte şifre değiştirilir.
+- **Giriş:** `admin / Admin123!` (İK yöneticisi, tam yetki). Örnek kişiler: kullanıcı adı = şifre = sicil no (`1001` grup müdürü, `2001` müdür, `3001` uzman); ilk girişte şifre değiştirilir. Tarayıcı deposu anahtarı v1 için `yys_v1` (v0 verisi ayrı durur).
 - **Roller ayrı süreç görür:** İK admin davranışsal yetkinlikleri ve göstergelerini tanımlar; müdürler kendi müdürlükleri için teknik becerileri (süreç başlatmaya gerek olmadan) (tanım, 5 seviye × göstergeler, kanıt türleri, önerilen rol hedefleri) girip İK onayına gönderir; İK onaylayınca aktifleşir, rol profillerine işlenir ve çalışanlara görünür. İK admin ayrıca rol profillerini, kurulumu ve süreç takibini yönetir. Müdürler ve grup müdürü tanımlı yetkinlikleri salt okunur görür; ekiplerinin kanıtlarını, yetkinlik taleplerini ve değerlendirmelerini yürütür. Çalışanlar (Kurulum ayarı ile; varsayılan yalnız çalışanlar, yöneticiler seçemez) rol profiline ek yetkinlik seçip yöneticisine onaya gönderir, kanıt girer, öz-beyan ve mutabakat yapar, gelişim planı yazar. Özet sayfası her role kendi adımlarını gösterir.
 - **Hesaplar:** Kurulum sayfasında "Hepsine hesap aç" her kişiye sicil numarasıyla hesap açar. Admin "İK görünümü: şu kişi olarak bak" ile herkesin ekranını görebilir; "Süreç takibi" sayfası kimin ne yaptığını gösterir.
 - **Veri:** Yalnız açıldığı tarayıcıda saklanır (localStorage). "Yedek ve veri" sayfasından JSON dışa/içe aktarma ve birden fazla dosyayı birleştirme vardır. Haftada bir yedek alın.
